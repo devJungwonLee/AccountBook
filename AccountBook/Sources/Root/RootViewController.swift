@@ -22,3 +22,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         view.backgroundColor = .systemPink
     }
 }
+
+extension RootViewController: LoggedInViewControllable {
+    
+}
