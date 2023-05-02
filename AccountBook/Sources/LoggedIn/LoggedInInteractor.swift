@@ -9,7 +9,7 @@ import ModernRIBs
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToMain()
 }
 
 protocol LoggedInListener: AnyObject {
@@ -27,6 +27,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        router?.routeToMain()
     }
 
     override func willResignActive() {

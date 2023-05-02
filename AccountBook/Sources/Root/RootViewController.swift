@@ -19,10 +19,12 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
     }
 }
 
 extension RootViewController: LoggedInViewControllable {
-    
+    func present(viewController: ModernRIBs.ViewControllable) {
+        viewController.uiviewController.modalPresentationStyle = .fullScreen
+        present(viewController.uiviewController, animated: false)
+    }
 }

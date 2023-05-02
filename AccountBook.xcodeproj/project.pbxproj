@@ -15,6 +15,10 @@
 		5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */; };
 		5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */; };
 		5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */; };
+		5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F592A0086D00075D2ED /* MainRouter.swift */; };
+		5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F5A2A0086D00075D2ED /* MainViewController.swift */; };
+		5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F5B2A0086D00075D2ED /* MainBuilder.swift */; };
+		5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F5C2A0086D00075D2ED /* MainInteractor.swift */; };
 		5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB553429EA81DB006546B5 /* AppDelegate.swift */; };
 		5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB553629EA81DB006546B5 /* SceneDelegate.swift */; };
 		5EFB553E29EA81DB006546B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
@@ -33,6 +37,10 @@
 		5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
 		5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
+		5EE82F592A0086D00075D2ED /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		5EE82F5A2A0086D00075D2ED /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5EE82F5B2A0086D00075D2ED /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		5EE82F5C2A0086D00075D2ED /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		5EFB553129EA81DA006546B5 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFB553429EA81DB006546B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EFB553629EA81DB006546B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +84,17 @@
 			path = LoggedIn;
 			sourceTree = "<group>";
 		};
+		5EE82F582A0086BF0075D2ED /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5EE82F592A0086D00075D2ED /* MainRouter.swift */,
+				5EE82F5A2A0086D00075D2ED /* MainViewController.swift */,
+				5EE82F5B2A0086D00075D2ED /* MainBuilder.swift */,
+				5EE82F5C2A0086D00075D2ED /* MainInteractor.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		5EFB552829EA81DA006546B5 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +125,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5EE82F582A0086BF0075D2ED /* Main */,
 				5EE82F512A007F370075D2ED /* LoggedIn */,
 				5E6BCE6529EBC6D9008CEFE5 /* Root */,
 				5EFB554929EA852B006546B5 /* Application */,
@@ -214,12 +234,16 @@
 				5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */,
 				5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */,
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
+				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
 				5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */,
+				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
+				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
 				5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */,
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
 				5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */,
+				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
