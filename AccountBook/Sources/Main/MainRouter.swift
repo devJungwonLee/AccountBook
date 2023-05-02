@@ -7,20 +7,38 @@
 
 import ModernRIBs
 
-protocol MainInteractable: Interactable {
+protocol MainInteractable: Interactable, HomeListener {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
 }
 
 protocol MainViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func configureChildTabs(viewControllers: [ViewControllable])
 }
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: MainInteractable, viewController: MainViewControllable) {
+    private let homeBuilder: HomeBuildable
+    private var homeRouter: HomeRouting?
+    
+    init(
+        homeBuilder: HomeBuildable,
+        interactor: MainInteractable,
+        viewController: MainViewControllable
+    ) {
+        self.homeBuilder = homeBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func attachChildren() {
+        attachHome()
+        let viewControllers = [homeRouter].compactMap { $0?.viewControllable }
+        viewController.configureChildTabs(viewControllers: viewControllers)
+    }
+    
+    private func attachHome() {
+        let homeRouter = homeBuilder.build(withListener: interactor)
+        self.homeRouter = homeRouter
+        attachChild(homeRouter)
     }
 }

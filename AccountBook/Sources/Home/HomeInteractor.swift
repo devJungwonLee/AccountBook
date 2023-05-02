@@ -1,5 +1,5 @@
 //
-//  MainInteractor.swift
+//  HomeInteractor.swift
 //  AccountBook
 //
 //  Created by 이정원 on 2023/05/02.
@@ -7,34 +7,34 @@
 
 import ModernRIBs
 
-protocol MainRouting: ViewableRouting {
-    func attachChildren()
+protocol HomeRouting: ViewableRouting {
+    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol MainPresentable: Presentable {
-    var listener: MainPresentableListener? { get set }
+protocol HomePresentable: Presentable {
+    var listener: HomePresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol MainListener: AnyObject {
+protocol HomeListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
+final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
 
-    weak var router: MainRouting?
-    weak var listener: MainListener?
+    weak var router: HomeRouting?
+    weak var listener: HomeListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: MainPresentable) {
+    override init(presenter: HomePresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        router?.attachChildren()
+        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {

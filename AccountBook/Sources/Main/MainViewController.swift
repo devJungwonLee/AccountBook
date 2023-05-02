@@ -19,6 +19,18 @@ final class MainViewController: UITabBarController, MainPresentable, MainViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint
+        configureAttributes()
+    }
+    
+    func configureChildTabs(viewControllers: [ModernRIBs.ViewControllable]) {
+        self.viewControllers = viewControllers.map {
+            UINavigationController(rootViewController: $0.uiviewController)
+        }
+    }
+}
+
+private extension MainViewController {
+    func configureAttributes() {
+        view.backgroundColor = .systemBackground
     }
 }
