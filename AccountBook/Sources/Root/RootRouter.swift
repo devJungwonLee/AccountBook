@@ -31,7 +31,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         interactor.router = self
     }
     
-    func routeToLoggedIn() {
+    func attachLoggedIn() {
         let loggedInRouter = loggedInBuilder.build(withListener: interactor)
         attachChild(loggedInRouter)
     }

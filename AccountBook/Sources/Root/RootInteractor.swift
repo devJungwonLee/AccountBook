@@ -9,7 +9,7 @@ import UIKit
 import ModernRIBs
 
 protocol RootRouting: ViewableRouting {
-    func routeToLoggedIn()
+    func attachLoggedIn()
 }
 
 protocol RootPresentable: Presentable {
@@ -35,7 +35,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        router?.routeToLoggedIn()
+        router?.attachLoggedIn()
     }
 
     override func willResignActive() {
