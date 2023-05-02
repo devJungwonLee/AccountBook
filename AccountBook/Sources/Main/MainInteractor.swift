@@ -1,41 +1,40 @@
 //
-//  RootInteractor.swift
+//  MainInteractor.swift
 //  AccountBook
 //
-//  Created by 이정원 on 2023/04/16.
+//  Created by 이정원 on 2023/05/02.
 //
 
-import UIKit
 import ModernRIBs
 
-protocol RootRouting: ViewableRouting {
-    func attachLoggedIn()
+protocol MainRouting: ViewableRouting {
+    func attachChildren()
 }
 
-protocol RootPresentable: Presentable {
-    var listener: RootPresentableListener? { get set }
+protocol MainPresentable: Presentable {
+    var listener: MainPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol RootListener: AnyObject {
+protocol MainListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
+final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
 
-    weak var router: RootRouting?
-    weak var listener: RootListener?
+    weak var router: MainRouting?
+    weak var listener: MainListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: RootPresentable) {
+    override init(presenter: MainPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        router?.attachLoggedIn()
+        router?.attachChildren()
     }
 
     override func willResignActive() {
