@@ -37,7 +37,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         // it may have added to the view hierarchy, when its interactor is deactivated.
     }
     
-    func routeToMain() {
+    func attachMain() {
         let mainRouter = mainBuilder.build(withListener: interactor)
         self.mainRouter = mainRouter
         attachChild(mainRouter)

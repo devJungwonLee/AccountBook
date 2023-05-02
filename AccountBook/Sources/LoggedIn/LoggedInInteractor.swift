@@ -9,7 +9,7 @@ import ModernRIBs
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
-    func routeToMain()
+    func attachMain()
 }
 
 protocol LoggedInListener: AnyObject {
@@ -27,7 +27,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        router?.routeToMain()
+        router?.attachMain()
     }
 
     override func willResignActive() {
