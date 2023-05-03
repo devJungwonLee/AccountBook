@@ -14,6 +14,7 @@
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
 		5ED5E20B2A0216B6005FEA13 /* MyAccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */; };
 		5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */; };
+		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
 		5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */; };
 		5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */; };
 		5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */; };
@@ -42,6 +43,7 @@
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCollectionView.swift; sourceTree = "<group>"; };
 		5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCell.swift; sourceTree = "<group>"; };
+		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
 		5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 				5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		5ED5E20E2A029021005FEA13 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5ED5E20F2A02902E005FEA13 /* UIColor+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		5EE82F512A007F370075D2ED /* LoggedIn */ = {
@@ -158,6 +168,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5ED5E20E2A029021005FEA13 /* Extension */,
 				5EE82F612A0095F50075D2ED /* Home */,
 				5EE82F582A0086BF0075D2ED /* Main */,
 				5EE82F512A007F370075D2ED /* LoggedIn */,
@@ -285,6 +296,7 @@
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
+				5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
