@@ -29,6 +29,11 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         .init(name: "우리은행 계좌", number: "123456789012"),
         .init(name: "카카오뱅크 계좌", number: "123456789012"),
         .init(name: "토스뱅크 계좌", number: "123456789012"),
+        .init(name: "스탠다드차타드은행 계좌", number: "123456789012"),
+        .init(name: "신한은행 계좌", number: "123456789012"),
+        .init(name: "우리은행 계좌", number: "123456789012"),
+        .init(name: "카카오뱅크 계좌", number: "123456789012"),
+        .init(name: "토스뱅크 계좌", number: "123456789012"),
         .init(name: "스탠다드차타드은행 계좌", number: "123456789012")
     ]
     
@@ -38,6 +43,13 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     
     private lazy var collectionView = MyAccountCollectionView().then {
         $0.dataSource = self
+    }
+    
+    private lazy var addButton = UIButton(configuration: .filled()).then {
+        $0.configuration?.image = UIImage(systemName: "plus")
+        $0.configuration?.baseBackgroundColor = .main
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.background.cornerRadius = 30
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,7 +85,13 @@ private extension HomeViewController {
     func configureLayout() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        view.addSubview(addButton)
+        addButton.snp.makeConstraints { make in
+            make.width.height.equalTo(60)
+            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
 }
