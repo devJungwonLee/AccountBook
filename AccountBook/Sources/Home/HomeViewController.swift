@@ -37,6 +37,8 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         .init(name: "스탠다드차타드은행 계좌", number: "123456789012")
     ]
     
+    private let homeEmptyView = HomeEmptyView()
+    
     private let cellRegistration = UICollectionView.CellRegistration<MyAccountCell, Account> { cell, _, account in
         cell.configure(with: account)
     }
@@ -65,6 +67,8 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        homeEmptyView.isHidden = !accounts.isEmpty
+        collectionView.isHidden = accounts.isEmpty
     }
 }
 
@@ -92,6 +96,11 @@ private extension HomeViewController {
         addButton.snp.makeConstraints { make in
             make.width.height.equalTo(60)
             make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        view.addSubview(homeEmptyView)
+        homeEmptyView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
     }
 }
