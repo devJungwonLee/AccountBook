@@ -12,6 +12,8 @@
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
+		5ED5E20B2A0216B6005FEA13 /* MyAccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */; };
+		5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */; };
 		5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */; };
 		5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */; };
 		5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */; };
@@ -38,6 +40,8 @@
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCollectionView.swift; sourceTree = "<group>"; };
+		5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCell.swift; sourceTree = "<group>"; };
 		5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
 		5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
@@ -82,6 +86,15 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
+		5ED5E2092A02169A005FEA13 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */,
+				5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		5EE82F512A007F370075D2ED /* LoggedIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +119,7 @@
 		5EE82F612A0095F50075D2ED /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5ED5E2092A02169A005FEA13 /* UI */,
 				5EE82F622A0096050075D2ED /* HomeRouter.swift */,
 				5EE82F632A0096050075D2ED /* HomeViewController.swift */,
 				5EE82F642A0096050075D2ED /* HomeBuilder.swift */,
@@ -251,10 +265,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED5E20B2A0216B6005FEA13 /* MyAccountCollectionView.swift in Sources */,
 				5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */,
 				5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */,
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
+				5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */,
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
 				5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */,
 				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
