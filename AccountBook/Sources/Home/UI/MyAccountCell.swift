@@ -66,7 +66,7 @@ private extension MyAccountCell {
         contentView.addSubview(bankLogoView)
         bankLogoView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(20).priority(.high)
             make.width.height.equalTo(48)
         }
         
