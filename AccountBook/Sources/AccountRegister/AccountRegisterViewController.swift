@@ -43,6 +43,10 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         super.viewDidDisappear(animated)
         listener?.didDisappear()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
 
 private extension AccountRegisterViewController {
