@@ -30,7 +30,7 @@ final class AccountRegisterBuilder: Builder<AccountRegisterDependency>, AccountR
     }
 
     func build(withListener listener: AccountRegisterListener) -> AccountRegisterRouting {
-        let component = AccountRegisterComponent(dependency: dependency)
+        let _ = AccountRegisterComponent(dependency: dependency)
         let viewController = AccountRegisterViewController()
         let interactor = AccountRegisterInteractor(presenter: viewController)
         interactor.listener = listener
