@@ -17,7 +17,7 @@ protocol AccountRegisterPresentable: Presentable {
 }
 
 protocol AccountRegisterListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func close()
 }
 
 final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPresentable>, AccountRegisterInteractable, AccountRegisterPresentableListener {
@@ -40,5 +40,9 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func didDisappear() {
+        listener?.close()
     }
 }

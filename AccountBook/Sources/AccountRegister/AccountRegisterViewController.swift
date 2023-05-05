@@ -9,12 +9,26 @@ import ModernRIBs
 import UIKit
 
 protocol AccountRegisterPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func didDisappear()
 }
 
 final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable {
 
     weak var listener: AccountRegisterPresentableListener?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureAttributes()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        listener?.didDisappear()
+    }
+}
+
+private extension AccountRegisterViewController {
+    func configureAttributes() {
+        view.backgroundColor = .systemBackground
+    }
 }

@@ -16,9 +16,7 @@ struct Account {
 }
 
 protocol HomePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func addButtonTapped()
 }
 
 final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable {
@@ -52,6 +50,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         $0.configuration?.baseBackgroundColor = .main
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.background.cornerRadius = 30
+        $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -69,6 +68,14 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         configureLayout()
         homeEmptyView.isHidden = !accounts.isEmpty
         collectionView.isHidden = accounts.isEmpty
+    }
+    
+    func push(viewController: ViewControllable) {
+        viewController.uiviewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(
+            viewController.uiviewController,
+            animated: true
+        )
     }
 }
 
@@ -102,6 +109,10 @@ private extension HomeViewController {
         homeEmptyView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
+    }
+    
+    @objc func addButtonTapped() {
+        listener?.addButtonTapped()
     }
 }
 

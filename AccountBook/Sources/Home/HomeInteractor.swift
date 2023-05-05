@@ -8,7 +8,8 @@
 import ModernRIBs
 
 protocol HomeRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachAccountRegister()
+    func detachAccountRegister()
 }
 
 protocol HomePresentable: Presentable {
@@ -40,5 +41,13 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func addButtonTapped() {
+        router?.attachAccountRegister()
+    }
+    
+    func close() {
+        router?.detachAccountRegister()
     }
 }
