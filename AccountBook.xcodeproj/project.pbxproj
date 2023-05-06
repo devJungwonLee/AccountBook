@@ -7,11 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */; };
+		5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */; };
 		5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */; };
 		5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */; };
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
+		5EB10CFF2A04E0FA00D6DE83 /* BankSelectInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */; };
+		5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB10D002A04E89100D6DE83 /* UnderLineTextField.swift */; };
+		5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BD2A037682009AB303 /* AccountRegisterRouter.swift */; };
+		5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */; };
+		5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */; };
+		5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */; };
 		5ED5E20B2A0216B6005FEA13 /* MyAccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */; };
 		5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */; };
 		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
@@ -37,11 +45,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
+		5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectInputView.swift; sourceTree = "<group>"; };
+		5EB10D002A04E89100D6DE83 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
+		5EBA27BD2A037682009AB303 /* AccountRegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterRouter.swift; sourceTree = "<group>"; };
+		5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterViewController.swift; sourceTree = "<group>"; };
+		5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterBuilder.swift; sourceTree = "<group>"; };
+		5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterInteractor.swift; sourceTree = "<group>"; };
 		5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCollectionView.swift; sourceTree = "<group>"; };
 		5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCell.swift; sourceTree = "<group>"; };
 		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -79,6 +95,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E26A5462A0642AC0012DEE4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5E26A5472A0642B90012DEE4 /* Protocol */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5E26A5472A0642B90012DEE4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		5E6BCE6529EBC6D9008CEFE5 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +120,27 @@
 				5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		5EB10CFD2A04E06A00D6DE83 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */,
+				5EB10D002A04E89100D6DE83 /* UnderLineTextField.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5EBA27BC2A037661009AB303 /* AccountRegister */ = {
+			isa = PBXGroup;
+			children = (
+				5EB10CFD2A04E06A00D6DE83 /* UI */,
+				5EBA27BD2A037682009AB303 /* AccountRegisterRouter.swift */,
+				5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */,
+				5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */,
+				5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */,
+			);
+			path = AccountRegister;
 			sourceTree = "<group>";
 		};
 		5ED5E2092A02169A005FEA13 /* UI */ = {
@@ -104,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				5ED5E20F2A02902E005FEA13 /* UIColor+.swift */,
+				5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -171,12 +225,14 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5ED5E20E2A029021005FEA13 /* Extension */,
-				5EE82F612A0095F50075D2ED /* Home */,
-				5EE82F582A0086BF0075D2ED /* Main */,
-				5EE82F512A007F370075D2ED /* LoggedIn */,
-				5E6BCE6529EBC6D9008CEFE5 /* Root */,
+				5E26A5462A0642AC0012DEE4 /* Common */,
+				5EBA27BC2A037661009AB303 /* AccountRegister */,
 				5EFB554929EA852B006546B5 /* Application */,
+				5E6BCE6529EBC6D9008CEFE5 /* Root */,
+				5EE82F512A007F370075D2ED /* LoggedIn */,
+				5EE82F582A0086BF0075D2ED /* Main */,
+				5EE82F612A0095F50075D2ED /* Home */,
+				5ED5E20E2A029021005FEA13 /* Extension */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -285,20 +341,28 @@
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
 				5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */,
+				5EB10CFF2A04E0FA00D6DE83 /* BankSelectInputView.swift in Sources */,
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
 				5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */,
 				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
+				5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
 				5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */,
 				5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */,
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
+				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
+				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
+				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
 				5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */,
+				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
+				5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */,
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
+				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
 				5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */,
 			);

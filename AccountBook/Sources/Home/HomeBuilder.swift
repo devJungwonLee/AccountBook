@@ -12,7 +12,7 @@ protocol HomeDependency: Dependency {
     // created by this RIB.
 }
 
-final class HomeComponent: Component<HomeDependency> {
+final class HomeComponent: Component<HomeDependency>, AccountRegisterDependency {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -30,10 +30,17 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
     }
 
     func build(withListener listener: HomeListener) -> HomeRouting {
-        let _ = HomeComponent(dependency: dependency)
         let viewController = HomeViewController()
         let interactor = HomeInteractor(presenter: viewController)
+        
+        let component = HomeComponent(dependency: dependency)
+        let accountRegisterBuilder = AccountRegisterBuilder(dependency: component)
+        
         interactor.listener = listener
-        return HomeRouter(interactor: interactor, viewController: viewController)
+        return HomeRouter(
+            accountRegisterBuilder: accountRegisterBuilder,
+            interactor: interactor,
+            viewController: viewController
+        )
     }
 }

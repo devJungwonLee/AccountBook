@@ -24,7 +24,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
 
 extension RootViewController: LoggedInViewControllable {
     func present(viewController: ModernRIBs.ViewControllable) {
-        viewController.uiviewController.modalPresentationStyle = .fullScreen
+        viewController.uiviewController.modalPresentationStyle = .overFullScreen
         present(viewController.uiviewController, animated: false)
     }
 }
