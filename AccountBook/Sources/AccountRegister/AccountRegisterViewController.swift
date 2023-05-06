@@ -12,6 +12,7 @@ import Then
 
 protocol AccountRegisterPresentableListener: AnyObject {
     func didDisappear()
+    func bankSelectInputTapped()
 }
 
 final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable, KeyboardObservable {
@@ -33,7 +34,14 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.text = "은행"
     }
     
-    private let bankSelectInputView = BankSelectInputView()
+    private lazy var bankSelectInputView = BankSelectInputView().then {
+        $0.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(bankSelectInputViewTapped)
+            )
+        )
+    }
     
     private let accountNumberLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -89,6 +97,10 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     
     deinit {
         removeKeyboardObserver()
+    }
+    
+    func present(viewController: ViewControllable) {
+        present(viewController.uiviewController, animated: true)
     }
 }
 
@@ -161,5 +173,9 @@ private extension AccountRegisterViewController {
     
     @objc func scrollViewTapped() {
         view.endEditing(true)
+    }
+    
+    @objc func bankSelectInputViewTapped() {
+        listener?.bankSelectInputTapped()
     }
 }

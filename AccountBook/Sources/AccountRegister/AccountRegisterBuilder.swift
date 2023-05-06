@@ -12,7 +12,7 @@ protocol AccountRegisterDependency: Dependency {
     // created by this RIB.
 }
 
-final class AccountRegisterComponent: Component<AccountRegisterDependency> {
+final class AccountRegisterComponent: Component<AccountRegisterDependency>, BankSelectDependency {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -30,10 +30,17 @@ final class AccountRegisterBuilder: Builder<AccountRegisterDependency>, AccountR
     }
 
     func build(withListener listener: AccountRegisterListener) -> AccountRegisterRouting {
-        let _ = AccountRegisterComponent(dependency: dependency)
         let viewController = AccountRegisterViewController()
         let interactor = AccountRegisterInteractor(presenter: viewController)
+        
+        let component = AccountRegisterComponent(dependency: dependency)
+        let bankSelectBuilder = BankSelectBuilder(dependency: component)
+        
         interactor.listener = listener
-        return AccountRegisterRouter(interactor: interactor, viewController: viewController)
+        return AccountRegisterRouter(
+            bankSelectBuilder: bankSelectBuilder,
+            interactor: interactor,
+            viewController: viewController
+        )
     }
 }

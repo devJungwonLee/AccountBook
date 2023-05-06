@@ -8,7 +8,7 @@
 import ModernRIBs
 
 protocol AccountRegisterRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachBankSelect()
 }
 
 protocol AccountRegisterPresentable: Presentable {
@@ -44,5 +44,9 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     func didDisappear() {
         listener?.close()
+    }
+    
+    func bankSelectInputTapped() {
+        router?.attachBankSelect()
     }
 }

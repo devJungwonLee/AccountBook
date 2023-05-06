@@ -7,20 +7,33 @@
 
 import ModernRIBs
 
-protocol AccountRegisterInteractable: Interactable {
+protocol AccountRegisterInteractable: Interactable, BankSelectListener {
     var router: AccountRegisterRouting? { get set }
     var listener: AccountRegisterListener? { get set }
 }
 
 protocol AccountRegisterViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func present(viewController: ViewControllable)
 }
 
 final class AccountRegisterRouter: ViewableRouter<AccountRegisterInteractable, AccountRegisterViewControllable>, AccountRegisterRouting {
+    private let bankSelectBuilder: BankSelectBuildable
+    private var bankSelectRouter: BankSelectRouting?
 
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: AccountRegisterInteractable, viewController: AccountRegisterViewControllable) {
+    init(
+        bankSelectBuilder: BankSelectBuildable,
+        interactor: AccountRegisterInteractable,
+        viewController: AccountRegisterViewControllable
+    ) {
+        self.bankSelectBuilder = bankSelectBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func attachBankSelect() {
+        let bankSelectRouter = bankSelectBuilder.build(withListener: interactor)
+        self.bankSelectRouter = bankSelectRouter
+        attachChild(bankSelectRouter)
+        viewController.present(viewController: bankSelectRouter.viewControllable)
     }
 }
