@@ -17,6 +17,17 @@ protocol AccountRegisterPresentableListener: AnyObject {
 final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable {
     weak var listener: AccountRegisterPresentableListener?
     
+    private lazy var scrollView = UIScrollView().then {
+        $0.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(scrollViewTapped)
+            )
+        )
+    }
+    
+    private let contentView = UIView()
+    
     private let bankLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.text = "은행"
@@ -75,10 +86,6 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         super.viewDidDisappear(animated)
         listener?.didDisappear()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
 }
 
 private extension AccountRegisterViewController {
@@ -88,41 +95,53 @@ private extension AccountRegisterViewController {
     }
     
     func configureLayout() {
-        view.addSubview(bankLabel)
-        bankLabel.snp.makeConstraints { make in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
         }
         
-        view.addSubview(bankSelectInputView)
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
+        contentView.addSubview(bankLabel)
+        bankLabel.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().inset(20)
+        }
+
+        contentView.addSubview(bankSelectInputView)
         bankSelectInputView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(bankLabel.snp.bottom).offset(12)
         }
-        
-        view.addSubview(accountNumberLabel)
+
+        contentView.addSubview(accountNumberLabel)
         accountNumberLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalTo(bankSelectInputView.snp.bottom).offset(32)
         }
-        
-        view.addSubview(accountNumberTextField)
+
+        contentView.addSubview(accountNumberTextField)
         accountNumberTextField.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(accountNumberLabel.snp.bottom).offset(12)
         }
-        
-        view.addSubview(accountNameLabel)
+
+        contentView.addSubview(accountNameLabel)
         accountNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalTo(accountNumberTextField.snp.bottom).offset(38)
         }
-        
-        view.addSubview(accountNameTextField)
+
+        contentView.addSubview(accountNameTextField)
         accountNameTextField.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(accountNameLabel.snp.bottom).offset(12)
+            make.bottom.equalToSuperview().inset(20)
         }
-        
+
         accessoryDoneButton.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
@@ -130,7 +149,12 @@ private extension AccountRegisterViewController {
         view.addSubview(doneButton)
         doneButton.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(scrollView.snp.bottom).offset(20)
             make.height.equalTo(60)
         }
+    }
+    
+    @objc func scrollViewTapped() {
+        view.endEditing(true)
     }
 }
