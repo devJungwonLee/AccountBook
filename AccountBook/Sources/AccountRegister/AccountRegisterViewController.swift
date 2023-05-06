@@ -29,9 +29,10 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.text = "계좌번호"
     }
     
-    private let accountNumberTextField = UnderLineTextField().then {
+    private lazy var accountNumberTextField = UnderLineTextField().then {
         $0.keyboardType = .numberPad
         $0.placeholder = "계좌번호 입력"
+        $0.inputAccessoryView = accessoryDoneButton
     }
     
     private let accountNameLabel = UILabel().then {
@@ -39,8 +40,29 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.text = "계좌이름"
     }
     
-    private let accountNameTextField = UnderLineTextField().then {
+    private lazy var accountNameTextField = UnderLineTextField().then {
         $0.placeholder = "계좌이름 입력"
+        $0.inputAccessoryView = accessoryDoneButton
+    }
+    
+    private lazy var accessoryDoneButton = UIButton(configuration: .filled()).then {
+        var attributedString = AttributedString("등록")
+        attributedString.font = .systemFont(ofSize: 20, weight: .semibold)
+        $0.configuration?.attributedTitle = attributedString
+        $0.configuration?.baseBackgroundColor = .main
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.background.cornerRadius = 0
+        // $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+    }
+    
+    private lazy var doneButton = UIButton(configuration: .filled()).then {
+        var attributedString = AttributedString("등록")
+        attributedString.font = .systemFont(ofSize: 20, weight: .semibold)
+        $0.configuration?.attributedTitle = attributedString
+        $0.configuration?.baseBackgroundColor = .main
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.cornerStyle = .large
+        // $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -99,6 +121,16 @@ private extension AccountRegisterViewController {
         accountNameTextField.snp.makeConstraints { make in
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.top.equalTo(accountNameLabel.snp.bottom).offset(12)
+        }
+        
+        accessoryDoneButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
+        }
+        
+        view.addSubview(doneButton)
+        doneButton.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(60)
         }
     }
 }
