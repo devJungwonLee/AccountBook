@@ -30,7 +30,7 @@ private extension UnderLineTextField {
         borderStyle = .none
         font = .systemFont(ofSize: 24, weight: .medium)
         tintColor = .main
-        clearButtonMode = .whileEditing
+        clearButtonMode = .always
     }
     
     func configureLayout() {
