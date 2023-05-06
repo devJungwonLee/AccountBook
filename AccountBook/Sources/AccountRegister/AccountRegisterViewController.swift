@@ -14,10 +14,10 @@ protocol AccountRegisterPresentableListener: AnyObject {
     func didDisappear()
 }
 
-final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable {
+final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable, KeyboardObservable {
     weak var listener: AccountRegisterPresentableListener?
     
-    private lazy var scrollView = UIScrollView().then {
+    lazy var scrollView = UIScrollView().then {
         $0.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self,
@@ -86,12 +86,17 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         super.viewDidDisappear(animated)
         listener?.didDisappear()
     }
+    
+    deinit {
+        removeKeyboardObserver()
+    }
 }
 
 private extension AccountRegisterViewController {
     func configureAttributes() {
         view.backgroundColor = .systemBackground
         navigationItem.title = "계좌 등록"
+        addKeyboardObserver()
     }
     
     func configureLayout() {
@@ -139,7 +144,7 @@ private extension AccountRegisterViewController {
         accountNameTextField.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(accountNameLabel.snp.bottom).offset(12)
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(34)
         }
 
         accessoryDoneButton.snp.makeConstraints { make in
