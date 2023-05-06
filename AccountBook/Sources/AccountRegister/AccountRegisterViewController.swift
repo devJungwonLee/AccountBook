@@ -31,6 +31,16 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     
     private let accountNumberTextField = UnderLineTextField().then {
         $0.keyboardType = .numberPad
+        $0.placeholder = "계좌번호 입력"
+    }
+    
+    private let accountNameLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
+        $0.text = "계좌이름"
+    }
+    
+    private let accountNameTextField = UnderLineTextField().then {
+        $0.placeholder = "계좌이름 입력"
     }
     
     override func viewDidLoad() {
@@ -77,6 +87,18 @@ private extension AccountRegisterViewController {
         accountNumberTextField.snp.makeConstraints { make in
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.top.equalTo(accountNumberLabel.snp.bottom).offset(12)
+        }
+        
+        view.addSubview(accountNameLabel)
+        accountNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(accountNumberTextField.snp.bottom).offset(38)
+        }
+        
+        view.addSubview(accountNameTextField)
+        accountNameTextField.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(accountNameLabel.snp.bottom).offset(12)
         }
     }
 }

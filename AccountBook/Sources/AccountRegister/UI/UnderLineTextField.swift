@@ -29,8 +29,8 @@ private extension UnderLineTextField {
     func configureAttributes() {
         borderStyle = .none
         font = .systemFont(ofSize: 24, weight: .medium)
-        placeholder = "계좌번호 입력"
         tintColor = .main
+        clearButtonMode = .whileEditing
     }
     
     func configureLayout() {
