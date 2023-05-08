@@ -41,7 +41,17 @@ private extension BankCollectionView {
             subitems: [item]
         )
         
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(80)
+            ),
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
+        
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [footer]
         section.interGroupSpacing = 8
         section.contentInsets = .init(top: 8, leading: 8, bottom: 0, trailing: 8)
         collectionViewLayout = UICollectionViewCompositionalLayout(section: section)

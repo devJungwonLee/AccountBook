@@ -25,6 +25,10 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
         cell.configure(with: bank)
     }
     
+    private let footerViewRegistration = UICollectionView.SupplementaryRegistration<BankSelectFooterView>(
+        elementKind: UICollectionView.elementKindSectionFooter
+    ) { _, _, _ in }
+    
     private lazy var collectionView = BankCollectionView().then {
         $0.dataSource = self
     }
@@ -61,5 +65,12 @@ extension BankSelectViewController: UICollectionViewDataSource {
             using: cellRegistration, for: indexPath, item: bank
         )
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footerView = collectionView.dequeueConfiguredReusableSupplementary(
+            using: footerViewRegistration, for: indexPath
+        )
+        return footerView
     }
 }

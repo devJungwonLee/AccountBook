@@ -21,6 +21,7 @@
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
 		5E9771192A092C3A00A6B28F /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
+		5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */; };
 		5EB10CFF2A04E0FA00D6DE83 /* BankSelectInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */; };
 		5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB10D002A04E89100D6DE83 /* UnderLineTextField.swift */; };
 		5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BD2A037682009AB303 /* AccountRegisterRouter.swift */; };
@@ -66,6 +67,7 @@
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		5E9771182A092C3A00A6B28F /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectFooterView.swift; sourceTree = "<group>"; };
 		5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectInputView.swift; sourceTree = "<group>"; };
 		5EB10D002A04E89100D6DE83 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
 		5EBA27BD2A037682009AB303 /* AccountRegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterRouter.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */,
 				5E26A5582A07B2770012DEE4 /* BankCell.swift */,
+				5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
 				5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */,
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
+				5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
 				5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */,
 			);
