@@ -31,6 +31,7 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
     
     private lazy var collectionView = BankCollectionView().then {
         $0.dataSource = self
+        $0.delegate = self
     }
     
     override func viewDidLoad() {
@@ -72,5 +73,17 @@ extension BankSelectViewController: UICollectionViewDataSource {
             using: footerViewRegistration, for: indexPath
         )
         return footerView
+    }
+}
+
+extension BankSelectViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        cell.contentView.backgroundColor = .secondarySystemBackground
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        cell.contentView.backgroundColor = .systemBackground
     }
 }

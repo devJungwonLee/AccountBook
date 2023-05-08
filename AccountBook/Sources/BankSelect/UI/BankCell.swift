@@ -46,6 +46,7 @@ final class BankCell: UICollectionViewCell {
 private extension BankCell {
     func configureAttributes() {
         contentView.backgroundColor = .systemBackground
+        contentView.layer.cornerRadius = 8
     }
     
     func configureLayout() {
