@@ -7,6 +7,8 @@
 
 import ModernRIBs
 import UIKit
+import SnapKit
+import Then
 
 protocol BankSelectPresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -15,11 +17,49 @@ protocol BankSelectPresentableListener: AnyObject {
 }
 
 final class BankSelectViewController: UIViewController, BankSelectPresentable, BankSelectViewControllable {
-
     weak var listener: BankSelectPresentableListener?
+    
+    private var banks: [Bank] = Bank.allCases
+    
+    private let cellRegistration = UICollectionView.CellRegistration<BankCell, Bank> { cell, _, bank in
+        cell.configure(with: bank)
+    }
+    
+    private lazy var collectionView = BankCollectionView().then {
+        $0.dataSource = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint
+        configureAttributes()
+        configureLayout()
+    }
+}
+
+private extension BankSelectViewController {
+    func configureAttributes() {
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "은행 선택"
+    }
+    
+    func configureLayout() {
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+}
+
+extension BankSelectViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return banks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let bank = banks[indexPath.item]
+        let cell = collectionView.dequeueConfiguredReusableCell(
+            using: cellRegistration, for: indexPath, item: bank
+        )
+        return cell
     }
 }

@@ -100,7 +100,10 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     }
     
     func present(viewController: ViewControllable) {
-        present(viewController.uiviewController, animated: true)
+        let navigationController = UINavigationController(
+            rootViewController: viewController.uiviewController
+        )
+        present(navigationController, animated: true)
     }
 }
 
