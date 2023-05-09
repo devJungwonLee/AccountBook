@@ -8,7 +8,7 @@
 import ModernRIBs
 
 protocol BankSelectRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func dismiss()
 }
 
 protocol BankSelectPresentable: Presentable {
@@ -17,7 +17,7 @@ protocol BankSelectPresentable: Presentable {
 }
 
 protocol BankSelectListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func close()
 }
 
 final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, BankSelectInteractable, BankSelectPresentableListener {
@@ -40,5 +40,13 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func bankNameCreated(_ bankName: String) {
+        router?.dismiss()
+    }
+    
+    func didDisappear() {
+        listener?.close()
     }
 }

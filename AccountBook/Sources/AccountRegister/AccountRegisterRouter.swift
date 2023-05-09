@@ -36,4 +36,10 @@ final class AccountRegisterRouter: ViewableRouter<AccountRegisterInteractable, A
         attachChild(bankSelectRouter)
         viewController.present(viewController: bankSelectRouter.viewControllable)
     }
+    
+    func detachBankSelect() {
+        guard let bankSelectRouter else { return }
+        detachChild(bankSelectRouter)
+        self.bankSelectRouter = nil
+    }
 }

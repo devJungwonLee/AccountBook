@@ -9,12 +9,19 @@ import UIKit
 import SnapKit
 import Then
 
+protocol InputButtonDelegate: AnyObject {
+    func inputButtonTapped()
+}
+
 final class BankSelectFooterView: UICollectionReusableView {
-    private let inputButton = UIButton(configuration: .plain()).then {
+    weak var delegate: InputButtonDelegate?
+    
+    private lazy var inputButton = UIButton(configuration: .plain()).then {
         var attributedString = AttributedString("직접 입력")
         attributedString.font = .systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.attributedTitle = attributedString
         $0.configuration?.baseForegroundColor = .main
+        $0.addTarget(self, action: #selector(inputButtonTapped), for: .touchUpInside)
     }
     
     override init(frame: CGRect) {
@@ -40,5 +47,9 @@ private extension BankSelectFooterView {
             make.top.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(28)
         }
+    }
+    
+    @objc func inputButtonTapped() {
+        delegate?.inputButtonTapped()
     }
 }

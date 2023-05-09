@@ -50,6 +50,8 @@
 		5EFB554D29EA8884006546B5 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 5EFB554C29EA8884006546B5 /* Then */; };
 		5EFB555029EA8891006546B5 /* ModernRIBs in Frameworks */ = {isa = PBXBuildFile; productRef = 5EFB554F29EA8891006546B5 /* ModernRIBs */; };
 		5EFB555329EA88DF006546B5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5EFB555229EA88DF006546B5 /* SnapKit */; };
+		5EFD8E4A2A09FDCF00C0ED03 /* AlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD8E492A09FDCF00C0ED03 /* AlertPresentable.swift */; };
+		5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,8 @@
 		5EFB553D29EA81DB006546B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EFB554029EA81DB006546B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EFB554229EA81DB006546B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EFD8E492A09FDCF00C0ED03 /* AlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentable.swift; sourceTree = "<group>"; };
+		5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */,
+				5EFD8E492A09FDCF00C0ED03 /* AlertPresentable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			children = (
 				5ED5E20F2A02902E005FEA13 /* UIColor+.swift */,
 				5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */,
+				5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */,
 				5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */,
 				5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */,
+				5EFD8E4A2A09FDCF00C0ED03 /* AlertPresentable.swift in Sources */,
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
 				5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */,
@@ -414,6 +421,7 @@
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
+				5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */,
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5E26A5522A0683420012DEE4 /* BankSelectViewController.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,

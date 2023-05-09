@@ -11,9 +11,8 @@ import SnapKit
 import Then
 
 protocol BankSelectPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func bankNameCreated(_ bankName: String)
+    func didDisappear()
 }
 
 final class BankSelectViewController: UIViewController, BankSelectPresentable, BankSelectViewControllable {
@@ -38,6 +37,15 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        listener?.didDisappear()
+    }
+    
+    func dismiss() {
+        dismiss(animated: true)
     }
 }
 
@@ -72,6 +80,7 @@ extension BankSelectViewController: UICollectionViewDataSource {
         let footerView = collectionView.dequeueConfiguredReusableSupplementary(
             using: footerViewRegistration, for: indexPath
         )
+        footerView.delegate = self
         return footerView
     }
 }
@@ -85,5 +94,13 @@ extension BankSelectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         cell.contentView.backgroundColor = .systemBackground
+    }
+}
+
+extension BankSelectViewController: InputButtonDelegate, AlertPresentable {
+    func inputButtonTapped() {
+        presentTextFieldAlert(title: "은행이름 입력", message: "최대 20자까지 입력하실 수 있습니다.") { [weak self] bankName in
+            self?.listener?.bankNameCreated(bankName)
+        }
     }
 }

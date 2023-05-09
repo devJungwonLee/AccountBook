@@ -9,6 +9,7 @@ import ModernRIBs
 
 protocol AccountRegisterRouting: ViewableRouting {
     func attachBankSelect()
+    func detachBankSelect()
 }
 
 protocol AccountRegisterPresentable: Presentable {
@@ -48,5 +49,9 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     func bankSelectInputTapped() {
         router?.attachBankSelect()
+    }
+    
+    func close() {
+        router?.detachBankSelect()
     }
 }

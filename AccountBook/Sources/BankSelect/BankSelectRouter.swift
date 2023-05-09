@@ -13,7 +13,7 @@ protocol BankSelectInteractable: Interactable {
 }
 
 protocol BankSelectViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func dismiss()
 }
 
 final class BankSelectRouter: ViewableRouter<BankSelectInteractable, BankSelectViewControllable>, BankSelectRouting {
@@ -22,5 +22,9 @@ final class BankSelectRouter: ViewableRouter<BankSelectInteractable, BankSelectV
     override init(interactor: BankSelectInteractable, viewController: BankSelectViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func dismiss() {
+        viewController.dismiss()
     }
 }
