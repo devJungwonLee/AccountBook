@@ -14,7 +14,7 @@ protocol AccountRegisterRouting: ViewableRouting {
 
 protocol AccountRegisterPresentable: Presentable {
     var listener: AccountRegisterPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func displayBankName(_ name: String)
 }
 
 protocol AccountRegisterListener: AnyObject {
@@ -49,6 +49,10 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     func bankSelectInputTapped() {
         router?.attachBankSelect()
+    }
+    
+    func bankDecided(_ bank: Bank) {
+        presenter.displayBankName(bank.name)
     }
     
     func close() {

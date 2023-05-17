@@ -105,6 +105,10 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         )
         present(navigationController, animated: true)
     }
+    
+    func displayBankName(_ name: String) {
+        bankSelectInputView.configure(name)
+    }
 }
 
 private extension AccountRegisterViewController {

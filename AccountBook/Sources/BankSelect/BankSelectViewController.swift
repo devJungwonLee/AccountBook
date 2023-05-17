@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 protocol BankSelectPresentableListener: AnyObject {
+    func bankSelected(_ bank: Bank)
     func bankNameCreated(_ bankName: String)
     func didDisappear()
 }
@@ -48,7 +49,7 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
         dismiss(animated: true)
     }
     
-    func presentBankList(_ banks: [Bank]) {
+    func displayBankList(_ banks: [Bank]) {
         self.banks = banks
     }
 }
@@ -98,6 +99,10 @@ extension BankSelectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         cell.contentView.backgroundColor = .systemBackground
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listener?.bankSelected(banks[indexPath.item])
     }
 }
 

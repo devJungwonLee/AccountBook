@@ -14,10 +14,11 @@ protocol BankSelectRouting: ViewableRouting {
 
 protocol BankSelectPresentable: Presentable {
     var listener: BankSelectPresentableListener? { get set }
-    func presentBankList(_ banks: [Bank])
+    func displayBankList(_ banks: [Bank])
 }
 
 protocol BankSelectListener: AnyObject {
+    func bankDecided(_ bank: Bank)
     func close()
 }
 
@@ -43,8 +44,13 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
         // TODO: Pause any business logic.
     }
     
+    func bankSelected(_ bank: Bank) {
+        bankDecided(bank)
+    }
+    
     func bankNameCreated(_ bankName: String) {
-        router?.dismiss()
+        let bank = Bank(code: "", name: bankName)
+        bankDecided(bank)
     }
     
     func didDisappear() {
@@ -55,6 +61,11 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
         guard let url = Bundle.main.url(forResource: "BankList", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let banks = try? JSONDecoder().decode([Bank].self, from: data) else { return }
-        presenter.presentBankList(banks)
+        presenter.displayBankList(banks)
+    }
+    
+    private func bankDecided(_ bank: Bank) {
+        listener?.bankDecided(bank)
+        router?.dismiss()
     }
 }
