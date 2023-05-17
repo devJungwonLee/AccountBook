@@ -1,0 +1,98 @@
+[
+    {
+        "code": "kb",
+        "name": "KB국민은행",
+    },
+    {
+        "code": "ibk",
+        "name": "IBK기업은행",
+    },
+    {
+        "code": "nh",
+        "name": "NH농협은행",
+    },
+    {
+        "code": "kdb",
+        "name": "KDB산업은행",
+    },
+    {
+        "code": "shinhan",
+        "name": "신한은행",
+    },
+    {
+        "code": "woori",
+        "name": "우리은행",
+    },
+    {
+        "code": "sc",
+        "name": "SC제일은행",
+    },
+    {
+        "code": "hana",
+        "name": "하나은행",
+    },
+    {
+        "code": "citi",
+        "name": "한국씨티은행",
+    },
+    {
+        "code": "kakaobank",
+        "name": "카카오뱅크",
+    },
+    {
+        "code": "kbank",
+        "name": "케이뱅크",
+    },
+    {
+        "code": "tossbank",
+        "name": "토스뱅크",
+    },
+    {
+        "code": "knbank",
+        "name": "경남은행",
+    },
+    {
+        "code": "kjbank",
+        "name": "광주은행",
+    },
+    {
+        "code": "dgb",
+        "name": "대구은행",
+    },
+    {
+        "code": "bsbank",
+        "name": "부산은행",
+    },
+    {
+        "code": "jbbank",
+        "name": "전북은행",
+    },
+    {
+        "code": "jjbank",
+        "name": "제주은행",
+    },
+    {
+        "code": "savingsbank",
+        "name": "저축은행",
+    },
+    {
+        "code": "sj",
+        "name": "산림조합",
+    },
+    {
+        "code": "mg",
+        "name": "새마을금고",
+    },
+    {
+        "code": "sh",
+        "name": "수협",
+    },
+    {
+        "code": "cu",
+        "name": "신협",
+    },
+    {
+        "code": "post",
+        "name": "우체국",
+    }
+]

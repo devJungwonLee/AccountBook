@@ -15,6 +15,7 @@
 		5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5502A0683420012DEE4 /* BankSelectInteractor.swift */; };
 		5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */; };
 		5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5582A07B2770012DEE4 /* BankCell.swift */; };
+		5E3953FD2A13EEC60084A8AD /* BankList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E3953FC2A13EEC60084A8AD /* BankList.json */; };
 		5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */; };
 		5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */; };
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
@@ -63,6 +64,7 @@
 		5E26A5502A0683420012DEE4 /* BankSelectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectInteractor.swift; sourceTree = "<group>"; };
 		5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCollectionView.swift; sourceTree = "<group>"; };
 		5E26A5582A07B2770012DEE4 /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
+		5E3953FC2A13EEC60084A8AD /* BankList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BankList.json; path = AccountBook/Resources/BankList.json; sourceTree = SOURCE_ROOT; };
 		5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				5EFB553D29EA81DB006546B5 /* Assets.xcassets */,
+				5E3953FC2A13EEC60084A8AD /* BankList.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				5EFB554129EA81DB006546B5 /* LaunchScreen.storyboard in Resources */,
 				5EFB553E29EA81DB006546B5 /* Assets.xcassets in Resources */,
+				5E3953FD2A13EEC60084A8AD /* BankList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
