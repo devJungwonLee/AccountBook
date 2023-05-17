@@ -18,7 +18,7 @@ protocol BankSelectPresentableListener: AnyObject {
 final class BankSelectViewController: UIViewController, BankSelectPresentable, BankSelectViewControllable {
     weak var listener: BankSelectPresentableListener?
     
-    private var banks: [Bank] = Bank.allCases
+    private var banks: [Bank] = []
     
     private let cellRegistration = UICollectionView.CellRegistration<BankCell, Bank> { cell, _, bank in
         cell.configure(with: bank)
@@ -46,6 +46,10 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
     
     func dismiss() {
         dismiss(animated: true)
+    }
+    
+    func presentBankList(_ banks: [Bank]) {
+        self.banks = banks
     }
 }
 

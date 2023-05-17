@@ -5,6 +5,7 @@
 //  Created by 이정원 on 2023/05/06.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol BankSelectRouting: ViewableRouting {
@@ -13,7 +14,7 @@ protocol BankSelectRouting: ViewableRouting {
 
 protocol BankSelectPresentable: Presentable {
     var listener: BankSelectPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func presentBankList(_ banks: [Bank])
 }
 
 protocol BankSelectListener: AnyObject {
@@ -34,7 +35,7 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        fetchBankList()
     }
 
     override func willResignActive() {
@@ -48,5 +49,12 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
     
     func didDisappear() {
         listener?.close()
+    }
+    
+    private func fetchBankList() {
+        guard let url = Bundle.main.url(forResource: "BankList", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let banks = try? JSONDecoder().decode([Bank].self, from: data) else { return }
+        presenter.presentBankList(banks)
     }
 }
