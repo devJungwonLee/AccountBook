@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import Combine
 
 protocol BankSelectRouting: ViewableRouting {
     func dismiss()
@@ -22,21 +23,29 @@ protocol BankSelectListener: AnyObject {
     func close()
 }
 
-final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, BankSelectInteractable, BankSelectPresentableListener {
+protocol BankSelectInteractorDependency {
+    var banks: CurrentValueSubject<[Bank], Never> { get }
+}
 
+final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, BankSelectInteractable, BankSelectPresentableListener {
     weak var router: BankSelectRouting?
     weak var listener: BankSelectListener?
-
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: BankSelectPresentable) {
+    
+    private let dependency: BankSelectInteractorDependency
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(
+        presenter: BankSelectPresentable,
+        dependency: BankSelectInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        fetchBankList()
+        bind()
     }
 
     override func willResignActive() {
@@ -44,7 +53,12 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
         // TODO: Pause any business logic.
     }
     
-    func bankSelected(_ bank: Bank) {
+    func viewDidLoad() {
+        fetchBankList()
+    }
+    
+    func bankSelected(_ index: Int) {
+        let bank = dependency.banks.value[index]
         bankDecided(bank)
     }
     
@@ -57,11 +71,19 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
         listener?.close()
     }
     
+    private func bind() {
+        dependency.banks
+            .sink { [weak self] banks in
+                self?.presenter.displayBankList(banks)
+            }
+            .store(in: &cancellables)
+    }
+    
     private func fetchBankList() {
         guard let url = Bundle.main.url(forResource: "BankList", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let banks = try? JSONDecoder().decode([Bank].self, from: data) else { return }
-        presenter.displayBankList(banks)
+        dependency.banks.send(banks)
     }
     
     private func bankDecided(_ bank: Bank) {

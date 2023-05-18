@@ -11,7 +11,8 @@ import SnapKit
 import Then
 
 protocol BankSelectPresentableListener: AnyObject {
-    func bankSelected(_ bank: Bank)
+    func viewDidLoad()
+    func bankSelected(_ index: Int)
     func bankNameCreated(_ bankName: String)
     func didDisappear()
 }
@@ -19,8 +20,7 @@ protocol BankSelectPresentableListener: AnyObject {
 final class BankSelectViewController: UIViewController, BankSelectPresentable, BankSelectViewControllable {
     weak var listener: BankSelectPresentableListener?
     
-    private var banks: [Bank] = []
-    
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Bank>?
     private let cellRegistration = UICollectionView.CellRegistration<BankCell, Bank> { cell, _, bank in
         cell.configure(with: bank)
     }
@@ -30,7 +30,6 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
     ) { _, _, _ in }
     
     private lazy var collectionView = BankCollectionView().then {
-        $0.dataSource = self
         $0.delegate = self
     }
     
@@ -38,6 +37,8 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        configureDiffableDataSource()
+        listener?.viewDidLoad()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -50,7 +51,10 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
     }
     
     func displayBankList(_ banks: [Bank]) {
-        self.banks = banks
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Bank>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(banks)
+        dataSource?.apply(snapshot)
     }
 }
 
@@ -66,27 +70,25 @@ private extension BankSelectViewController {
             make.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-}
-
-extension BankSelectViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return banks.count
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let bank = banks[indexPath.item]
-        let cell = collectionView.dequeueConfiguredReusableCell(
-            using: cellRegistration, for: indexPath, item: bank
-        )
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footerView = collectionView.dequeueConfiguredReusableSupplementary(
-            using: footerViewRegistration, for: indexPath
-        )
-        footerView.delegate = self
-        return footerView
+    func configureDiffableDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Int, Bank>(collectionView: collectionView) { [weak self] collectionView, indexPath, bank in
+            guard let self else { return nil }
+            let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: bank)
+            return cell
+        }
+        
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard let self,
+                  kind == UICollectionView.elementKindSectionFooter else {
+                return nil
+            }
+            let footerView = collectionView.dequeueConfiguredReusableSupplementary(
+                using: self.footerViewRegistration, for: indexPath
+            )
+            footerView.delegate = self
+            return footerView
+        }
     }
 }
 
@@ -102,7 +104,7 @@ extension BankSelectViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        listener?.bankSelected(banks[indexPath.item])
+        listener?.bankSelected(indexPath.item)
     }
 }
 
