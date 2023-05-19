@@ -14,11 +14,14 @@ final class BankSelectInputView: UIView {
         $0.font = .systemFont(ofSize: 24, weight: .medium)
         $0.textColor = .placeholderText
         $0.text = "은행 선택"
+        $0.numberOfLines = 1
     }
     
     private let chevron = UIImageView().then {
         $0.image = UIImage(systemName: "chevron.down")
         $0.tintColor = .placeholderText
+        $0.setContentHuggingPriority(.required, for: .horizontal)
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
     private let underLine = UIView().then {
@@ -33,6 +36,12 @@ final class BankSelectInputView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(_ name: String) {
+        bankLabel.text = name
+        bankLabel.textColor = .label
+        underLine.backgroundColor = .main
+    }
 }
 
 private extension BankSelectInputView {
@@ -44,6 +53,7 @@ private extension BankSelectInputView {
         
         addSubview(chevron)
         chevron.snp.makeConstraints { make in
+            make.leading.equalTo(bankLabel.snp.trailing).offset(8)
             make.trailing.equalToSuperview().inset(4)
             make.centerY.equalTo(bankLabel)
         }

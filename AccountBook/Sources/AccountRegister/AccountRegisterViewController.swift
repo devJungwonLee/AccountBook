@@ -7,15 +7,20 @@
 
 import ModernRIBs
 import UIKit
+import Combine
 import SnapKit
 import Then
 
 protocol AccountRegisterPresentableListener: AnyObject {
+    var accountNumberStream: AnyPublisher<String, Never> { get }
     func didDisappear()
+    func bankSelectInputTapped()
+    func accountNumberChanged(_ text: String)
 }
 
 final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable, KeyboardObservable {
     weak var listener: AccountRegisterPresentableListener?
+    private var cancellables = Set<AnyCancellable>()
     
     lazy var scrollView = UIScrollView().then {
         $0.addGestureRecognizer(
@@ -33,7 +38,14 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.text = "은행"
     }
     
-    private let bankSelectInputView = BankSelectInputView()
+    private lazy var bankSelectInputView = BankSelectInputView().then {
+        $0.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(bankSelectInputViewTapped)
+            )
+        )
+    }
     
     private let accountNumberLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -44,6 +56,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.keyboardType = .numberPad
         $0.placeholder = "계좌번호 입력"
         $0.inputAccessoryView = accessoryDoneButton
+        $0.addTarget(self, action: #selector(accountNumberChanged), for: .editingChanged)
     }
     
     private let accountNameLabel = UILabel().then {
@@ -80,6 +93,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        bindUI()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -89,6 +103,17 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     
     deinit {
         removeKeyboardObserver()
+    }
+    
+    func present(viewController: ViewControllable) {
+        let navigationController = UINavigationController(
+            rootViewController: viewController.uiviewController
+        )
+        present(navigationController, animated: true)
+    }
+    
+    func displayBankName(_ name: String) {
+        bankSelectInputView.configure(name)
     }
 }
 
@@ -159,7 +184,24 @@ private extension AccountRegisterViewController {
         }
     }
     
+    func bindUI() {
+        listener?.accountNumberStream
+            .sink { [weak self] accountNumber in
+                self?.accountNumberTextField.text = accountNumber
+            }
+            .store(in: &cancellables)
+    }
+    
     @objc func scrollViewTapped() {
         view.endEditing(true)
+    }
+    
+    @objc func bankSelectInputViewTapped() {
+        listener?.bankSelectInputTapped()
+    }
+    
+    @objc func accountNumberChanged(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        listener?.accountNumberChanged(text)
     }
 }

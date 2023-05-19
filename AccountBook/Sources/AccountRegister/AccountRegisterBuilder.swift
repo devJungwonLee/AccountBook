@@ -6,15 +6,19 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol AccountRegisterDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
 
-final class AccountRegisterComponent: Component<AccountRegisterDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class AccountRegisterComponent:
+    Component<AccountRegisterDependency>,
+    BankSelectDependency,
+    AccountRegisterInteractorDependency
+{
+    var accountNumberSubject: CurrentValueSubject<String, Never> = .init("")
 }
 
 // MARK: - Builder
@@ -30,10 +34,17 @@ final class AccountRegisterBuilder: Builder<AccountRegisterDependency>, AccountR
     }
 
     func build(withListener listener: AccountRegisterListener) -> AccountRegisterRouting {
-        let _ = AccountRegisterComponent(dependency: dependency)
+        let component = AccountRegisterComponent(dependency: dependency)
+        let bankSelectBuilder = BankSelectBuilder(dependency: component)
+        
         let viewController = AccountRegisterViewController()
-        let interactor = AccountRegisterInteractor(presenter: viewController)
+        let interactor = AccountRegisterInteractor(presenter: viewController, dependency: component)
+        
         interactor.listener = listener
-        return AccountRegisterRouter(interactor: interactor, viewController: viewController)
+        return AccountRegisterRouter(
+            bankSelectBuilder: bankSelectBuilder,
+            interactor: interactor,
+            viewController: viewController
+        )
     }
 }
