@@ -23,6 +23,10 @@ final class UnderLineTextField: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureUnderLine(_ isError: Bool) {
+        underLine.backgroundColor = isError ? .systemRed : .secondarySystemBackground
+    }
 }
 
 private extension UnderLineTextField {

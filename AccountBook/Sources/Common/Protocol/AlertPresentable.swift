@@ -20,8 +20,7 @@ extension AlertPresentable {
         )
         
         let confirm = UIAlertAction(title: "확인", style: .default) { _ in
-            guard let bankName = alertController.textFields?[0].text,
-                  !bankName.isEmpty else { return }
+            guard let bankName = alertController.textFields?[0].text else { return }
             completion(bankName)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)

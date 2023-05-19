@@ -38,9 +38,8 @@ final class BankSelectInputView: UIView {
     }
     
     func configure(_ name: String) {
-        bankLabel.text = name
-        bankLabel.textColor = .label
-        underLine.backgroundColor = .main
+        bankLabel.text = name.isEmpty ? "은행 선택" : name
+        bankLabel.textColor = name.isEmpty ? .placeholderText : .label
     }
 }
 
