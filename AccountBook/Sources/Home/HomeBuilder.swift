@@ -6,15 +6,18 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol HomeDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
 
-final class HomeComponent: Component<HomeDependency>, AccountRegisterDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class HomeComponent:
+    Component<HomeDependency>,
+    AccountRegisterDependency,
+    HomeInteractorDependency {
+    var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
 }
 
 // MARK: - Builder
@@ -30,11 +33,11 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
     }
 
     func build(withListener listener: HomeListener) -> HomeRouting {
-        let viewController = HomeViewController()
-        let interactor = HomeInteractor(presenter: viewController)
-        
         let component = HomeComponent(dependency: dependency)
         let accountRegisterBuilder = AccountRegisterBuilder(dependency: component)
+        
+        let viewController = HomeViewController()
+        let interactor = HomeInteractor(presenter: viewController, dependency: component)
         
         interactor.listener = listener
         return HomeRouter(
