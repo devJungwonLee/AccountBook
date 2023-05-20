@@ -47,6 +47,10 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         router?.attachAccountRegister()
     }
     
+    func accountCreated(_ account: Account) {
+        
+    }
+    
     func close() {
         router?.detachAccountRegister()
     }

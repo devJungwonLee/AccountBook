@@ -22,6 +22,7 @@
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
 		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
+		5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
 		5E9771192A092C3A00A6B28F /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
 		5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */; };
 		5EB10CFF2A04E0FA00D6DE83 /* BankSelectInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */; };
@@ -71,6 +72,7 @@
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		5E8A4E1D2A18B82400EEA716 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5E9771182A092C3A00A6B28F /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 		5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectFooterView.swift; sourceTree = "<group>"; };
 		5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectInputView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				5E9771182A092C3A00A6B28F /* Bank.swift */,
+				5E8A4E1D2A18B82400EEA716 /* Account.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				5E26A5532A0683420012DEE4 /* BankSelectBuilder.swift in Sources */,
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
 				5E26A5512A0683420012DEE4 /* BankSelectRouter.swift in Sources */,
+				5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */,
 				5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */,
 				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
 				5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */,

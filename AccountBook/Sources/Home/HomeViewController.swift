@@ -10,11 +10,6 @@ import UIKit
 import SnapKit
 import Then
 
-struct Account {
-    let name: String
-    let number: String
-}
-
 protocol HomePresentableListener: AnyObject {
     func addButtonTapped()
 }
@@ -23,16 +18,16 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     weak var listener: HomePresentableListener?
     
     private var accounts: [Account] = [
-        .init(name: "신한은행 계좌", number: "123456789012"),
-        .init(name: "우리은행 계좌", number: "123456789012"),
-        .init(name: "카카오뱅크 계좌", number: "123456789012"),
-        .init(name: "토스뱅크 계좌", number: "123456789012"),
-        .init(name: "스탠다드차타드은행 계좌", number: "123456789012"),
-        .init(name: "신한은행 계좌", number: "123456789012"),
-        .init(name: "우리은행 계좌", number: "123456789012"),
-        .init(name: "카카오뱅크 계좌", number: "123456789012"),
-        .init(name: "토스뱅크 계좌", number: "123456789012"),
-        .init(name: "스탠다드차타드은행 계좌", number: "123456789012")
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "신한은행 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "우리은행 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "카카오뱅크 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "토스뱅크 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "스탠다드차타드은행 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "신한은행 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "우리은행 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "카카오뱅크 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "토스뱅크 계좌"),
+        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "스탠다드차타드은행 계좌")
     ]
     
     private let homeEmptyView = HomeEmptyView()

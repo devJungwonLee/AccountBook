@@ -7,6 +7,7 @@
 
 import ModernRIBs
 import Combine
+import CombineExt
 
 protocol AccountRegisterRouting: ViewableRouting {
     func attachBankSelect()
@@ -18,15 +19,17 @@ protocol AccountRegisterPresentable: Presentable {
 }
 
 protocol AccountRegisterListener: AnyObject {
+    func accountCreated(_ account: Account)
     func close()
 }
 
 protocol AccountRegisterInteractorDependency {
-    var bankNameSubject: PassthroughSubject<String, Never> { get }
+    var bankSubject: PassthroughSubject<Bank, Never> { get }
     var accountNumberSubject: PassthroughSubject<String, Never> { get }
     var accountNumberErrorSubject: PassthroughSubject<Bool, Never> { get }
     var accountNameSubject: PassthroughSubject<String, Never> { get }
     var accountNameErrorSubject: PassthroughSubject<Bool, Never> { get }
+    var doneEventSubject: PassthroughSubject<Void, Never> { get }
 }
 
 final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPresentable>, AccountRegisterInteractable, AccountRegisterPresentableListener {
@@ -35,8 +38,8 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     private let dependency: AccountRegisterInteractorDependency
     
-    var bankNameStream: AnyPublisher<String, Never> {
-        return dependency.bankNameSubject.eraseToAnyPublisher()
+    var bankStream: AnyPublisher<Bank, Never> {
+        return dependency.bankSubject.eraseToAnyPublisher()
     }
     
     var accountNumberStream: AnyPublisher<String, Never> {
@@ -57,9 +60,9 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     var inputValidationStream: AnyPublisher<Bool, Never> {
         return Publishers.CombineLatest3(
-            bankNameStream, accountNumberStream, accountNameStream
-        ).map { (bankName, accountNumber, accountName) in
-            let isBankNameValid = !bankName.isEmpty
+            bankStream, accountNumberStream, accountNameStream
+        ).map { (bank, accountNumber, accountName) in
+            let isBankNameValid = !bank.name.isEmpty
             let isAccountNumberValid = (1...16) ~= accountNumber.count
             let isAccountNameValid = (1...20) ~= accountName.count
             return isBankNameValid && isAccountNumberValid && isAccountNameValid
@@ -77,11 +80,22 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        bind()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    private func bind() {
+        dependency.doneEventSubject
+            .withLatestFrom(bankStream, accountNumberStream, accountNameStream)
+            .sink { [weak self] (bank, accountNumber, accountName) in
+                let account = Account(bank: bank, number: accountNumber, name: accountName)
+                self?.listener?.accountCreated(account)
+            }
+            .cancelOnDeactivate(interactor: self)
     }
     
     func didDisappear() {
@@ -107,9 +121,13 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     }
     
     func bankDecided(_ bank: Bank) {
-        dependency.bankNameSubject.send(bank.name)
+        dependency.bankSubject.send(bank)
         let accountName = bank.name.isEmpty ? bank.name : bank.name + " 계좌"
         dependency.accountNameSubject.send(accountName)
+    }
+    
+    func doneButtonTapped() {
+        dependency.doneEventSubject.send()
     }
     
     func close() {

@@ -12,7 +12,7 @@ import SnapKit
 import Then
 
 protocol AccountRegisterPresentableListener: AnyObject {
-    var bankNameStream: AnyPublisher<String, Never> { get }
+    var bankStream: AnyPublisher<Bank, Never> { get }
     var accountNumberStream: AnyPublisher<String, Never> { get }
     var accountNumberErrorStream: AnyPublisher<Bool, Never> { get }
     var accountNameStream: AnyPublisher<String, Never> { get }
@@ -22,6 +22,7 @@ protocol AccountRegisterPresentableListener: AnyObject {
     func bankSelectInputTapped()
     func accountNumberChanged(_ text: String)
     func accountNameChanged(_ text: String)
+    func doneButtonTapped()
 }
 
 final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable, KeyboardObservable {
@@ -98,7 +99,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.background.cornerRadius = 0
         $0.isEnabled = false
-        // $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     private lazy var doneButton = UIButton(configuration: .filled()).then {
@@ -109,7 +110,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.cornerStyle = .large
         $0.isEnabled = false
-        // $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -216,9 +217,9 @@ private extension AccountRegisterViewController {
     }
     
     func bindUI() {
-        listener?.bankNameStream
-            .sink { [weak self] name in
-                self?.bankSelectInputView.configure(name)
+        listener?.bankStream
+            .sink { [weak self] bank in
+                self?.bankSelectInputView.configure(bank.name)
             }
             .store(in: &cancellables)
         
@@ -273,5 +274,9 @@ private extension AccountRegisterViewController {
     @objc func accountNameChanged(_ textField: UITextField) {
         guard let text = textField.text else { return }
         listener?.accountNameChanged(text)
+    }
+    
+    @objc func doneButtonTapped() {
+        listener?.doneButtonTapped()
     }
 }
