@@ -26,6 +26,7 @@ final class MyAccountCell: UICollectionViewCell {
     private let bankLogoImageView = UIImageView().then {
         $0.backgroundColor = .secondarySystemBackground
         $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 24
     }
     
@@ -66,7 +67,8 @@ final class MyAccountCell: UICollectionViewCell {
     }
     
     func configure(with cellState: MyAccountCellState) {
-        bankLogoImageView.image = UIImage(named: cellState.bank.code)
+        let imageName = cellState.bank.code.isEmpty ? "placeholder" : cellState.bank.code
+        bankLogoImageView.image = UIImage(named: imageName)
         nameLabel.text = cellState.name
         numberLabel.text = cellState.number
     }
