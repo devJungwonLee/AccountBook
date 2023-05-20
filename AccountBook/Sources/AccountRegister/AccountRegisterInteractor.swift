@@ -108,6 +108,8 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     func bankDecided(_ bank: Bank) {
         dependency.bankNameSubject.send(bank.name)
+        let accountName = bank.name.isEmpty ? bank.name : bank.name + " 계좌"
+        dependency.accountNameSubject.send(accountName)
     }
     
     func close() {
