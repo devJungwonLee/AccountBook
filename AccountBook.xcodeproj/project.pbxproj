@@ -21,6 +21,7 @@
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
+		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
 		5E9771192A092C3A00A6B28F /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
 		5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */; };
 		5EB10CFF2A04E0FA00D6DE83 /* BankSelectInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB10CFE2A04E0FA00D6DE83 /* BankSelectInputView.swift */; };
@@ -108,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */,
 				5EFB555329EA88DF006546B5 /* SnapKit in Frameworks */,
 				5EFB554D29EA8884006546B5 /* Then in Frameworks */,
 				5EFB555029EA8891006546B5 /* ModernRIBs in Frameworks */,
@@ -340,6 +342,7 @@
 				5EFB554C29EA8884006546B5 /* Then */,
 				5EFB554F29EA8891006546B5 /* ModernRIBs */,
 				5EFB555229EA88DF006546B5 /* SnapKit */,
+				5E8A4E1B2A18B2DD00EEA716 /* CombineExt */,
 			);
 			productName = AccountBook;
 			productReference = 5EFB553129EA81DA006546B5 /* AccountBook.app */;
@@ -373,6 +376,7 @@
 				5EFB554B29EA8884006546B5 /* XCRemoteSwiftPackageReference "Then" */,
 				5EFB554E29EA8891006546B5 /* XCRemoteSwiftPackageReference "ModernRIBs" */,
 				5EFB555129EA88DF006546B5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */,
 			);
 			productRefGroup = 5EFB553229EA81DA006546B5 /* Products */;
 			projectDirPath = "";
@@ -660,6 +664,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		5EFB554B29EA8884006546B5 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then.git";
@@ -687,6 +699,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5E8A4E1B2A18B2DD00EEA716 /* CombineExt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */;
+			productName = CombineExt;
+		};
 		5EFB554C29EA8884006546B5 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5EFB554B29EA8884006546B5 /* XCRemoteSwiftPackageReference "Then" */;
