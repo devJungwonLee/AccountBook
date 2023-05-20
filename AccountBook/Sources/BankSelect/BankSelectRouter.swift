@@ -24,7 +24,7 @@ final class BankSelectRouter: ViewableRouter<BankSelectInteractable, BankSelectV
         interactor.router = self
     }
     
-    func dismiss() {
+    func close() {
         viewController.dismiss()
     }
 }

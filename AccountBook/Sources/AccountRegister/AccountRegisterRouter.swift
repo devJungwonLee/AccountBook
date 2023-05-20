@@ -14,6 +14,7 @@ protocol AccountRegisterInteractable: Interactable, BankSelectListener {
 
 protocol AccountRegisterViewControllable: ViewControllable {
     func present(viewController: ViewControllable)
+    func pop()
 }
 
 final class AccountRegisterRouter: ViewableRouter<AccountRegisterInteractable, AccountRegisterViewControllable>, AccountRegisterRouting {
@@ -41,5 +42,9 @@ final class AccountRegisterRouter: ViewableRouter<AccountRegisterInteractable, A
         guard let bankSelectRouter else { return }
         detachChild(bankSelectRouter)
         self.bankSelectRouter = nil
+    }
+    
+    func close() {
+        viewController.pop()
     }
 }

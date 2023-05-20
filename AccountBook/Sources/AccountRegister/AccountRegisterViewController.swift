@@ -135,6 +135,10 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         )
         present(navigationController, animated: true)
     }
+    
+    func pop() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 private extension AccountRegisterViewController {

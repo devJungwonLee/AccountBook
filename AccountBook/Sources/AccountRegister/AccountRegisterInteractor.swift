@@ -12,6 +12,7 @@ import CombineExt
 protocol AccountRegisterRouting: ViewableRouting {
     func attachBankSelect()
     func detachBankSelect()
+    func close()
 }
 
 protocol AccountRegisterPresentable: Presentable {
@@ -128,6 +129,7 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     
     func doneButtonTapped() {
         dependency.doneEventSubject.send()
+        router?.close()
     }
     
     func close() {
