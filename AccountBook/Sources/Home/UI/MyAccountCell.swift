@@ -9,9 +9,23 @@ import UIKit
 import SnapKit
 import Then
 
+struct MyAccountCellState: Hashable {
+    let id = UUID()
+    let bank: Bank
+    let number: String
+    let name: String
+    
+    init(_ account: Account) {
+        self.bank = account.bank
+        self.number = account.number
+        self.name = account.name
+    }
+}
+
 final class MyAccountCell: UICollectionViewCell {
-    private let bankLogoView = UIImageView().then {
+    private let bankLogoImageView = UIImageView().then {
         $0.backgroundColor = .secondarySystemBackground
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 24
     }
     
@@ -51,9 +65,10 @@ final class MyAccountCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with account: Account) {
-        nameLabel.text = account.name
-        numberLabel.text = account.number
+    func configure(with cellState: MyAccountCellState) {
+        bankLogoImageView.image = UIImage(named: cellState.bank.code)
+        nameLabel.text = cellState.name
+        numberLabel.text = cellState.number
     }
 }
 
@@ -63,8 +78,8 @@ private extension MyAccountCell {
     }
     
     func configureLayout() {
-        contentView.addSubview(bankLogoView)
-        bankLogoView.snp.makeConstraints { make in
+        contentView.addSubview(bankLogoImageView)
+        bankLogoImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.top.bottom.equalToSuperview().inset(20).priority(.high)
             make.width.height.equalTo(48)
@@ -72,8 +87,8 @@ private extension MyAccountCell {
         
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.leading.equalTo(bankLogoView.snp.trailing).offset(20)
-            make.centerY.equalTo(bankLogoView.snp.centerY)
+            make.leading.equalTo(bankLogoImageView.snp.trailing).offset(20)
+            make.centerY.equalTo(bankLogoImageView.snp.centerY)
         }
         
         contentView.addSubview(copyButton)
@@ -81,7 +96,7 @@ private extension MyAccountCell {
             make.leading.equalTo(stackView.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(20)
             make.width.equalTo(60)
-            make.centerY.equalTo(bankLogoView.snp.centerY)
+            make.centerY.equalTo(bankLogoImageView.snp.centerY)
         }
     }
 }

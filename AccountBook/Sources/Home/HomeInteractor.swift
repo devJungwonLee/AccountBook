@@ -31,7 +31,11 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     weak var listener: HomeListener?
     
     private let dependency: HomeInteractorDependency
-
+    
+    var accountListStream: AnyPublisher<[Account], Never> {
+        return dependency.accountListSubject.eraseToAnyPublisher()
+    }
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     init(presenter: HomePresentable, dependency: HomeInteractorDependency) {

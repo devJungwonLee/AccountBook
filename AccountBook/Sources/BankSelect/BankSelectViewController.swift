@@ -20,9 +20,9 @@ protocol BankSelectPresentableListener: AnyObject {
 final class BankSelectViewController: UIViewController, BankSelectPresentable, BankSelectViewControllable {
     weak var listener: BankSelectPresentableListener?
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Bank>?
-    private let cellRegistration = UICollectionView.CellRegistration<BankCell, Bank> { cell, _, bank in
-        cell.configure(with: bank)
+    private var dataSource: UICollectionViewDiffableDataSource<Int, BankCellState>?
+    private let cellRegistration = UICollectionView.CellRegistration<BankCell, BankCellState> { cell, _, cellState in
+        cell.configure(with: cellState)
     }
     
     private let footerViewRegistration = UICollectionView.SupplementaryRegistration<BankSelectFooterView>(
@@ -51,9 +51,9 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
     }
     
     func displayBankList(_ banks: [Bank]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Bank>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, BankCellState>()
         snapshot.appendSections([0])
-        snapshot.appendItems(banks)
+        snapshot.appendItems(banks.map { BankCellState($0) })
         dataSource?.apply(snapshot)
     }
 }
@@ -72,7 +72,7 @@ private extension BankSelectViewController {
     }
     
     func configureDiffableDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Bank>(collectionView: collectionView) { [weak self] collectionView, indexPath, bank in
+        dataSource = UICollectionViewDiffableDataSource<Int, BankCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, bank in
             guard let self else { return nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: bank)
             return cell
