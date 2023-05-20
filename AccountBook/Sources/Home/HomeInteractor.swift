@@ -57,6 +57,12 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         router?.attachAccountRegister()
     }
     
+    func trailingSwiped(_ index: Int) {
+        var accountList = dependency.accountListSubject.value
+        accountList.remove(at: index)
+        dependency.accountListSubject.send(accountList)
+    }
+    
     func accountCreated(_ account: Account) {
         let accountList = dependency.accountListSubject.value
         dependency.accountListSubject.send(accountList + [account])

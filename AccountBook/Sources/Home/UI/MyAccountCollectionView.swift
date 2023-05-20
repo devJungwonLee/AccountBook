@@ -11,7 +11,6 @@ final class MyAccountCollectionView: UICollectionView {
     init(frame: CGRect = .zero) {
         super.init(frame: frame, collectionViewLayout: .init())
         configureAttributes()
-        configureCompositionalLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -24,11 +23,5 @@ private extension MyAccountCollectionView {
     func configureAttributes() {
         backgroundColor = .systemBackground
         contentInset = .init(top: 20, left: 0, bottom: 80, right: 0)
-    }
-    
-    func configureCompositionalLayout() {
-        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
-        configuration.showsSeparators = false
-        collectionViewLayout = UICollectionViewCompositionalLayout.list(using: configuration)
     }
 }

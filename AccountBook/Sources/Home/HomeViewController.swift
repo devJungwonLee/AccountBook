@@ -12,6 +12,7 @@ import SnapKit
 import Then
 
 protocol HomePresentableListener: AnyObject {
+    func trailingSwiped(_ index: Int)
     var accountListStream: AnyPublisher<[Account], Never> { get }
     func addButtonTapped()
 }
@@ -26,9 +27,10 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     private let cellRegistration = UICollectionView.CellRegistration<MyAccountCell, MyAccountCellState> { cell, _, cellState in
         cell.configure(with: cellState)
     }
-
     
-    private lazy var collectionView = MyAccountCollectionView()
+    private lazy var collectionView = MyAccountCollectionView().then {
+        $0.collectionViewLayout = listLayout()
+    }
     
     private let homeEmptyView = HomeEmptyView()
     
@@ -97,6 +99,21 @@ private extension HomeViewController {
         homeEmptyView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
+    }
+    
+    func listLayout() -> UICollectionViewCompositionalLayout {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        configuration.showsSeparators = false
+        configuration.trailingSwipeActionsConfigurationProvider = makeSwipeActions
+        return UICollectionViewCompositionalLayout.list(using: configuration)
+    }
+    
+    func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
+        guard let index = indexPath?.item else { return nil }
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, _ in
+            self?.listener?.trailingSwiped(index)
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     func configureDiffableDataSource() {
