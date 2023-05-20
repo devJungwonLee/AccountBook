@@ -12,10 +12,17 @@ import SnapKit
 import Then
 
 protocol AccountRegisterPresentableListener: AnyObject {
+    var bankStream: AnyPublisher<Bank, Never> { get }
     var accountNumberStream: AnyPublisher<String, Never> { get }
+    var accountNumberErrorStream: AnyPublisher<Bool, Never> { get }
+    var accountNameStream: AnyPublisher<String, Never> { get }
+    var accountNameErrorStream: AnyPublisher<Bool, Never> { get }
+    var inputValidationStream: AnyPublisher<Bool, Never> { get }
     func didDisappear()
     func bankSelectInputTapped()
     func accountNumberChanged(_ text: String)
+    func accountNameChanged(_ text: String)
+    func doneButtonTapped()
 }
 
 final class AccountRegisterViewController: UIViewController, AccountRegisterPresentable, AccountRegisterViewControllable, KeyboardObservable {
@@ -52,6 +59,13 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.text = "계좌번호"
     }
     
+    private let accountNumberErrorLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 14)
+        $0.text = "16자 이내"
+        $0.textColor = .systemRed
+        $0.isHidden = true
+    }
+    
     private lazy var accountNumberTextField = UnderLineTextField().then {
         $0.keyboardType = .numberPad
         $0.placeholder = "계좌번호 입력"
@@ -64,9 +78,17 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.text = "계좌이름"
     }
     
+    private let accountNameErrorLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 14)
+        $0.text = "20자 이내"
+        $0.textColor = .systemRed
+        $0.isHidden = true
+    }
+    
     private lazy var accountNameTextField = UnderLineTextField().then {
         $0.placeholder = "계좌이름 입력"
         $0.inputAccessoryView = accessoryDoneButton
+        $0.addTarget(self, action: #selector(accountNameChanged), for: .editingChanged)
     }
     
     private lazy var accessoryDoneButton = UIButton(configuration: .filled()).then {
@@ -76,7 +98,8 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.configuration?.baseBackgroundColor = .main
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.background.cornerRadius = 0
-        // $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        $0.isEnabled = false
+        $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     private lazy var doneButton = UIButton(configuration: .filled()).then {
@@ -86,7 +109,8 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         $0.configuration?.baseBackgroundColor = .main
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.cornerStyle = .large
-        // $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        $0.isEnabled = false
+        $0.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -112,8 +136,8 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         present(navigationController, animated: true)
     }
     
-    func displayBankName(_ name: String) {
-        bankSelectInputView.configure(name)
+    func pop() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -152,6 +176,12 @@ private extension AccountRegisterViewController {
             make.leading.equalToSuperview().inset(20)
             make.top.equalTo(bankSelectInputView.snp.bottom).offset(32)
         }
+        
+        contentView.addSubview(accountNumberErrorLabel)
+        accountNumberErrorLabel.snp.makeConstraints { make in
+            make.leading.equalTo(accountNumberLabel.snp.trailing).offset(16)
+            make.centerY.equalTo(accountNumberLabel.snp.centerY)
+        }
 
         contentView.addSubview(accountNumberTextField)
         accountNumberTextField.snp.makeConstraints { make in
@@ -163,6 +193,12 @@ private extension AccountRegisterViewController {
         accountNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.top.equalTo(accountNumberTextField.snp.bottom).offset(38)
+        }
+        
+        contentView.addSubview(accountNameErrorLabel)
+        accountNameErrorLabel.snp.makeConstraints { make in
+            make.leading.equalTo(accountNameLabel.snp.trailing).offset(16)
+            make.centerY.equalTo(accountNameLabel.snp.centerY)
         }
 
         contentView.addSubview(accountNameTextField)
@@ -185,9 +221,42 @@ private extension AccountRegisterViewController {
     }
     
     func bindUI() {
+        listener?.bankStream
+            .sink { [weak self] bank in
+                self?.bankSelectInputView.configure(bank.name)
+            }
+            .store(in: &cancellables)
+        
         listener?.accountNumberStream
             .sink { [weak self] accountNumber in
                 self?.accountNumberTextField.text = accountNumber
+            }
+            .store(in: &cancellables)
+        
+        listener?.accountNumberErrorStream
+            .sink { [weak self] isError in
+                self?.accountNumberErrorLabel.isHidden = !isError
+                self?.accountNumberTextField.configureUnderLine(isError)
+            }
+            .store(in: &cancellables)
+        
+        listener?.accountNameStream
+            .sink { [weak self] accountName in
+                self?.accountNameTextField.text = accountName
+            }
+            .store(in: &cancellables)
+        
+        listener?.accountNameErrorStream
+            .sink { [weak self] isError in
+                self?.accountNameErrorLabel.isHidden = !isError
+                self?.accountNameTextField.configureUnderLine(isError)
+            }
+            .store(in: &cancellables)
+        
+        listener?.inputValidationStream
+            .sink { [weak self] isValid in
+                self?.doneButton.isEnabled = isValid
+                self?.accessoryDoneButton.isEnabled = isValid
             }
             .store(in: &cancellables)
     }
@@ -197,11 +266,21 @@ private extension AccountRegisterViewController {
     }
     
     @objc func bankSelectInputViewTapped() {
+        view.endEditing(true)
         listener?.bankSelectInputTapped()
     }
     
     @objc func accountNumberChanged(_ textField: UITextField) {
         guard let text = textField.text else { return }
         listener?.accountNumberChanged(text)
+    }
+    
+    @objc func accountNameChanged(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        listener?.accountNameChanged(text)
+    }
+    
+    @objc func doneButtonTapped() {
+        listener?.doneButtonTapped()
     }
 }

@@ -18,7 +18,12 @@ final class AccountRegisterComponent:
     BankSelectDependency,
     AccountRegisterInteractorDependency
 {
-    var accountNumberSubject: CurrentValueSubject<String, Never> = .init("")
+    var bankSubject: PassthroughSubject<Bank, Never> = .init()
+    var accountNumberSubject: PassthroughSubject<String, Never> = .init()
+    var accountNumberErrorSubject: PassthroughSubject<Bool, Never> = .init()
+    var accountNameSubject: PassthroughSubject<String, Never> = .init()
+    var accountNameErrorSubject: PassthroughSubject<Bool, Never> = .init()
+    var doneEventSubject: PassthroughSubject<Void, Never> = .init()
 }
 
 // MARK: - Builder

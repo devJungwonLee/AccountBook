@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol HomeRouting: ViewableRouting {
     func attachAccountRegister()
@@ -21,21 +22,26 @@ protocol HomeListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
+protocol HomeInteractorDependency {
+    var accountListSubject: CurrentValueSubject<[Account], Never> { get }
+}
 
+final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
     weak var router: HomeRouting?
     weak var listener: HomeListener?
+    
+    private let dependency: HomeInteractorDependency
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: HomePresentable) {
+    init(presenter: HomePresentable, dependency: HomeInteractorDependency) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
@@ -45,6 +51,11 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     
     func addButtonTapped() {
         router?.attachAccountRegister()
+    }
+    
+    func accountCreated(_ account: Account) {
+        let accountList = dependency.accountListSubject.value
+        dependency.accountListSubject.send(accountList + [account])
     }
     
     func close() {

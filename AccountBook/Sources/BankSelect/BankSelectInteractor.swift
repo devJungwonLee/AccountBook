@@ -10,7 +10,7 @@ import ModernRIBs
 import Combine
 
 protocol BankSelectRouting: ViewableRouting {
-    func dismiss()
+    func close()
 }
 
 protocol BankSelectPresentable: Presentable {
@@ -88,6 +88,6 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
     
     private func bankDecided(_ bank: Bank) {
         listener?.bankDecided(bank)
-        router?.dismiss()
+        router?.close()
     }
 }
