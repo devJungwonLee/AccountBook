@@ -104,7 +104,7 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     }
     
     func accountNumberChanged(_ text: String) {
-        let accountNumber = text.allSatisfy({ $0.isNumber }) ? text : ""
+        let accountNumber = text.filter { $0.isNumber }
         let isError = accountNumber.count > 16
         dependency.accountNumberSubject.send(accountNumber)
         dependency.accountNumberErrorSubject.send(isError)

@@ -7,38 +7,33 @@
 
 import ModernRIBs
 import UIKit
+import Combine
 import SnapKit
 import Then
 
 protocol HomePresentableListener: AnyObject {
+    func trailingSwiped(_ index: Int)
+    var accountListStream: AnyPublisher<[Account], Never> { get }
     func addButtonTapped()
 }
 
 final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable {
     weak var listener: HomePresentableListener?
+    private var cancellables = Set<AnyCancellable>()
     
-    private var accounts: [Account] = [
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "신한은행 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "우리은행 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "카카오뱅크 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "토스뱅크 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "스탠다드차타드은행 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "신한은행 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "우리은행 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "카카오뱅크 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "토스뱅크 계좌"),
-        .init(bank: .init(code: "", name: ""), number: "123456789012", name: "스탠다드차타드은행 계좌")
-    ]
     
-    private let homeEmptyView = HomeEmptyView()
     
-    private let cellRegistration = UICollectionView.CellRegistration<MyAccountCell, Account> { cell, _, account in
-        cell.configure(with: account)
+    private var dataSource: UICollectionViewDiffableDataSource<Int, MyAccountCellState>?
+    private let cellRegistration = UICollectionView.CellRegistration<MyAccountCell, MyAccountCellState> { cell, _, cellState in
+        cell.configure(with: cellState)
     }
     
     private lazy var collectionView = MyAccountCollectionView().then {
-        $0.dataSource = self
+        $0.collectionViewLayout = listLayout()
     }
+    
+    private let homeEmptyView = HomeEmptyView()
+    
     
     private lazy var addButton = UIButton(configuration: .filled()).then {
         $0.configuration?.image = UIImage(systemName: "plus")
@@ -61,8 +56,8 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
-        homeEmptyView.isHidden = !accounts.isEmpty
-        collectionView.isHidden = accounts.isEmpty
+        configureDiffableDataSource()
+        bind()
     }
     
     func push(viewController: ViewControllable) {
@@ -106,21 +101,47 @@ private extension HomeViewController {
         }
     }
     
-    @objc func addButtonTapped() {
-        listener?.addButtonTapped()
-    }
-}
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return accounts.count
+    func listLayout() -> UICollectionViewCompositionalLayout {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        configuration.showsSeparators = false
+        configuration.trailingSwipeActionsConfigurationProvider = makeSwipeActions
+        return UICollectionViewCompositionalLayout.list(using: configuration)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let account = accounts[indexPath.item]
-        let cell = collectionView.dequeueConfiguredReusableCell(
-            using: cellRegistration, for: indexPath, item: account
-        )
-        return cell
+    func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
+        guard let index = indexPath?.item else { return nil }
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, _ in
+            self?.listener?.trailingSwiped(index)
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    func configureDiffableDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Int, MyAccountCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, account in
+            guard let self else { return  nil }
+            let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: account)
+            return cell
+        }
+    }
+    
+    func bind() {
+        listener?.accountListStream
+            .sink { [weak self] accounts in
+                self?.homeEmptyView.isHidden = !accounts.isEmpty
+                self?.collectionView.isHidden = accounts.isEmpty
+                if !accounts.isEmpty { self?.displayAccountList(accounts) }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func displayAccountList(_ accounts: [Account]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, MyAccountCellState>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(accounts.map { MyAccountCellState($0) })
+        dataSource?.apply(snapshot)
+    }
+    
+    @objc func addButtonTapped() {
+        listener?.addButtonTapped()
     }
 }

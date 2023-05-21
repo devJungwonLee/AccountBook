@@ -9,6 +9,17 @@ import UIKit
 import SnapKit
 import Then
 
+struct BankCellState: Hashable {
+    let id = UUID()
+    let code: String
+    let name: String
+    
+    init(_ bank: Bank) {
+        self.code = bank.code
+        self.name = bank.name
+    }
+}
+
 final class BankCell: UICollectionViewCell {
     private let logoImageView = UIImageView().then {
         $0.backgroundColor = .secondarySystemBackground
@@ -37,9 +48,9 @@ final class BankCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with bank: Bank) {
-        titleLabel.text = bank.name
-        logoImageView.image = UIImage(named: bank.code)
+    func configure(with cellState: BankCellState) {
+        titleLabel.text = cellState.name
+        logoImageView.image = UIImage(named: cellState.code)
     }
 }
 
