@@ -23,6 +23,8 @@
 		5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */; };
 		5E5BEDAD2A1B247A002EC397 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDAC2A1B247A002EC397 /* AccountRepository.swift */; };
 		5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */; };
+		5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */; };
+		5E60C08B2A1DABE400FD7F0C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C08A2A1DABE400FD7F0C /* ToastView.swift */; };
 		5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */; };
 		5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */; };
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
@@ -79,6 +81,8 @@
 		5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
 		5E5BEDAC2A1B247A002EC397 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
+		5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPresentable.swift; sourceTree = "<group>"; };
+		5E60C08A2A1DABE400FD7F0C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		5E26A5462A0642AC0012DEE4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5E60C0892A1DABCE00FD7F0C /* UI */,
 				5E26A5472A0642B90012DEE4 /* Protocol */,
 			);
 			path = Common;
@@ -148,6 +153,7 @@
 			children = (
 				5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */,
 				5EFD8E492A09FDCF00C0ED03 /* AlertPresentable.swift */,
+				5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -215,6 +221,14 @@
 				5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */,
 			);
 			path = RepositoryType;
+			sourceTree = "<group>";
+		};
+		5E60C0892A1DABCE00FD7F0C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5E60C08A2A1DABE400FD7F0C /* ToastView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		5E6BCE6529EBC6D9008CEFE5 /* Root */ = {
@@ -486,6 +500,7 @@
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
 				5E26A5512A0683420012DEE4 /* BankSelectRouter.swift in Sources */,
 				5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */,
+				5E60C08B2A1DABE400FD7F0C /* ToastView.swift in Sources */,
 				5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */,
 				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
 				5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */,
@@ -495,6 +510,7 @@
 				5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */,
 				5E5BEDA72A1B089A002EC397 /* AccountObject.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
+				5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */,
 				5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */,
 				5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */,
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,

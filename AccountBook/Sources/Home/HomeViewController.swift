@@ -19,7 +19,7 @@ protocol HomePresentableListener: AnyObject {
     func copyButtonTapped(_ index: Int)
 }
 
-final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable {
+final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, ToastPresentable {
     weak var listener: HomePresentableListener?
     private var cancellables = Set<AnyCancellable>()
     
@@ -137,8 +137,9 @@ private extension HomeViewController {
             .store(in: &cancellables)
         
         listener?.copyTextStream
-            .sink { copyText in
+            .sink { [weak self] copyText in
                 UIPasteboard.general.string = copyText
+                self?.showToast(message: "계좌번호 복사 완료")
             }
             .store(in: &cancellables)
     }
