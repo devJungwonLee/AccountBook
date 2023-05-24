@@ -10,15 +10,16 @@ import SnapKit
 import Then
 
 struct MyAccountCellState: Hashable {
-    let id = UUID()
     let bank: Bank
     let number: String
     let name: String
+    let date: Date
     
     init(_ account: Account) {
         self.bank = account.bank
         self.number = account.number
         self.name = account.name
+        self.date = account.date
     }
 }
 

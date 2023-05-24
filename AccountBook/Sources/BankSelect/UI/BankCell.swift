@@ -10,7 +10,6 @@ import SnapKit
 import Then
 
 struct BankCellState: Hashable {
-    let id = UUID()
     let code: String
     let name: String
     

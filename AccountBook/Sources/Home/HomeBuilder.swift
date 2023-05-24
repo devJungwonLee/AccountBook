@@ -18,6 +18,7 @@ final class HomeComponent:
     AccountRegisterDependency,
     HomeInteractorDependency {
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
+    var accountRepository: AccountRepositoryType = AccountRepository(persistentStorage: PersistentStorage())
 }
 
 // MARK: - Builder

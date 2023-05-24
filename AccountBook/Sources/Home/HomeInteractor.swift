@@ -24,6 +24,7 @@ protocol HomeListener: AnyObject {
 
 protocol HomeInteractorDependency {
     var accountListSubject: CurrentValueSubject<[Account], Never> { get }
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
@@ -46,6 +47,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        fetchAccountList()
     }
 
     override func willResignActive() {
@@ -53,19 +55,53 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         // TODO: Pause any business logic.
     }
     
+    private func fetchAccountList() {
+        dependency.accountRepository.fetchAccountList()
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] accounts in
+                self?.dependency.accountListSubject.send(accounts)
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
+    private func saveAccount(_ account: Account) {
+        dependency.accountRepository.saveAccount(account)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] in
+                self?.fetchAccountList()
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
+    private func deleteAccount(_ account: Account) {
+        dependency.accountRepository.deleteAccount(account)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] in
+                self?.fetchAccountList()
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
     func addButtonTapped() {
         router?.attachAccountRegister()
     }
     
     func trailingSwiped(_ index: Int) {
-        var accountList = dependency.accountListSubject.value
-        accountList.remove(at: index)
-        dependency.accountListSubject.send(accountList)
+        let account = dependency.accountListSubject.value[index]
+        deleteAccount(account)
     }
     
     func accountCreated(_ account: Account) {
-        let accountList = dependency.accountListSubject.value
-        dependency.accountListSubject.send(accountList + [account])
+        saveAccount(account)
     }
     
     func close() {
