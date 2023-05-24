@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
+protocol MyAccountCellDelegate: AnyObject {
+    func copyButtonTapped(_ cell: MyAccountCell)
+}
+
 struct MyAccountCellState: Hashable {
     let bank: Bank
     let number: String
@@ -24,6 +28,8 @@ struct MyAccountCellState: Hashable {
 }
 
 final class MyAccountCell: UICollectionViewCell {
+    weak var delegate: MyAccountCellDelegate?
+    
     private let bankLogoImageView = UIImageView().then {
         $0.backgroundColor = .secondarySystemBackground
         $0.contentMode = .scaleAspectFill
@@ -48,13 +54,14 @@ final class MyAccountCell: UICollectionViewCell {
         $0.spacing = 4
     }
     
-    private let copyButton = UIButton(configuration: .filled()).then {
+    private lazy var copyButton = UIButton(configuration: .filled()).then {
         $0.configuration?.baseBackgroundColor = .systemGroupedBackground
         $0.configuration?.baseForegroundColor = .darkGray
         $0.configuration?.cornerStyle = .large
         var attributedString = AttributedString("복사")
         attributedString.font = .systemFont(ofSize: 16, weight: .medium)
         $0.configuration?.attributedTitle = attributedString
+        $0.addTarget(self, action: #selector(copyButtonTapped), for: .touchUpInside)
     }
     
     override init(frame: CGRect) {
@@ -101,5 +108,9 @@ private extension MyAccountCell {
             make.width.equalTo(60)
             make.centerY.equalTo(bankLogoImageView.snp.centerY)
         }
+    }
+    
+    @objc func copyButtonTapped() {
+        delegate?.copyButtonTapped(self)
     }
 }
