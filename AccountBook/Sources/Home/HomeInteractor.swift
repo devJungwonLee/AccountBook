@@ -23,6 +23,7 @@ protocol HomeListener: AnyObject {
 }
 
 protocol HomeInteractorDependency {
+    var copyTextSubject: PassthroughSubject<String, Never> { get }
     var accountListSubject: CurrentValueSubject<[Account], Never> { get }
     var accountRepository: AccountRepositoryType { get }
 }
@@ -32,6 +33,10 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     weak var listener: HomeListener?
     
     private let dependency: HomeInteractorDependency
+    
+    var copyTextStream: AnyPublisher<String, Never> {
+        return dependency.copyTextSubject.eraseToAnyPublisher()
+    }
     
     var accountListStream: AnyPublisher<[Account], Never> {
         return dependency.accountListSubject.eraseToAnyPublisher()
@@ -98,6 +103,12 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     func trailingSwiped(_ index: Int) {
         let account = dependency.accountListSubject.value[index]
         deleteAccount(account)
+    }
+    
+    func copyButtonTapped(_ index: Int) {
+        let account = dependency.accountListSubject.value[index]
+        let text = account.bank.name + " " + account.number
+        dependency.copyTextSubject.send(text)
     }
     
     func accountCreated(_ account: Account) {

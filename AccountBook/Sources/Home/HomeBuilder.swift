@@ -17,6 +17,7 @@ final class HomeComponent:
     Component<HomeDependency>,
     AccountRegisterDependency,
     HomeInteractorDependency {
+    var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
     var accountRepository: AccountRepositoryType = AccountRepository(persistentStorage: PersistentStorage())
 }

@@ -12,12 +12,14 @@ import SnapKit
 import Then
 
 protocol HomePresentableListener: AnyObject {
-    func trailingSwiped(_ index: Int)
+    var copyTextStream: AnyPublisher<String, Never> { get }
     var accountListStream: AnyPublisher<[Account], Never> { get }
     func addButtonTapped()
+    func trailingSwiped(_ index: Int)
+    func copyButtonTapped(_ index: Int)
 }
 
-final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable {
+final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, ToastPresentable {
     weak var listener: HomePresentableListener?
     private var cancellables = Set<AnyCancellable>()
     
@@ -120,6 +122,7 @@ private extension HomeViewController {
         dataSource = UICollectionViewDiffableDataSource<Int, MyAccountCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, account in
             guard let self else { return  nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: account)
+            cell.delegate = self
             return cell
         }
     }
@@ -130,6 +133,13 @@ private extension HomeViewController {
                 self?.homeEmptyView.isHidden = !accounts.isEmpty
                 self?.collectionView.isHidden = accounts.isEmpty
                 if !accounts.isEmpty { self?.displayAccountList(accounts) }
+            }
+            .store(in: &cancellables)
+        
+        listener?.copyTextStream
+            .sink { [weak self] copyText in
+                UIPasteboard.general.string = copyText
+                self?.showToast(message: "계좌번호 복사 완료")
             }
             .store(in: &cancellables)
     }
@@ -143,5 +153,13 @@ private extension HomeViewController {
     
     @objc func addButtonTapped() {
         listener?.addButtonTapped()
+    }
+}
+
+extension HomeViewController: MyAccountCellDelegate {
+    func copyButtonTapped(_ cell: MyAccountCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let index = indexPath.item
+        listener?.copyButtonTapped(index)
     }
 }
