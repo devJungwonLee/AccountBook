@@ -11,6 +11,8 @@ import Combine
 protocol HomeRouting: ViewableRouting {
     func attachAccountRegister()
     func detachAccountRegister()
+    func attachAccountDetail(account: Account)
+    func detachAccountDetail()
 }
 
 protocol HomePresentable: Presentable {
@@ -111,11 +113,20 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         dependency.copyTextSubject.send(text)
     }
     
+    func accountSelected(_ index: Int) {
+        let account = dependency.accountListSubject.value[index]
+        router?.attachAccountDetail(account: account)
+    }
+    
     func accountCreated(_ account: Account) {
         saveAccount(account)
     }
     
-    func close() {
+    func closeAccountRegister() {
         router?.detachAccountRegister()
+    }
+    
+    func closeAccountDetail() {
+        router?.detachAccountDetail()
     }
 }

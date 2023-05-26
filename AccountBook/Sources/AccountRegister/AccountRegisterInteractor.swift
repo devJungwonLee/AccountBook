@@ -21,7 +21,7 @@ protocol AccountRegisterPresentable: Presentable {
 
 protocol AccountRegisterListener: AnyObject {
     func accountCreated(_ account: Account)
-    func close()
+    func closeAccountRegister()
 }
 
 protocol AccountRegisterInteractorDependency {
@@ -100,7 +100,7 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
     }
     
     func didDisappear() {
-        listener?.close()
+        listener?.closeAccountRegister()
     }
     
     func accountNumberChanged(_ text: String) {

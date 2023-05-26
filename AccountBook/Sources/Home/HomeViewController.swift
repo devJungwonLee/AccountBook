@@ -17,6 +17,7 @@ protocol HomePresentableListener: AnyObject {
     func addButtonTapped()
     func trailingSwiped(_ index: Int)
     func copyButtonTapped(_ index: Int)
+    func accountSelected(_ index: Int)
 }
 
 final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, ToastPresentable {
@@ -32,6 +33,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     
     private lazy var collectionView = MyAccountCollectionView().then {
         $0.collectionViewLayout = listLayout()
+        $0.delegate = self
     }
     
     private let homeEmptyView = HomeEmptyView()
@@ -68,6 +70,12 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
             viewController.uiviewController,
             animated: true
         )
+    }
+    
+    func present(viewController: ViewControllable) {
+        viewController.uiviewController.modalTransitionStyle = .crossDissolve
+        viewController.uiviewController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(viewController.uiviewController, animated: true)
     }
 }
 
@@ -161,5 +169,21 @@ extension HomeViewController: MyAccountCellDelegate {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let index = indexPath.item
         listener?.copyButtonTapped(index)
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        cell.contentView.backgroundColor = .secondarySystemBackground
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        cell.contentView.backgroundColor = .systemBackground
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listener?.accountSelected(indexPath.item)
     }
 }
