@@ -7,16 +7,20 @@
 
 import ModernRIBs
 import UIKit
+import Combine
 import SnapKit
 import Then
 
 protocol AccountDetailPresentableListener: AnyObject {
     func viewDidLoad()
     func didDisappear()
+    func numberButtonTapped()
+    var copyTextStream: AnyPublisher<String, Never> { get }
 }
 
-final class AccountDetailViewController: UIViewController, AccountDetailPresentable, AccountDetailViewControllable {
+final class AccountDetailViewController: UIViewController, AccountDetailPresentable, AccountDetailViewControllable, ToastPresentable {
     weak var listener: AccountDetailPresentableListener?
+    private var cancellables = Set<AnyCancellable>()
     
     private let popUpView = UIView().then {
         $0.layer.cornerRadius = 12
@@ -35,7 +39,9 @@ final class AccountDetailViewController: UIViewController, AccountDetailPresenta
         $0.numberOfLines = 0
     }
     
-    private let numberButton = UIButton(configuration: .plain())
+    private lazy var numberButton = UIButton(configuration: .plain()).then {
+        $0.addTarget(self, action: #selector(numberButtonTapped), for: .touchUpInside)
+    }
     
     private lazy var bankStackview = UIStackView(arrangedSubviews: [
         logoImageView, nameLabel, numberButton
@@ -68,6 +74,7 @@ final class AccountDetailViewController: UIViewController, AccountDetailPresenta
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        bindUI()
         listener?.viewDidLoad()
     }
     
@@ -116,9 +123,22 @@ private extension AccountDetailViewController {
         }
     }
     
+    func bindUI() {
+        listener?.copyTextStream
+            .sink { [weak self] copyText in
+                UIPasteboard.general.string = copyText
+                self?.showToast(message: "계좌번호 복사 완료")
+            }
+            .store(in: &cancellables)
+    }
+    
     @objc func backgroundTapped(_ sender: UIGestureRecognizer) {
         let point = sender.location(in: view)
         guard !popUpView.frame.contains(point) else { return }
         dismiss(animated: true)
+    }
+    
+    @objc func numberButtonTapped() {
+        listener?.numberButtonTapped()
     }
 }

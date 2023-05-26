@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol AccountDetailDependency: Dependency {
     
@@ -16,6 +17,7 @@ final class AccountDetailComponent:
     AccountDetailInteractorDependency
 {
     var account: Account
+    var copyTextSubject: PassthroughSubject<String, Never> = .init()
     
     init(dependency: AccountDetailDependency, account: Account) {
         self.account = account

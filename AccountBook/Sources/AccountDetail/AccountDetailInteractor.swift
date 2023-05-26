@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol AccountDetailRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -22,6 +23,7 @@ protocol AccountDetailListener: AnyObject {
 
 protocol AccountDetailInteractorDependency {
     var account: Account { get }
+    var copyTextSubject: PassthroughSubject<String, Never> { get }
 }
 
 final class AccountDetailInteractor: PresentableInteractor<AccountDetailPresentable>, AccountDetailInteractable, AccountDetailPresentableListener {
@@ -29,6 +31,10 @@ final class AccountDetailInteractor: PresentableInteractor<AccountDetailPresenta
     weak var listener: AccountDetailListener?
     
     private let dependency: AccountDetailInteractorDependency
+    
+    var copyTextStream: AnyPublisher<String, Never> {
+        return dependency.copyTextSubject.eraseToAnyPublisher()
+    }
     
     init(presenter: AccountDetailPresentable, dependency: AccountDetailInteractorDependency) {
         self.dependency = dependency
@@ -51,5 +57,11 @@ final class AccountDetailInteractor: PresentableInteractor<AccountDetailPresenta
     
     func didDisappear() {
         listener?.closeAccountDetail()
+    }
+    
+    func numberButtonTapped() {
+        let account = dependency.account
+        let text = account.bank.name + " " + account.number
+        dependency.copyTextSubject.send(text)
     }
 }
