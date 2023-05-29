@@ -18,6 +18,7 @@ protocol AccountRegisterPresentableListener: AnyObject {
     var accountNameStream: AnyPublisher<String, Never> { get }
     var accountNameErrorStream: AnyPublisher<Bool, Never> { get }
     var inputValidationStream: AnyPublisher<Bool, Never> { get }
+    func viewDidLoad()
     func didDisappear()
     func bankSelectInputTapped()
     func accountNumberChanged(_ text: String)
@@ -92,7 +93,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     }
     
     private lazy var accessoryDoneButton = UIButton(configuration: .filled()).then {
-        var attributedString = AttributedString("등록")
+        var attributedString = AttributedString("완료")
         attributedString.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.configuration?.attributedTitle = attributedString
         $0.configuration?.baseBackgroundColor = .main
@@ -103,7 +104,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     }
     
     private lazy var doneButton = UIButton(configuration: .filled()).then {
-        var attributedString = AttributedString("등록")
+        var attributedString = AttributedString("완료")
         attributedString.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.configuration?.attributedTitle = attributedString
         $0.configuration?.baseBackgroundColor = .main
@@ -118,6 +119,7 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
         configureAttributes()
         configureLayout()
         bindUI()
+        listener?.viewDidLoad()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -139,12 +141,15 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     func pop() {
         navigationController?.popViewController(animated: true)
     }
+    
+    func displayMode(_ isNew: Bool) {
+        navigationItem.title = isNew ? "계좌 등록" : "계좌 편집"
+    }
 }
 
 private extension AccountRegisterViewController {
     func configureAttributes() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = "계좌 등록"
         addKeyboardObserver()
     }
     

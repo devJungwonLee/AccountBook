@@ -9,7 +9,7 @@ import ModernRIBs
 import Combine
 
 protocol HomeRouting: ViewableRouting {
-    func attachAccountRegister()
+    func attachAccountRegister(account: Account?)
     func detachAccountRegister()
     func attachAccountDetail(account: Account)
     func detachAccountDetail()
@@ -69,13 +69,26 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
                     print(error)
                 }
             } receiveValue: { [weak self] accounts in
-                self?.dependency.accountListSubject.send(accounts)
+                let sortedAccounts = accounts.sorted { $0.date < $1.date }
+                self?.dependency.accountListSubject.send(sortedAccounts)
             }
             .cancelOnDeactivate(interactor: self)
     }
     
     private func saveAccount(_ account: Account) {
         dependency.accountRepository.saveAccount(account)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] in
+                self?.fetchAccountList()
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
+    private func editAccount(_ account: Account) {
+        dependency.accountRepository.updateAccount(account)
             .sink { completion in
                 if case .failure(let error) = completion {
                     print(error)
@@ -99,12 +112,20 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     }
     
     func addButtonTapped() {
-        router?.attachAccountRegister()
+        router?.attachAccountRegister(account: nil)
     }
     
     func trailingSwiped(_ index: Int) {
         let account = dependency.accountListSubject.value[index]
         deleteAccount(account)
+    }
+    
+    func deleteButtonTapped(_ account: Account) {
+        deleteAccount(account)
+    }
+    
+    func editButtonTapped(_ account: Account) {
+        router?.attachAccountRegister(account: account)
     }
     
     func copyButtonTapped(_ index: Int) {
@@ -120,6 +141,10 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     
     func accountCreated(_ account: Account) {
         saveAccount(account)
+    }
+    
+    func accountEdited(_ account: Account) {
+        editAccount(account)
     }
     
     func closeAccountRegister() {

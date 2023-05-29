@@ -40,8 +40,11 @@ final class HomeRouter: ViewableRouter<HomeInteractable, HomeViewControllable>, 
         interactor.router = self
     }
     
-    func attachAccountRegister() {
-        let accountRegisterRouter = accountRegisterBuilder.build(withListener: interactor)
+    func attachAccountRegister(account: Account?) {
+        let accountRegisterRouter = accountRegisterBuilder.build(
+            withListener: interactor,
+            account: account
+        )
         self.accountRegisterRouter = accountRegisterRouter
         attachChild(accountRegisterRouter)
         viewController.push(viewController: accountRegisterRouter.viewControllable)

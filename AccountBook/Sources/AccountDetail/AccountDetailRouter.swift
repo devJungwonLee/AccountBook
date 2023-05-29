@@ -13,7 +13,7 @@ protocol AccountDetailInteractable: Interactable {
 }
 
 protocol AccountDetailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func dismiss()
 }
 
 final class AccountDetailRouter: ViewableRouter<AccountDetailInteractable, AccountDetailViewControllable>, AccountDetailRouting {
@@ -22,5 +22,9 @@ final class AccountDetailRouter: ViewableRouter<AccountDetailInteractable, Accou
     override init(interactor: AccountDetailInteractable, viewController: AccountDetailViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func close() {
+        viewController.dismiss()
     }
 }

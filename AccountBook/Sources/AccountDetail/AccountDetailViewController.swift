@@ -15,6 +15,8 @@ protocol AccountDetailPresentableListener: AnyObject {
     func viewDidLoad()
     func didDisappear()
     func numberButtonTapped()
+    func editButtonTapped()
+    func deleteButtonTapped()
     var copyTextStream: AnyPublisher<String, Never> { get }
 }
 
@@ -51,16 +53,18 @@ final class AccountDetailViewController: UIViewController, AccountDetailPresenta
         $0.alignment = .center
     }
     
-    private let editButton = UIButton(configuration: .tinted()).then {
-        $0.configuration?.attributedTitle = AttributedString("수정")
+    private lazy var editButton = UIButton(configuration: .tinted()).then {
+        $0.configuration?.attributedTitle = AttributedString("편집")
         $0.configuration?.cornerStyle = .large
+        $0.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     }
     
-    private let deleteButton = UIButton(configuration: .tinted()).then {
+    private lazy var deleteButton = UIButton(configuration: .tinted()).then {
         $0.configuration?.attributedTitle = AttributedString("삭제")
         $0.configuration?.cornerStyle = .large
         $0.configuration?.baseForegroundColor = .systemRed
         $0.configuration?.baseBackgroundColor = .systemRed
+        $0.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [
@@ -89,6 +93,10 @@ final class AccountDetailViewController: UIViewController, AccountDetailPresenta
         nameLabel.text = account.name
         numberButton.configuration?.attributedTitle = AttributedString(account.number)
         numberButton.configuration?.attributedTitle?.underlineStyle = .init(rawValue: 1)
+    }
+    
+    func dismiss() {
+        dismiss(animated: true)
     }
 }
 
@@ -140,5 +148,13 @@ private extension AccountDetailViewController {
     
     @objc func numberButtonTapped() {
         listener?.numberButtonTapped()
+    }
+    
+    @objc func editButtonTapped() {
+        listener?.editButtonTapped()
+    }
+    
+    @objc func deleteButtonTapped() {
+        listener?.deleteButtonTapped()
     }
 }

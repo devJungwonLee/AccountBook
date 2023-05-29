@@ -18,18 +18,24 @@ final class AccountRegisterComponent:
     BankSelectDependency,
     AccountRegisterInteractorDependency
 {
+    var accountToEdit: Account?
     var bankSubject: PassthroughSubject<Bank, Never> = .init()
     var accountNumberSubject: PassthroughSubject<String, Never> = .init()
     var accountNumberErrorSubject: PassthroughSubject<Bool, Never> = .init()
     var accountNameSubject: PassthroughSubject<String, Never> = .init()
     var accountNameErrorSubject: PassthroughSubject<Bool, Never> = .init()
     var doneEventSubject: PassthroughSubject<Void, Never> = .init()
+    
+    init(dependency: AccountRegisterDependency, account: Account? = nil) {
+        self.accountToEdit = account
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
 
 protocol AccountRegisterBuildable: Buildable {
-    func build(withListener listener: AccountRegisterListener) -> AccountRegisterRouting
+    func build(withListener listener: AccountRegisterListener, account: Account?) -> AccountRegisterRouting
 }
 
 final class AccountRegisterBuilder: Builder<AccountRegisterDependency>, AccountRegisterBuildable {
@@ -38,8 +44,8 @@ final class AccountRegisterBuilder: Builder<AccountRegisterDependency>, AccountR
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: AccountRegisterListener) -> AccountRegisterRouting {
-        let component = AccountRegisterComponent(dependency: dependency)
+    func build(withListener listener: AccountRegisterListener, account: Account?) -> AccountRegisterRouting {
+        let component = AccountRegisterComponent(dependency: dependency, account: account)
         let bankSelectBuilder = BankSelectBuilder(dependency: component)
         
         let viewController = AccountRegisterViewController()

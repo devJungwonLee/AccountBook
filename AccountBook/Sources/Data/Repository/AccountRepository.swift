@@ -39,6 +39,19 @@ final class AccountRepository: AccountRepositoryType {
         }.eraseToAnyPublisher()
     }
     
+    func updateAccount(_ account: Account) -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { [weak self] promise in
+            do {
+                let accountObject = AccountObject(account: account)
+                try self?.persistentStorage.delete(type: AccountObject.self, primaryKey: account.id)
+                try self?.persistentStorage.create(object: accountObject)
+                return promise(.success(()))
+            } catch(let error) {
+                return promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     func deleteAccount(_ account: Account) -> AnyPublisher<Void, Error> {
         return Future<Void, Error> { [weak self] promise in
             do {

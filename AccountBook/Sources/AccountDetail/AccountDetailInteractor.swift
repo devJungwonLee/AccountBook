@@ -9,7 +9,7 @@ import ModernRIBs
 import Combine
 
 protocol AccountDetailRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func close()
 }
 
 protocol AccountDetailPresentable: Presentable {
@@ -18,6 +18,8 @@ protocol AccountDetailPresentable: Presentable {
 }
 
 protocol AccountDetailListener: AnyObject {
+    func deleteButtonTapped(_ account: Account)
+    func editButtonTapped(_ account: Account)
     func closeAccountDetail()
 }
 
@@ -63,5 +65,15 @@ final class AccountDetailInteractor: PresentableInteractor<AccountDetailPresenta
         let account = dependency.account
         let text = account.bank.name + " " + account.number
         dependency.copyTextSubject.send(text)
+    }
+    
+    func editButtonTapped() {
+        listener?.editButtonTapped(dependency.account)
+        router?.close()
+    }
+    
+    func deleteButtonTapped() {
+        listener?.deleteButtonTapped(dependency.account)
+        router?.close()
     }
 }
