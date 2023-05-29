@@ -17,14 +17,17 @@ protocol AccountRegisterRouting: ViewableRouting {
 
 protocol AccountRegisterPresentable: Presentable {
     var listener: AccountRegisterPresentableListener? { get set }
+    func displayMode(_ isNew: Bool)
 }
 
 protocol AccountRegisterListener: AnyObject {
     func accountCreated(_ account: Account)
-    func close()
+    func accountEdited(_ account: Account)
+    func closeAccountRegister()
 }
 
 protocol AccountRegisterInteractorDependency {
+    var accountToEdit: Account? { get }
     var bankSubject: PassthroughSubject<Bank, Never> { get }
     var accountNumberSubject: PassthroughSubject<String, Never> { get }
     var accountNumberErrorSubject: PassthroughSubject<Bool, Never> { get }
@@ -93,14 +96,33 @@ final class AccountRegisterInteractor: PresentableInteractor<AccountRegisterPres
         dependency.doneEventSubject
             .withLatestFrom(bankStream, accountNumberStream, accountNameStream)
             .sink { [weak self] (bank, accountNumber, accountName) in
-                let account = Account(bank: bank, number: accountNumber, name: accountName)
-                self?.listener?.accountCreated(account)
+                if let accountToEdit = self?.dependency.accountToEdit {
+                    let account = Account(
+                        id: accountToEdit.id,
+                        bank: bank,
+                        number: accountNumber,
+                        name: accountName,
+                        date: accountToEdit.date
+                    )
+                    self?.listener?.accountEdited(account)
+                } else {
+                    let account = Account(bank: bank, number: accountNumber, name: accountName)
+                    self?.listener?.accountCreated(account)
+                }
             }
             .cancelOnDeactivate(interactor: self)
     }
     
+    func viewDidLoad() {
+        presenter.displayMode(dependency.accountToEdit == nil)
+        guard let account = dependency.accountToEdit else { return }
+        dependency.bankSubject.send(account.bank)
+        dependency.accountNumberSubject.send(account.number)
+        dependency.accountNameSubject.send(account.name)
+    }
+    
     func didDisappear() {
-        listener?.close()
+        listener?.closeAccountRegister()
     }
     
     func accountNumberChanged(_ text: String) {

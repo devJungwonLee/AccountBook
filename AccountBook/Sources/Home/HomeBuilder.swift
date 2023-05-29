@@ -16,6 +16,7 @@ protocol HomeDependency: Dependency {
 final class HomeComponent:
     Component<HomeDependency>,
     AccountRegisterDependency,
+    AccountDetailDependency,
     HomeInteractorDependency {
     var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
@@ -37,6 +38,7 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
     func build(withListener listener: HomeListener) -> HomeRouting {
         let component = HomeComponent(dependency: dependency)
         let accountRegisterBuilder = AccountRegisterBuilder(dependency: component)
+        let accountDetailBuilder = AccountDetailBuilder(dependency: component)
         
         let viewController = HomeViewController()
         let interactor = HomeInteractor(presenter: viewController, dependency: component)
@@ -44,6 +46,7 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
         interactor.listener = listener
         return HomeRouter(
             accountRegisterBuilder: accountRegisterBuilder,
+            accountDetailBuilder: accountDetailBuilder,
             interactor: interactor,
             viewController: viewController
         )

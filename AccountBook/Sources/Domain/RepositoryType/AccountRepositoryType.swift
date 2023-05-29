@@ -10,5 +10,6 @@ import Combine
 protocol AccountRepositoryType {
     func fetchAccountList() -> AnyPublisher<[Account], Error>
     func saveAccount(_ account: Account) -> AnyPublisher<Void, Error>
+    func updateAccount(_ account: Account) -> AnyPublisher<Void, Error>
     func deleteAccount(_ account: Account) -> AnyPublisher<Void, Error>
 }
