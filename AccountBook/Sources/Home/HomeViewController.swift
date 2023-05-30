@@ -18,6 +18,8 @@ protocol HomePresentableListener: AnyObject {
     func trailingSwiped(_ index: Int)
     func copyButtonTapped(_ index: Int)
     func accountSelected(_ index: Int)
+    func accountReordered(_ dates: [Date])
+    func cancelButtonTapped()
 }
 
 final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, ToastPresentable {
@@ -26,12 +28,12 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     
     
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, MyAccountCellState>?
-    private let cellRegistration = UICollectionView.CellRegistration<MyAccountCell, MyAccountCellState> { cell, _, cellState in
+    private var dataSource: UICollectionViewDiffableDataSource<Int, AccountCellState>?
+    private let cellRegistration = UICollectionView.CellRegistration<AccountCell, AccountCellState> { cell, _, cellState in
         cell.configure(with: cellState)
     }
     
-    private lazy var collectionView = MyAccountCollectionView().then {
+    private lazy var collectionView = AccountCollectionView().then {
         $0.collectionViewLayout = listLayout()
         $0.delegate = self
     }
@@ -46,6 +48,27 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         $0.configuration?.background.cornerRadius = 30
         $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
+    
+    private lazy var cancelButton = UIBarButtonItem(
+        title: "취소",
+        style: .done,
+        target: self,
+        action: #selector(cancelButtonTapped)
+    )
+    
+    private lazy var reorderButton = UIBarButtonItem(
+        image: UIImage(systemName: "arrow.up.arrow.down.circle"),
+        style: .plain,
+        target: self,
+        action: #selector(reorderButtonTapped)
+    )
+    
+    private lazy var doneButton = UIBarButtonItem(
+        title: "완료",
+        style: .done,
+        target: self,
+        action: #selector(doneButtonTapped)
+    )
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -91,6 +114,7 @@ private extension HomeViewController {
     func configureAttributes() {
         view.backgroundColor = .systemBackground
         navigationItem.title = "내 계좌"
+        navigationItem.rightBarButtonItem = reorderButton
     }
     
     func configureLayout() {
@@ -127,12 +151,13 @@ private extension HomeViewController {
     }
     
     func configureDiffableDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, MyAccountCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, account in
+        dataSource = UICollectionViewDiffableDataSource<Int, AccountCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, account in
             guard let self else { return  nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: account)
             cell.delegate = self
             return cell
         }
+        dataSource?.reorderingHandlers.canReorderItem = { _ in return true }
     }
     
     func bind() {
@@ -153,19 +178,42 @@ private extension HomeViewController {
     }
     
     func displayAccountList(_ accounts: [Account]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, MyAccountCellState>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, AccountCellState>()
         snapshot.appendSections([0])
-        snapshot.appendItems(accounts.map { MyAccountCellState($0) })
+        snapshot.appendItems(accounts.map { AccountCellState($0) })
         dataSource?.apply(snapshot)
     }
     
     @objc func addButtonTapped() {
+        cancelButtonTapped()
         listener?.addButtonTapped()
+    }
+    
+    @objc func reorderButtonTapped() {
+        navigationItem.rightBarButtonItem = doneButton
+        collectionView.isEditing = true
+        navigationItem.leftBarButtonItem = cancelButton
+    }
+    
+    @objc func cancelButtonTapped() {
+        listener?.cancelButtonTapped()
+        navigationItem.rightBarButtonItem = reorderButton
+        collectionView.isEditing = false
+        navigationItem.leftBarButtonItem = nil
+    }
+    
+    @objc func doneButtonTapped() {
+        if let dates = dataSource?.snapshot().itemIdentifiers.map({ $0.date }) {
+            listener?.accountReordered(dates)
+        }
+        navigationItem.rightBarButtonItem = reorderButton
+        collectionView.isEditing = false
+        navigationItem.leftBarButtonItem = nil
     }
 }
 
-extension HomeViewController: MyAccountCellDelegate {
-    func copyButtonTapped(_ cell: MyAccountCell) {
+extension HomeViewController: AccountCellDelegate {
+    func copyButtonTapped(_ cell: AccountCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let index = indexPath.item
         listener?.copyButtonTapped(index)

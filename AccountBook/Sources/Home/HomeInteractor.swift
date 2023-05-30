@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Foundation
 import Combine
 
 protocol HomeRouting: ViewableRouting {
@@ -44,6 +45,22 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         return dependency.accountListSubject.eraseToAnyPublisher()
     }
     
+    private var accountOrder: [Date: Int]? {
+        get {
+            if let data = UserDefaults.standard.object(forKey: "accountOrder") as? Data,
+               let order = try? JSONDecoder().decode([Date: Int].self, from: data) {
+                return order
+            } else{
+                return nil
+            }
+        }
+        set(newValue) {
+            if let encoded = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.setValue(encoded, forKey: "accountOrder")
+            }
+        }
+    }
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     init(presenter: HomePresentable, dependency: HomeInteractorDependency) {
@@ -69,13 +86,21 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
                     print(error)
                 }
             } receiveValue: { [weak self] accounts in
-                let sortedAccounts = accounts.sorted { $0.date < $1.date }
+                let sortedAccounts = accounts.sorted {
+                    if let accountOrder = self?.accountOrder,
+                       let left = accountOrder[$0.date],
+                       let right = accountOrder[$1.date] {
+                        return left < right
+                    }
+                    return $0.date < $1.date
+                }
                 self?.dependency.accountListSubject.send(sortedAccounts)
             }
             .cancelOnDeactivate(interactor: self)
     }
     
     private func saveAccount(_ account: Account) {
+        accountOrder?[account.date] = (accountOrder?.values.max() ?? -1) + 1
         dependency.accountRepository.saveAccount(account)
             .sink { completion in
                 if case .failure(let error) = completion {
@@ -106,6 +131,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
                     print(error)
                 }
             } receiveValue: { [weak self] in
+                self?.accountOrder?.removeValue(forKey: account.date)
                 self?.fetchAccountList()
             }
             .cancelOnDeactivate(interactor: self)
@@ -134,6 +160,10 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         dependency.copyTextSubject.send(text)
     }
     
+    func cancelButtonTapped() {
+        fetchAccountList()
+    }
+    
     func accountSelected(_ index: Int) {
         let account = dependency.accountListSubject.value[index]
         router?.attachAccountDetail(account: account)
@@ -145,6 +175,13 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     
     func accountEdited(_ account: Account) {
         editAccount(account)
+    }
+    
+    func accountReordered(_ dates: [Date]) {
+        var newOrder = [Date: Int]()
+        (0..<dates.count).forEach { newOrder[dates[$0]] = $0 }
+        accountOrder = newOrder
+        fetchAccountList()
     }
     
     func closeAccountRegister() {

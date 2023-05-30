@@ -44,8 +44,8 @@
 		5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */; };
 		5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */; };
 		5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */; };
-		5ED5E20B2A0216B6005FEA13 /* MyAccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */; };
-		5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */; };
+		5ED5E20B2A0216B6005FEA13 /* AccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */; };
+		5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */; };
 		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
 		5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */; };
 		5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */; };
@@ -105,8 +105,8 @@
 		5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterViewController.swift; sourceTree = "<group>"; };
 		5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterBuilder.swift; sourceTree = "<group>"; };
 		5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterInteractor.swift; sourceTree = "<group>"; };
-		5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCollectionView.swift; sourceTree = "<group>"; };
-		5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountCell.swift; sourceTree = "<group>"; };
+		5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionView.swift; sourceTree = "<group>"; };
+		5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
@@ -303,8 +303,8 @@
 		5ED5E2092A02169A005FEA13 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5ED5E20A2A0216B6005FEA13 /* MyAccountCollectionView.swift */,
-				5ED5E20C2A0216DC005FEA13 /* MyAccountCell.swift */,
+				5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */,
+				5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */,
 				5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */,
 			);
 			path = UI;
@@ -504,7 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED5E20B2A0216B6005FEA13 /* MyAccountCollectionView.swift in Sources */,
+				5ED5E20B2A0216B6005FEA13 /* AccountCollectionView.swift in Sources */,
 				5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */,
 				5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */,
 				5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */,
@@ -512,7 +512,7 @@
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
 				5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */,
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
-				5ED5E20D2A0216DC005FEA13 /* MyAccountCell.swift in Sources */,
+				5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */,
 				5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */,
 				5EAA44712A1F43C500E0214D /* AccountDetailViewController.swift in Sources */,
 				5E5BEDA52A1B07CF002EC397 /* BankObject.swift in Sources */,

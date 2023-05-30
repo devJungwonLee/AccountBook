@@ -1,5 +1,5 @@
 //
-//  MyAccountCell.swift
+//  AccountCell.swift
 //  AccountBook
 //
 //  Created by 이정원 on 2023/05/03.
@@ -9,11 +9,11 @@ import UIKit
 import SnapKit
 import Then
 
-protocol MyAccountCellDelegate: AnyObject {
-    func copyButtonTapped(_ cell: MyAccountCell)
+protocol AccountCellDelegate: AnyObject {
+    func copyButtonTapped(_ cell: AccountCell)
 }
 
-struct MyAccountCellState: Hashable {
+struct AccountCellState: Hashable {
     let bank: Bank
     let number: String
     let name: String
@@ -27,8 +27,8 @@ struct MyAccountCellState: Hashable {
     }
 }
 
-final class MyAccountCell: UICollectionViewCell {
-    weak var delegate: MyAccountCellDelegate?
+final class AccountCell: UICollectionViewListCell {
+    weak var delegate: AccountCellDelegate?
     
     private let bankLogoImageView = UIImageView().then {
         $0.backgroundColor = .secondarySystemBackground
@@ -74,7 +74,7 @@ final class MyAccountCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with cellState: MyAccountCellState) {
+    func configure(with cellState: AccountCellState) {
         let imageName = cellState.bank.code.isEmpty ? "placeholder" : cellState.bank.code
         bankLogoImageView.image = UIImage(named: imageName)
         nameLabel.text = cellState.name
@@ -82,9 +82,9 @@ final class MyAccountCell: UICollectionViewCell {
     }
 }
 
-private extension MyAccountCell {
+private extension AccountCell {
     func configureAttributes() {
-        
+        accessories = [.reorder()]
     }
     
     func configureLayout() {
