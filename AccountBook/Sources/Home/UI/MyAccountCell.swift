@@ -27,7 +27,7 @@ struct MyAccountCellState: Hashable {
     }
 }
 
-final class MyAccountCell: UICollectionViewCell {
+final class MyAccountCell: UICollectionViewListCell {
     weak var delegate: MyAccountCellDelegate?
     
     private let bankLogoImageView = UIImageView().then {
@@ -84,7 +84,7 @@ final class MyAccountCell: UICollectionViewCell {
 
 private extension MyAccountCell {
     func configureAttributes() {
-        
+        accessories = [.reorder()]
     }
     
     func configureLayout() {
