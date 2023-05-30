@@ -28,12 +28,12 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     
     
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, MyAccountCellState>?
-    private let cellRegistration = UICollectionView.CellRegistration<MyAccountCell, MyAccountCellState> { cell, _, cellState in
+    private var dataSource: UICollectionViewDiffableDataSource<Int, AccountCellState>?
+    private let cellRegistration = UICollectionView.CellRegistration<AccountCell, AccountCellState> { cell, _, cellState in
         cell.configure(with: cellState)
     }
     
-    private lazy var collectionView = MyAccountCollectionView().then {
+    private lazy var collectionView = AccountCollectionView().then {
         $0.collectionViewLayout = listLayout()
         $0.delegate = self
     }
@@ -151,7 +151,7 @@ private extension HomeViewController {
     }
     
     func configureDiffableDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, MyAccountCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, account in
+        dataSource = UICollectionViewDiffableDataSource<Int, AccountCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, account in
             guard let self else { return  nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: account)
             cell.delegate = self
@@ -178,9 +178,9 @@ private extension HomeViewController {
     }
     
     func displayAccountList(_ accounts: [Account]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, MyAccountCellState>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, AccountCellState>()
         snapshot.appendSections([0])
-        snapshot.appendItems(accounts.map { MyAccountCellState($0) })
+        snapshot.appendItems(accounts.map { AccountCellState($0) })
         dataSource?.apply(snapshot)
     }
     
@@ -212,8 +212,8 @@ private extension HomeViewController {
     }
 }
 
-extension HomeViewController: MyAccountCellDelegate {
-    func copyButtonTapped(_ cell: MyAccountCell) {
+extension HomeViewController: AccountCellDelegate {
+    func copyButtonTapped(_ cell: AccountCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let index = indexPath.item
         listener?.copyButtonTapped(index)
