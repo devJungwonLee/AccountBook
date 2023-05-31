@@ -165,6 +165,7 @@ private extension HomeViewController {
             .sink { [weak self] accounts in
                 self?.homeEmptyView.isHidden = !accounts.isEmpty
                 self?.collectionView.isHidden = accounts.isEmpty
+                self?.navigationItem.rightBarButtonItem = accounts.isEmpty ? nil : self?.reorderButton
                 if !accounts.isEmpty { self?.displayAccountList(accounts) }
             }
             .store(in: &cancellables)
