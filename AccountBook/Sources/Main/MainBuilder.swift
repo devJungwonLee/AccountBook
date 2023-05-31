@@ -12,7 +12,7 @@ protocol MainDependency: Dependency {
     // created by this RIB.
 }
 
-final class MainComponent: Component<MainDependency>, HomeDependency {
+final class MainComponent: Component<MainDependency>, HomeDependency, SettingDependency {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -34,10 +34,12 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         
         let component = MainComponent(dependency: dependency)
         let homeBuilder = HomeBuilder(dependency: component)
+        let settingBuilder = SettingBuilder(dependency: component)
         
         interactor.listener = listener
         return MainRouter(
             homeBuilder: homeBuilder,
+            settingBuilder: settingBuilder,
             interactor: interactor,
             viewController: viewController
         )

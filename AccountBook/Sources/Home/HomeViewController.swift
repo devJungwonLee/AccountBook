@@ -26,8 +26,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     weak var listener: HomePresentableListener?
     private var cancellables = Set<AnyCancellable>()
     
-    
-    
     private var dataSource: UICollectionViewDiffableDataSource<Int, AccountCellState>?
     private let cellRegistration = UICollectionView.CellRegistration<AccountCell, AccountCellState> { cell, _, cellState in
         cell.configure(with: cellState)
@@ -39,7 +37,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
     
     private let homeEmptyView = HomeEmptyView()
-    
     
     private lazy var addButton = UIButton(configuration: .filled()).then {
         $0.configuration?.image = UIImage(systemName: "plus")
