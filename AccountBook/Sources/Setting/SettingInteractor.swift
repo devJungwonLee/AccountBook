@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import LocalAuthentication
 
 protocol SettingRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -13,32 +14,64 @@ protocol SettingRouting: ViewableRouting {
 
 protocol SettingPresentable: Presentable {
     var listener: SettingPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func displaySwitch(with isOn: Bool)
+    func hideAuthenticationNotice()
 }
 
 protocol SettingListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class SettingInteractor: PresentableInteractor<SettingPresentable>, SettingInteractable, SettingPresentableListener {
+protocol SettingInteractorDependency {
+    var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
+}
 
+final class SettingInteractor: PresentableInteractor<SettingPresentable>, SettingInteractable, SettingPresentableListener {
     weak var router: SettingRouting?
     weak var listener: SettingListener?
-
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: SettingPresentable) {
+    private let dependency: SettingInteractorDependency
+    
+    init(presenter: SettingPresentable, dependency: SettingInteractorDependency) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+    }
+    
+    var accountNumberHidingFlag: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "accountNumberHidingFlag")
+        }
+        set(newValue) {
+            UserDefaults.standard.setValue(newValue, forKey: "accountNumberHidingFlag")
+        }
+    }
+    
+    func viewDidLoad() {
+        presenter.displaySwitch(with: accountNumberHidingFlag)
+    }
+    
+    func switchTapped(_ isOn: Bool) {
+        dependency
+            .localAuthenticationRepository
+            .authenticate(localizedReason: "계좌번호 숨김 설정을 위해 인증을 진행합니다.")
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] isSuccess in
+                let result = isSuccess ? isOn : !isOn
+                self?.accountNumberHidingFlag = result
+                self?.presenter.displaySwitch(with: result)
+            }
+            .cancelOnDeactivate(interactor: self)
     }
 }

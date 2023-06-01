@@ -12,9 +12,13 @@ protocol SettingDependency: Dependency {
     // created by this RIB.
 }
 
-final class SettingComponent: Component<SettingDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class SettingComponent: Component<SettingDependency>, SettingInteractorDependency {
+    var localAuthenticationRepository: LocalAuthenticationRepositoryType
+    
+    override init(dependency: SettingDependency) {
+        self.localAuthenticationRepository = LocalAuthenticationRepository()
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
@@ -30,9 +34,9 @@ final class SettingBuilder: Builder<SettingDependency>, SettingBuildable {
     }
 
     func build(withListener listener: SettingListener) -> SettingRouting {
-        _ = SettingComponent(dependency: dependency)
+        let component = SettingComponent(dependency: dependency)
         let viewController = SettingViewController()
-        let interactor = SettingInteractor(presenter: viewController)
+        let interactor = SettingInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return SettingRouter(interactor: interactor, viewController: viewController)
     }

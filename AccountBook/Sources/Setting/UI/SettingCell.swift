@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SettingCellDelegate: AnyObject {
+    func switchTapped(_ isOn: Bool)
+}
+
 struct SettingCellState: Hashable {
     let title: String
     let isOn: Bool?
@@ -18,12 +22,15 @@ struct SettingCellState: Hashable {
 }
 
 final class SettingCell: UICollectionViewListCell {
+    weak var delegate: SettingCellDelegate?
+    
     private let titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20)
     }
     
-    private let toggle = UISwitch().then {
+    private lazy var accountNumberHidingSwitch = UISwitch().then {
         $0.isOn = false
+        $0.addTarget(self, action: #selector(switchTapped), for: .touchUpInside)
     }
     
     override init(frame: CGRect) {
@@ -39,9 +46,9 @@ final class SettingCell: UICollectionViewListCell {
     func configure(with cellState: SettingCellState) {
         titleLabel.text = cellState.title
         if let isOn = cellState.isOn {
-            toggle.isOn = isOn
+            accountNumberHidingSwitch.isOn = isOn
         } else {
-            toggle.isHidden = true
+            accountNumberHidingSwitch.isHidden = true
         }
     }
 }
@@ -58,10 +65,16 @@ private extension SettingCell {
             make.leading.equalToSuperview().inset(20)
         }
         
-        contentView.addSubview(toggle)
-        toggle.snp.makeConstraints { make in
+        contentView.addSubview(accountNumberHidingSwitch)
+        accountNumberHidingSwitch.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(20)
         }
+    }
+    
+    @objc func switchTapped() {
+        let isOn = accountNumberHidingSwitch.isOn
+        accountNumberHidingSwitch.isOn.toggle()
+        delegate?.switchTapped(isOn)
     }
 }

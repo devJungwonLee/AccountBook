@@ -11,9 +11,8 @@ import SnapKit
 import Then
 
 protocol SettingPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func viewDidLoad()
+    func switchTapped(_ isOn: Bool)
 }
 
 final class SettingViewController: UIViewController, SettingPresentable, SettingViewControllable {
@@ -31,6 +30,10 @@ final class SettingViewController: UIViewController, SettingPresentable, Setting
         $0.alwaysBounceVertical = false
     }
     
+    private let authenticationNoticeView = AuthenticationNoticeView().then {
+        $0.isHidden = true
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         configureTabBarItem()
@@ -45,14 +48,27 @@ final class SettingViewController: UIViewController, SettingPresentable, Setting
         configureAttributes()
         configureLayout()
         configureDiffableDataSource()
-        displayAccountList()
+        listener?.viewDidLoad()
     }
     
-    func displayAccountList() {
+    func displayMenuList() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, SettingCellState>()
         snapshot.appendSections([0])
         snapshot.appendItems([.init(title: "계좌번호 가리기", isOn: false)])
         dataSource?.apply(snapshot)
+    }
+    
+    func displaySwitch(with isOn: Bool) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, SettingCellState>()
+        snapshot.appendSections([0])
+        snapshot.appendItems([.init(title: "계좌번호 가리기", isOn: isOn)])
+        dataSource?.apply(snapshot)
+        hideAuthenticationNotice()
+    }
+    
+    func hideAuthenticationNotice() {
+        authenticationNoticeView.isHidden = true
+        collectionView.isHidden = false
     }
 }
 
@@ -73,7 +89,12 @@ private extension SettingViewController {
     func configureLayout() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
+        view.addSubview(authenticationNoticeView)
+        authenticationNoticeView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
         }
     }
     
@@ -86,7 +107,16 @@ private extension SettingViewController {
         dataSource = UICollectionViewDiffableDataSource<Int, SettingCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, setting in
             guard let self else { return  nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: setting)
+            cell.delegate = self
             return cell
         }
+    }
+}
+
+extension SettingViewController: SettingCellDelegate {
+    func switchTapped(_ isOn: Bool) {
+        collectionView.isHidden = true
+        authenticationNoticeView.isHidden = false
+        listener?.switchTapped(isOn)
     }
 }
