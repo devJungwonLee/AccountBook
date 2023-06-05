@@ -73,6 +73,7 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
                 self?.accountNumberHidingFlag = result
                 self?.presenter.displaySwitch(with: result)
                 self?.listener?.accountNumberHidingFlagChanged(result)
+                if isOn { UserDefaults.standard.removeObject(forKey: "lastUnlockTime") }
             }
             .cancelOnDeactivate(interactor: self)
     }

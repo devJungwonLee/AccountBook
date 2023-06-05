@@ -20,6 +20,7 @@ final class HomeComponent:
     var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
     var accountRepository: AccountRepositoryType = AccountRepository(persistentStorage: PersistentStorage())
+    var localAuthenticationRepository: LocalAuthenticationRepositoryType = LocalAuthenticationRepository()
     
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
         return dependency.accountNumberHidingFlagStream

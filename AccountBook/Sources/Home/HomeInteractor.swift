@@ -8,6 +8,7 @@
 import ModernRIBs
 import Foundation
 import Combine
+import CombineExt
 
 protocol HomeRouting: ViewableRouting {
     func attachAccountRegister(account: Account?)
@@ -30,11 +31,10 @@ protocol HomeInteractorDependency {
     var accountListSubject: CurrentValueSubject<[Account], Never> { get }
     var accountRepository: AccountRepositoryType { get }
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
+    var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
 }
 
 final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
-    
-    
     weak var router: HomeRouting?
     weak var listener: HomeListener?
     
@@ -68,8 +68,15 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         }
     }
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
+    private var lastUnlockTime: Date? {
+        get {
+            return UserDefaults.standard.object(forKey: "lastUnlockTime") as? Date
+        }
+        set(newvalue) {
+            UserDefaults.standard.setValue(newvalue, forKey: "lastUnlockTime")
+        }
+    }
+    
     init(presenter: HomePresentable, dependency: HomeInteractorDependency) {
         self.dependency = dependency
         super.init(presenter: presenter)
@@ -173,7 +180,40 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     
     func accountSelected(_ index: Int) {
         let account = dependency.accountListSubject.value[index]
-        router?.attachAccountDetail(account: account)
+        Just(())
+            .withLatestFrom(accountNumberHidingFlagStream)
+            .compactMap { [weak self] hidingFlag in
+                self?.shouldAuthenticate(hidingFlag)
+            }
+            .sink { shouldAuthenticate in
+                if shouldAuthenticate { self.authenticate(account: account) }
+                else { self.router?.attachAccountDetail(account: account) }
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
+    private func shouldAuthenticate(_ hidingFlag: Bool) -> Bool {
+        if !hidingFlag { return false }
+        guard let elapsedMinutes = lastUnlockTime?.elapsedMinutes else { return true }
+        return elapsedMinutes >= 5
+    }
+    
+    private func authenticate(account: Account) {
+        dependency.localAuthenticationRepository.authenticate(
+            localizedReason: "계좌를 확인하기 위해 인증을 진행합니다."
+        ).sink { completion in
+            if case .failure(let error) = completion {
+                print(error)
+            }
+        } receiveValue: { isSuccess in
+            if isSuccess {
+                self.lastUnlockTime = Date()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    self.router?.attachAccountDetail(account: account)
+                }
+            }
+        }
+        .cancelOnDeactivate(interactor: self)
     }
     
     func accountCreated(_ account: Account) {
