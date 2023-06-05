@@ -29,13 +29,20 @@ protocol HomeInteractorDependency {
     var copyTextSubject: PassthroughSubject<String, Never> { get }
     var accountListSubject: CurrentValueSubject<[Account], Never> { get }
     var accountRepository: AccountRepositoryType { get }
+    var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
 }
 
 final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
+    
+    
     weak var router: HomeRouting?
     weak var listener: HomeListener?
     
     private let dependency: HomeInteractorDependency
+    
+    var accountNumberHidingFlagStream: AnyPublisher<Bool, Never> {
+        return dependency.accountNumberHidingFlagStream.compactMap { $0 }.eraseToAnyPublisher()
+    }
     
     var copyTextStream: AnyPublisher<String, Never> {
         return dependency.copyTextSubject.eraseToAnyPublisher()

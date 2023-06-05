@@ -6,15 +6,23 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol MainDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
 
-final class MainComponent: Component<MainDependency>, HomeDependency, SettingDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class MainComponent:
+    Component<MainDependency>,
+    HomeDependency,
+    SettingDependency,
+    MainInteractorDependency
+{
+    var accountNumberHidingFlagSubject = CurrentValueSubject<Bool?, Never>(nil)
+    var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
+        return accountNumberHidingFlagSubject.eraseToAnyPublisher()
+    }
 }
 
 // MARK: - Builder
@@ -29,12 +37,12 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     }
 
     func build(withListener listener: MainListener) -> MainRouting {
-        let viewController = MainViewController()
-        let interactor = MainInteractor(presenter: viewController)
-        
         let component = MainComponent(dependency: dependency)
         let homeBuilder = HomeBuilder(dependency: component)
         let settingBuilder = SettingBuilder(dependency: component)
+        
+        let viewController = MainViewController()
+        let interactor = MainInteractor(presenter: viewController, dependency: component)
         
         interactor.listener = listener
         return MainRouter(

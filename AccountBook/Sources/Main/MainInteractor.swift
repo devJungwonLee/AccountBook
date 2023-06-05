@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol MainRouting: ViewableRouting {
     func attachChildren()
@@ -20,14 +21,19 @@ protocol MainListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
+protocol MainInteractorDependency {
+    var accountNumberHidingFlagSubject: CurrentValueSubject<Bool?, Never> { get }
+}
 
+final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
     weak var router: MainRouting?
     weak var listener: MainListener?
+    private let dependency: MainInteractorDependency
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: MainPresentable) {
+    init(presenter: MainPresentable, dependency: MainInteractorDependency) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -40,5 +46,9 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func accountNumberHidingFlagChanged(_ shouldHide: Bool) {
+        dependency.accountNumberHidingFlagSubject.send(shouldHide)
     }
 }

@@ -19,7 +19,7 @@ protocol SettingPresentable: Presentable {
 }
 
 protocol SettingListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func accountNumberHidingFlagChanged(_ shouldHide: Bool)
 }
 
 protocol SettingInteractorDependency {
@@ -39,6 +39,7 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        listener?.accountNumberHidingFlagChanged(accountNumberHidingFlag)
     }
 
     override func willResignActive() {
@@ -71,6 +72,7 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
                 let result = isSuccess ? isOn : !isOn
                 self?.accountNumberHidingFlag = result
                 self?.presenter.displaySwitch(with: result)
+                self?.listener?.accountNumberHidingFlagChanged(result)
             }
             .cancelOnDeactivate(interactor: self)
     }

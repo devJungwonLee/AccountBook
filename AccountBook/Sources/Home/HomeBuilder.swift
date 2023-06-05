@@ -9,8 +9,7 @@ import ModernRIBs
 import Combine
 
 protocol HomeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
 }
 
 final class HomeComponent:
@@ -21,6 +20,10 @@ final class HomeComponent:
     var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
     var accountRepository: AccountRepositoryType = AccountRepository(persistentStorage: PersistentStorage())
+    
+    var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
+        return dependency.accountNumberHidingFlagStream
+    }
 }
 
 // MARK: - Builder
