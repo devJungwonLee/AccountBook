@@ -37,8 +37,8 @@ protocol HomeInteractorDependency {
 final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
     weak var router: HomeRouting?
     weak var listener: HomeListener?
-    
     private let dependency: HomeInteractorDependency
+    private var standard: UserDefaults { UserDefaults.standard }
     
     var accountNumberHidingFlagStream: AnyPublisher<Bool, Never> {
         return dependency.accountNumberHidingFlagStream.compactMap { $0 }.eraseToAnyPublisher()
@@ -53,28 +53,13 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     }
     
     private var accountOrder: [Date: Int]? {
-        get {
-            if let data = UserDefaults.standard.object(forKey: "accountOrder") as? Data,
-               let order = try? JSONDecoder().decode([Date: Int].self, from: data) {
-                return order
-            } else{
-                return nil
-            }
-        }
-        set(newValue) {
-            if let encoded = try? JSONEncoder().encode(newValue) {
-                UserDefaults.standard.setValue(encoded, forKey: "accountOrder")
-            }
-        }
+        get { standard.value(forKey: UserDefaultsKey.accountOrder, [Date: Int].self) }
+        set(newValue) { standard.setValue(forKey: UserDefaultsKey.accountOrder, newValue) }
     }
     
     private var lastUnlockTime: Date? {
-        get {
-            return UserDefaults.standard.object(forKey: "lastUnlockTime") as? Date
-        }
-        set(newvalue) {
-            UserDefaults.standard.setValue(newvalue, forKey: "lastUnlockTime")
-        }
+        get { standard.object(forKey: UserDefaultsKey.lastUnlockTime) as? Date }
+        set(newvalue) { standard.setValue(newvalue, forKey: UserDefaultsKey.lastUnlockTime) }
     }
     
     init(presenter: HomePresentable, dependency: HomeInteractorDependency) {

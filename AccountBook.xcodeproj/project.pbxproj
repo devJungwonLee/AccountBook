@@ -31,6 +31,8 @@
 		5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */; };
 		5E60C08B2A1DABE400FD7F0C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C08A2A1DABE400FD7F0C /* ToastView.swift */; };
 		5E6ACC7B2A2DADFB00FD63EF /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */; };
+		5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */; };
+		5E6ACC822A2DDA1C00FD63EF /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */; };
 		5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */; };
 		5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */; };
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
@@ -102,6 +104,8 @@
 		5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPresentable.swift; sourceTree = "<group>"; };
 		5E60C08A2A1DABE400FD7F0C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
+		5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -280,6 +284,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		5E6ACC7E2A2DD76D00FD63EF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		5E6BCE6529EBC6D9008CEFE5 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +370,7 @@
 				5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */,
 				5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */,
 				5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */,
+				5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -425,6 +438,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5E6ACC7E2A2DD76D00FD63EF /* Constants */,
 				5E20BCC62A272B2200E6A73D /* Setting */,
 				5EAA446B2A1F43B000E0214D /* AccountDetail */,
 				5E5BEDA22A1B07BB002EC397 /* Data */,
@@ -583,6 +597,7 @@
 				5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */,
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
 				5EAA44732A1F43C500E0214D /* AccountDetailInteractor.swift in Sources */,
+				5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
 				5EEA8CC82A28810000CFEEB6 /* AuthenticationNoticeView.swift in Sources */,
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
@@ -591,6 +606,7 @@
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */,
 				5E26A5522A0683420012DEE4 /* BankSelectViewController.swift in Sources */,
+				5E6ACC822A2DDA1C00FD63EF /* UserDefaultsKey.swift in Sources */,
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,

@@ -30,6 +30,7 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     weak var router: SettingRouting?
     weak var listener: SettingListener?
     private let dependency: SettingInteractorDependency
+    private var standard: UserDefaults { UserDefaults.standard }
     
     init(presenter: SettingPresentable, dependency: SettingInteractorDependency) {
         self.dependency = dependency
@@ -47,12 +48,8 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     }
     
     var accountNumberHidingFlag: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: "accountNumberHidingFlag")
-        }
-        set(newValue) {
-            UserDefaults.standard.setValue(newValue, forKey: "accountNumberHidingFlag")
-        }
+        get { standard.bool(forKey: UserDefaultsKey.accountNumberHidingFlag) }
+        set(newValue) { standard.setValue(newValue, forKey: UserDefaultsKey.accountNumberHidingFlag) }
     }
     
     func viewDidLoad() {
@@ -73,7 +70,7 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
                 self?.accountNumberHidingFlag = result
                 self?.presenter.displaySwitch(with: result)
                 self?.listener?.accountNumberHidingFlagChanged(result)
-                if isOn { UserDefaults.standard.removeObject(forKey: "lastUnlockTime") }
+                if isOn { UserDefaults.standard.removeObject(forKey: UserDefaultsKey.lastUnlockTime) }
             }
             .cancelOnDeactivate(interactor: self)
     }
