@@ -18,12 +18,14 @@ struct AccountCellState: Hashable {
     let number: String
     let name: String
     let date: Date
+    let shouldHide: Bool
     
-    init(_ account: Account) {
+    init(_ account: Account, _ shouldHide: Bool) {
         self.bank = account.bank
         self.number = account.number
         self.name = account.name
         self.date = account.date
+        self.shouldHide = shouldHide
     }
 }
 
@@ -79,6 +81,7 @@ final class AccountCell: UICollectionViewListCell {
         bankLogoImageView.image = UIImage(named: imageName)
         nameLabel.text = cellState.name
         numberLabel.text = cellState.number
+        numberLabel.isHidden = cellState.shouldHide
     }
 }
 

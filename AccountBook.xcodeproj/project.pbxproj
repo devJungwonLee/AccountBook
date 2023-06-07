@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC72A272B7000E6A73D /* SettingRouter.swift */; };
+		5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC82A272B7000E6A73D /* SettingViewController.swift */; };
+		5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */; };
+		5E20BCCE2A272B7000E6A73D /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCCA2A272B7000E6A73D /* SettingInteractor.swift */; };
+		5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCD02A2730DC00E6A73D /* SettingCell.swift */; };
 		5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */; };
 		5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */; };
 		5E26A5512A0683420012DEE4 /* BankSelectRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A54D2A0683420012DEE4 /* BankSelectRouter.swift */; };
@@ -25,6 +30,9 @@
 		5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */; };
 		5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */; };
 		5E60C08B2A1DABE400FD7F0C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C08A2A1DABE400FD7F0C /* ToastView.swift */; };
+		5E6ACC7B2A2DADFB00FD63EF /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */; };
+		5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */; };
+		5E6ACC822A2DDA1C00FD63EF /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */; };
 		5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */; };
 		5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */; };
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
@@ -59,6 +67,9 @@
 		5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F632A0096050075D2ED /* HomeViewController.swift */; };
 		5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F642A0096050075D2ED /* HomeBuilder.swift */; };
 		5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F652A0096050075D2ED /* HomeInteractor.swift */; };
+		5EEA8CC82A28810000CFEEB6 /* AuthenticationNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA8CC72A28810000CFEEB6 /* AuthenticationNoticeView.swift */; };
+		5EEA8CCC2A28866800CFEEB6 /* LocalAuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA8CCB2A28866800CFEEB6 /* LocalAuthenticationRepository.swift */; };
+		5EEA8CCE2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA8CCD2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift */; };
 		5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB553429EA81DB006546B5 /* AppDelegate.swift */; };
 		5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFB553629EA81DB006546B5 /* SceneDelegate.swift */; };
 		5EFB553E29EA81DB006546B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
@@ -71,6 +82,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E20BCC72A272B7000E6A73D /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
+		5E20BCC82A272B7000E6A73D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBuilder.swift; sourceTree = "<group>"; };
+		5E20BCCA2A272B7000E6A73D /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
+		5E20BCD02A2730DC00E6A73D /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
 		5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		5E26A54D2A0683420012DEE4 /* BankSelectRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectRouter.swift; sourceTree = "<group>"; };
@@ -87,6 +103,9 @@
 		5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
 		5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPresentable.swift; sourceTree = "<group>"; };
 		5E60C08A2A1DABE400FD7F0C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
+		5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		5E6BCE6629EBC7A1008CEFE5 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		5E6BCE6729EBC7A1008CEFE5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -120,6 +139,9 @@
 		5EE82F632A0096050075D2ED /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5EE82F642A0096050075D2ED /* HomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
 		5EE82F652A0096050075D2ED /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		5EEA8CC72A28810000CFEEB6 /* AuthenticationNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNoticeView.swift; sourceTree = "<group>"; };
+		5EEA8CCB2A28866800CFEEB6 /* LocalAuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationRepository.swift; sourceTree = "<group>"; };
+		5EEA8CCD2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationRepositoryType.swift; sourceTree = "<group>"; };
 		5EFB553129EA81DA006546B5 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFB553429EA81DB006546B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EFB553629EA81DB006546B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +169,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E20BCC62A272B2200E6A73D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5E20BCCF2A2730C000E6A73D /* UI */,
+				5E20BCC72A272B7000E6A73D /* SettingRouter.swift */,
+				5E20BCC82A272B7000E6A73D /* SettingViewController.swift */,
+				5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */,
+				5E20BCCA2A272B7000E6A73D /* SettingInteractor.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5E20BCCF2A2730C000E6A73D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5E20BCD02A2730DC00E6A73D /* SettingCell.swift */,
+				5EEA8CC72A28810000CFEEB6 /* AuthenticationNoticeView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		5E26A5462A0642AC0012DEE4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				5E5BEDAC2A1B247A002EC397 /* AccountRepository.swift */,
+				5EEA8CCB2A28866800CFEEB6 /* LocalAuthenticationRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -227,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */,
+				5EEA8CCD2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift */,
 			);
 			path = RepositoryType;
 			sourceTree = "<group>";
@@ -237,6 +282,14 @@
 				5E60C08A2A1DABE400FD7F0C /* ToastView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		5E6ACC7E2A2DD76D00FD63EF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		5E6BCE6529EBC6D9008CEFE5 /* Root */ = {
@@ -316,6 +369,8 @@
 				5ED5E20F2A02902E005FEA13 /* UIColor+.swift */,
 				5E26A54A2A066F9D0012DEE4 /* UIScrollView+.swift */,
 				5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */,
+				5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */,
+				5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -383,6 +438,8 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5E6ACC7E2A2DD76D00FD63EF /* Constants */,
+				5E20BCC62A272B2200E6A73D /* Setting */,
 				5EAA446B2A1F43B000E0214D /* AccountDetail */,
 				5E5BEDA22A1B07BB002EC397 /* Data */,
 				5E9771152A092B2500A6B28F /* Domain */,
@@ -509,24 +566,29 @@
 				5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */,
 				5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */,
 				5EFD8E4A2A09FDCF00C0ED03 /* AlertPresentable.swift in Sources */,
+				5EEA8CCC2A28866800CFEEB6 /* LocalAuthenticationRepository.swift in Sources */,
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
 				5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */,
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
 				5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */,
 				5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */,
 				5EAA44712A1F43C500E0214D /* AccountDetailViewController.swift in Sources */,
+				5E6ACC7B2A2DADFB00FD63EF /* Date+.swift in Sources */,
 				5E5BEDA52A1B07CF002EC397 /* BankObject.swift in Sources */,
 				5E26A5532A0683420012DEE4 /* BankSelectBuilder.swift in Sources */,
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
+				5EEA8CCE2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift in Sources */,
 				5E26A5512A0683420012DEE4 /* BankSelectRouter.swift in Sources */,
 				5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */,
 				5E60C08B2A1DABE400FD7F0C /* ToastView.swift in Sources */,
 				5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */,
 				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
 				5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */,
+				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
 				5E5BEDAD2A1B247A002EC397 /* AccountRepository.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
+				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
 				5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */,
 				5E5BEDA72A1B089A002EC397 /* AccountObject.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
@@ -535,12 +597,16 @@
 				5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */,
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
 				5EAA44732A1F43C500E0214D /* AccountDetailInteractor.swift in Sources */,
+				5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
+				5EEA8CC82A28810000CFEEB6 /* AuthenticationNoticeView.swift in Sources */,
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
+				5E20BCCE2A272B7000E6A73D /* SettingInteractor.swift in Sources */,
 				5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */,
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */,
 				5E26A5522A0683420012DEE4 /* BankSelectViewController.swift in Sources */,
+				5E6ACC822A2DDA1C00FD63EF /* UserDefaultsKey.swift in Sources */,
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
@@ -548,6 +614,7 @@
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
 				5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */,
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
+				5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */,
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
@@ -555,6 +622,7 @@
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
 				5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
+				5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */,
 				5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

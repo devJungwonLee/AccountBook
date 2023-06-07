@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol MainInteractable: Interactable, HomeListener {
+protocol MainInteractable: Interactable, HomeListener, SettingListener {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
 }
@@ -20,19 +20,25 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     private let homeBuilder: HomeBuildable
     private var homeRouter: HomeRouting?
     
+    private let settingBuilder: SettingBuildable
+    private var settingRouter: SettingRouting?
+    
     init(
         homeBuilder: HomeBuildable,
+        settingBuilder: SettingBuilder,
         interactor: MainInteractable,
         viewController: MainViewControllable
     ) {
         self.homeBuilder = homeBuilder
+        self.settingBuilder = settingBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
     func attachChildren() {
         attachHome()
-        let viewControllers = [homeRouter].compactMap { $0?.viewControllable }
+        attachSetting()
+        let viewControllers = [homeRouter, settingRouter].compactMap { $0?.viewControllable }
         viewController.configureChildTabs(viewControllers: viewControllers)
     }
     
@@ -40,5 +46,11 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         let homeRouter = homeBuilder.build(withListener: interactor)
         self.homeRouter = homeRouter
         attachChild(homeRouter)
+    }
+    
+    private func attachSetting() {
+        let settingRouter = settingBuilder.build(withListener: interactor)
+        self.settingRouter = settingRouter
+        attachChild(settingRouter)
     }
 }

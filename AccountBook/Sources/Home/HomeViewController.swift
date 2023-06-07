@@ -12,6 +12,7 @@ import SnapKit
 import Then
 
 protocol HomePresentableListener: AnyObject {
+    var accountNumberHidingFlagStream: AnyPublisher<Bool, Never> { get }
     var copyTextStream: AnyPublisher<String, Never> { get }
     var accountListStream: AnyPublisher<[Account], Never> { get }
     func addButtonTapped()
@@ -26,8 +27,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     weak var listener: HomePresentableListener?
     private var cancellables = Set<AnyCancellable>()
     
-    
-    
     private var dataSource: UICollectionViewDiffableDataSource<Int, AccountCellState>?
     private let cellRegistration = UICollectionView.CellRegistration<AccountCell, AccountCellState> { cell, _, cellState in
         cell.configure(with: cellState)
@@ -39,7 +38,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
     
     private let homeEmptyView = HomeEmptyView()
-    
     
     private lazy var addButton = UIButton(configuration: .filled()).then {
         $0.configuration?.image = UIImage(systemName: "plus")
@@ -161,13 +159,17 @@ private extension HomeViewController {
     }
     
     func bind() {
-        listener?.accountListStream
-            .sink { [weak self] accounts in
-                self?.homeEmptyView.isHidden = !accounts.isEmpty
-                self?.collectionView.isHidden = accounts.isEmpty
-                if !accounts.isEmpty { self?.displayAccountList(accounts) }
-            }
-            .store(in: &cancellables)
+        if let accountListStream = listener?.accountListStream,
+           let accountNumberHidingFlagStream = listener?.accountNumberHidingFlagStream {
+            accountListStream.combineLatest(accountNumberHidingFlagStream)
+                .sink { [weak self] (accounts, shouldHide) in
+                    self?.homeEmptyView.isHidden = !accounts.isEmpty
+                    self?.collectionView.isHidden = accounts.isEmpty
+                    self?.navigationItem.rightBarButtonItem = accounts.isEmpty ? nil : self?.reorderButton
+                    if !accounts.isEmpty { self?.displayAccountList(accounts, shouldHide: shouldHide) }
+                }
+                .store(in: &cancellables)
+        }
         
         listener?.copyTextStream
             .sink { [weak self] copyText in
@@ -177,10 +179,10 @@ private extension HomeViewController {
             .store(in: &cancellables)
     }
     
-    func displayAccountList(_ accounts: [Account]) {
+    func displayAccountList(_ accounts: [Account], shouldHide: Bool) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, AccountCellState>()
         snapshot.appendSections([0])
-        snapshot.appendItems(accounts.map { AccountCellState($0) })
+        snapshot.appendItems(accounts.map { AccountCellState($0, shouldHide) })
         dataSource?.apply(snapshot)
     }
     
