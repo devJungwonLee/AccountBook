@@ -9,6 +9,7 @@ import ModernRIBs
 import Foundation
 import Combine
 import CombineExt
+import WidgetKit
 
 protocol HomeRouting: ViewableRouting {
     func attachAccountRegister(account: Account?)
@@ -119,6 +120,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
                 }
             } receiveValue: { [weak self] in
                 self?.fetchAccountList()
+                WidgetCenter.shared.reloadAllTimelines()
             }
             .cancelOnDeactivate(interactor: self)
     }
@@ -132,6 +134,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
             } receiveValue: { [weak self] in
                 self?.accountOrder?.removeValue(forKey: account.date)
                 self?.fetchAccountList()
+                WidgetCenter.shared.reloadAllTimelines()
             }
             .cancelOnDeactivate(interactor: self)
     }

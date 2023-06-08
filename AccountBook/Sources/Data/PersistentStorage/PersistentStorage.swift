@@ -5,6 +5,7 @@
 //  Created by 이정원 on 2023/05/22.
 //
 
+import Foundation
 import RealmSwift
 
 enum DataBaseError: Error {
@@ -12,20 +13,30 @@ enum DataBaseError: Error {
 }
 
 protocol PersistentStorageType {
+    func read<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws -> T
     func readAll<T: Object>(type: T.Type) throws -> Results<T>
     func create<T: Object>(object: T) throws
     func delete<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws
 }
 
 final class PersistentStorage: PersistentStorageType {
+    private var realm: Realm {
+        get throws {
+            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: GroupIdentifier.value)
+            let realmURL = container?.appendingPathComponent("default.realm")
+            let config = Realm.Configuration(fileURL: realmURL, schemaVersion: 1)
+            return try Realm(configuration: config)
+        }
+    }
+    
     func readAll<T: Object>(type: T.Type) throws -> Results<T>  {
-        let realm = try Realm()
+        let realm = try realm
         let objects = realm.objects(T.self)
         return objects
     }
     
-    private func read<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws -> T {
-        let realm = try Realm()
+    func read<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws -> T {
+        let realm = try realm
         guard let object = realm.object(ofType: T.self, forPrimaryKey: primaryKey) else {
             throw DataBaseError.notFoundError
         }
@@ -33,7 +44,7 @@ final class PersistentStorage: PersistentStorageType {
     }
     
     func create<T: Object>(object: T) throws {
-        let realm = try Realm()
+        let realm = try realm
         try realm.write {
             realm.add(object)
         }
@@ -41,7 +52,7 @@ final class PersistentStorage: PersistentStorageType {
     
     func delete<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws {
         let object = try read(type: T.self, primaryKey: primaryKey)
-        let realm = try Realm()
+        let realm = try realm
         try realm.write {
             realm.delete(object)
         }
