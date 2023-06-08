@@ -17,6 +17,7 @@ final class MainComponent:
     Component<MainDependency>,
     HomeDependency,
     SettingDependency,
+    WidgetAccountSelectedDependency,
     MainInteractorDependency
 {
     var accountNumberHidingFlagSubject = CurrentValueSubject<Bool?, Never>(nil)
@@ -40,6 +41,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let component = MainComponent(dependency: dependency)
         let homeBuilder = HomeBuilder(dependency: component)
         let settingBuilder = SettingBuilder(dependency: component)
+        let widgetAccountSelectedBuilder = WidgetAccountSelectedBuilder(dependency: component)
         
         let viewController = MainViewController()
         let interactor = MainInteractor(presenter: viewController, dependency: component)
@@ -48,6 +50,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         return MainRouter(
             homeBuilder: homeBuilder,
             settingBuilder: settingBuilder,
+            widgetAccountSelectedBuilder: widgetAccountSelectedBuilder,
             interactor: interactor,
             viewController: viewController
         )

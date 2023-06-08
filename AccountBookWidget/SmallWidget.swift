@@ -27,6 +27,7 @@ struct SmallWidget: View {
             }
             .padding(.horizontal, 8)
         }
+        .widgetURL(URL(string: account?.identifier ?? ""))
     }
 }
 

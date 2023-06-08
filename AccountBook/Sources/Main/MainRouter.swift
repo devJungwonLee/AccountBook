@@ -7,13 +7,19 @@
 
 import ModernRIBs
 
-protocol MainInteractable: Interactable, HomeListener, SettingListener {
+protocol MainInteractable:
+    Interactable,
+    HomeListener,
+    SettingListener,
+    WidgetAccountSelectedListener
+{
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
 }
 
 protocol MainViewControllable: ViewControllable {
     func configureChildTabs(viewControllers: [ViewControllable])
+    func present(viewController: ViewControllable)
 }
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
@@ -23,14 +29,19 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     private let settingBuilder: SettingBuildable
     private var settingRouter: SettingRouting?
     
+    private let widgetAccountSelectedBuilder: WidgetAccountSelectedBuildable
+    private var widgetAccountSelectedRouter: WidgetAccountSelectedRouting?
+    
     init(
         homeBuilder: HomeBuildable,
-        settingBuilder: SettingBuilder,
+        settingBuilder: SettingBuildable,
+        widgetAccountSelectedBuilder: WidgetAccountSelectedBuildable,
         interactor: MainInteractable,
         viewController: MainViewControllable
     ) {
         self.homeBuilder = homeBuilder
         self.settingBuilder = settingBuilder
+        self.widgetAccountSelectedBuilder = widgetAccountSelectedBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -40,6 +51,24 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         attachSetting()
         let viewControllers = [homeRouter, settingRouter].compactMap { $0?.viewControllable }
         viewController.configureChildTabs(viewControllers: viewControllers)
+    }
+    
+    func attachWidgetAccountSelected(id: String) {
+        if let widgetAccountSelectedRouter {
+            detachWidgetAccountSelected()
+        }
+        let widgetAccountSelectedRouter = widgetAccountSelectedBuilder.build(
+            withListener: interactor, id: id
+        )
+        self.widgetAccountSelectedRouter = widgetAccountSelectedRouter
+        attachChild(widgetAccountSelectedRouter)
+        viewController.present(viewController: widgetAccountSelectedRouter.viewControllable)
+    }
+    
+    func detachWidgetAccountSelected() {
+        guard let widgetAccountSelectedRouter else { return }
+        detachChild(widgetAccountSelectedRouter)
+        self.widgetAccountSelectedRouter = nil
     }
     
     private func attachHome() {

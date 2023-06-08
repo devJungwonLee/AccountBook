@@ -6,10 +6,13 @@
 //
 
 import ModernRIBs
+import Foundation
 import Combine
 
 protocol MainRouting: ViewableRouting {
     func attachChildren()
+    func attachWidgetAccountSelected(id: String)
+    func detachWidgetAccountSelected()
 }
 
 protocol MainPresentable: Presentable {
@@ -41,14 +44,33 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func didBecomeActive() {
         super.didBecomeActive()
         router?.attachChildren()
+        addObserver()
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        removeObserver()
     }
     
     func accountNumberHidingFlagChanged(_ shouldHide: Bool) {
         dependency.accountNumberHidingFlagSubject.send(shouldHide)
+    }
+    
+    func closeWidgetAccountSelected() {
+        router?.detachWidgetAccountSelected()
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(
+            forName: .init("Copy"), object: nil, queue: .main
+        ) { [weak self] notification in
+            guard let url = notification.object as? URL else { return }
+            let id = url.absoluteString
+            self?.router?.attachWidgetAccountSelected(id: id)
+        }
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self)
     }
 }
