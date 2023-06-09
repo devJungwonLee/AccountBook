@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Foundation
 
 protocol WidgetAccountSelectedRouting: ViewableRouting {
     func close()
@@ -13,7 +14,7 @@ protocol WidgetAccountSelectedRouting: ViewableRouting {
 
 protocol WidgetAccountSelectedPresentable: Presentable {
     var listener: WidgetAccountSelectedPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func displayNotice(_ account: Account, _ copyText: String)
 }
 
 protocol WidgetAccountSelectedListener: AnyObject {
@@ -22,6 +23,7 @@ protocol WidgetAccountSelectedListener: AnyObject {
 
 protocol WidgetAccountSelectedInteractorDependency {
     var id: String { get }
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccountSelectedPresentable>, WidgetAccountSelectedInteractable, WidgetAccountSelectedPresentableListener {
@@ -43,6 +45,7 @@ final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccount
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        bind()
     }
 
     override func willResignActive() {
@@ -56,5 +59,19 @@ final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccount
     
     func didDisappear() {
         listener?.closeWidgetAccountSelected()
+    }
+    
+    private func bind() {
+        guard let uuid = UUID(uuidString: dependency.id) else { return }
+        dependency.accountRepository.fetchAccount(uuid)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] account in
+                let text = account.bank.name + " " + account.number
+                self?.presenter.displayNotice(account, text)
+            }
+            .cancelOnDeactivate(interactor: self)
     }
 }

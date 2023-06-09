@@ -62,7 +62,7 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     
     private func addObserver() {
         NotificationCenter.default.addObserver(
-            forName: .init("Copy"), object: nil, queue: .main
+            forName: .copyAccountNumber, object: nil, queue: .main
         ) { [weak self] notification in
             guard let url = notification.object as? URL else { return }
             let id = url.absoluteString

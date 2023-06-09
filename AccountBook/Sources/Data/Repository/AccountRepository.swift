@@ -5,6 +5,7 @@
 //  Created by 이정원 on 2023/05/22.
 //
 
+import Foundation
 import Combine
 import RealmSwift
 
@@ -21,6 +22,18 @@ final class AccountRepository: AccountRepositoryType {
                 let accountObjects = try self.persistentStorage.readAll(type: AccountObject.self)
                 let accounts = Array(accountObjects).map { $0.toDomain() }
                 return promise(.success(accounts))
+            } catch(let error) {
+                return promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func fetchAccount(_ id: UUID) -> AnyPublisher<Account, Error> {
+        return Future<Account, Error> { [unowned self] promise in
+            do {
+                let accountObject = try self.persistentStorage.read(type: AccountObject.self, primaryKey: id)
+                let account = accountObject.toDomain()
+                return promise(.success(account))
             } catch(let error) {
                 return promise(.failure(error))
             }

@@ -17,9 +17,13 @@ final class WidgetAccountSelectedComponent:
     WidgetAccountSelectedInteractorDependency
 {
     var id: String
+    var accountRepository: AccountRepositoryType
     
     init(dependency: WidgetAccountSelectedDependency, id: String) {
         self.id = id
+        accountRepository = AccountRepository(
+            persistentStorage: PersistentStorage()
+        )
         super.init(dependency: dependency)
     }
 }

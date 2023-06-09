@@ -54,7 +54,7 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     }
     
     func attachWidgetAccountSelected(id: String) {
-        if let widgetAccountSelectedRouter {
+        if widgetAccountSelectedRouter != nil {
             detachWidgetAccountSelected()
         }
         let widgetAccountSelectedRouter = widgetAccountSelectedBuilder.build(

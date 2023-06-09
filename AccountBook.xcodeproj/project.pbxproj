@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E09CC8B2A32F557003BA8E0 /* WidgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09CC892A32F552003BA8E0 /* WidgetItemView.swift */; };
+		5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */; };
 		5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC72A272B7000E6A73D /* SettingRouter.swift */; };
 		5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC82A272B7000E6A73D /* SettingViewController.swift */; };
 		5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */; };
@@ -84,8 +86,7 @@
 		5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
 		5ECF25DF2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
 		5ECF25E42A309B47001FEEE3 /* SmallWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25E12A309B3E001FEEE3 /* SmallWidget.swift */; };
-		5ECF25E62A309C18001FEEE3 /* MediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25E52A309C18001FEEE3 /* MediumWidget.swift */; };
-		5ECF25E82A30A665001FEEE3 /* LargeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25E72A30A665001FEEE3 /* LargeWidget.swift */; };
+		5ECF25E82A30A665001FEEE3 /* ListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25E72A30A665001FEEE3 /* ListWidget.swift */; };
 		5ED5E20B2A0216B6005FEA13 /* AccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */; };
 		5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */; };
 		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
@@ -152,6 +153,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E09CC892A32F552003BA8E0 /* WidgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetItemView.swift; sourceTree = "<group>"; };
+		5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		5E20BCC72A272B7000E6A73D /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		5E20BCC82A272B7000E6A73D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBuilder.swift; sourceTree = "<group>"; };
@@ -212,8 +215,7 @@
 		5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdentifier.swift; sourceTree = "<group>"; };
 		5ECF25E02A30940A001FEEE3 /* AccountBookWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountBookWidgetExtension.entitlements; sourceTree = "<group>"; };
 		5ECF25E12A309B3E001FEEE3 /* SmallWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidget.swift; sourceTree = "<group>"; };
-		5ECF25E52A309C18001FEEE3 /* MediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidget.swift; sourceTree = "<group>"; };
-		5ECF25E72A30A665001FEEE3 /* LargeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeWidget.swift; sourceTree = "<group>"; };
+		5ECF25E72A30A665001FEEE3 /* ListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWidget.swift; sourceTree = "<group>"; };
 		5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionView.swift; sourceTree = "<group>"; };
 		5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -486,8 +488,8 @@
 				5ECF25912A304C4C001FEEE3 /* AccountBookWidgetBundle.swift */,
 				5ECF25932A304C4C001FEEE3 /* AccountBookWidget.swift */,
 				5ECF25E12A309B3E001FEEE3 /* SmallWidget.swift */,
-				5ECF25E52A309C18001FEEE3 /* MediumWidget.swift */,
-				5ECF25E72A30A665001FEEE3 /* LargeWidget.swift */,
+				5ECF25E72A30A665001FEEE3 /* ListWidget.swift */,
+				5E09CC892A32F552003BA8E0 /* WidgetItemView.swift */,
 				5ECF25952A304C4C001FEEE3 /* AccountBookWidget.intentdefinition */,
 				5ECF25962A304C4D001FEEE3 /* Assets.xcassets */,
 				5ECF25982A304C4D001FEEE3 /* Info.plist */,
@@ -523,6 +525,7 @@
 				5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */,
 				5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */,
 				5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */,
+				5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -804,15 +807,15 @@
 			files = (
 				5E7380202A318620003ED9CA /* PersistentStorage.swift in Sources */,
 				5ECF25942A304C4C001FEEE3 /* AccountBookWidget.swift in Sources */,
-				5ECF25E82A30A665001FEEE3 /* LargeWidget.swift in Sources */,
+				5ECF25E82A30A665001FEEE3 /* ListWidget.swift in Sources */,
 				5E73801B2A3184AE003ED9CA /* AccountObject.swift in Sources */,
-				5ECF25E62A309C18001FEEE3 /* MediumWidget.swift in Sources */,
 				5ECF25E42A309B47001FEEE3 /* SmallWidget.swift in Sources */,
 				5E73801D2A3185DB003ED9CA /* Account.swift in Sources */,
 				5ECF25922A304C4C001FEEE3 /* AccountBookWidgetBundle.swift in Sources */,
 				5E73801E2A3185FF003ED9CA /* Bank.swift in Sources */,
 				5E73801F2A318606003ED9CA /* GroupIdentifier.swift in Sources */,
 				5E73801C2A3185C3003ED9CA /* BankObject.swift in Sources */,
+				5E09CC8B2A32F557003BA8E0 /* WidgetItemView.swift in Sources */,
 				5ECF25992A304C4D001FEEE3 /* AccountBookWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -875,6 +878,7 @@
 				5ECF25CC2A306755001FEEE3 /* AccountBookWidget.intentdefinition in Sources */,
 				5EAA44732A1F43C500E0214D /* AccountDetailInteractor.swift in Sources */,
 				5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */,
+				5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
 				5EEA8CC82A28810000CFEEB6 /* AuthenticationNoticeView.swift in Sources */,
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,

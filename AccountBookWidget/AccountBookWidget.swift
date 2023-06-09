@@ -18,16 +18,17 @@ struct Provider: IntentTimelineProvider {
     func getSnapshot(for configuration: SelectAccountIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let configuration = SelectAccountIntent()
         if context.isPreview {
-            configuration.accountList = [
+            let accountList = [
                 IntentAccount(identifier: nil, display: "토스뱅크 계좌"),
                 IntentAccount(identifier: nil, display: "카카오뱅크 계좌"),
                 IntentAccount(identifier: nil, display: "KB국민은행 계좌"),
                 IntentAccount(identifier: nil, display: "SC제일은행 계좌")
             ]
-            configuration.accountList?[0].bankCode = "tossbank"
-            configuration.accountList?[1].bankCode = "kakaobank"
-            configuration.accountList?[2].bankCode = "kb"
-            configuration.accountList?[3].bankCode = "sc"
+            accountList[0].bankCode = "tossbank"
+            accountList[1].bankCode = "kakaobank"
+            accountList[2].bankCode = "kb"
+            accountList[3].bankCode = "sc"
+            configuration.accountList = accountList
         }
         let entry = SimpleEntry(date: Date(), configuration: configuration)
         completion(entry)
@@ -85,9 +86,9 @@ struct AccountBookWidgetEntryView : View {
         case .systemSmall:
             SmallWidget(account: accountList?.first)
         case .systemMedium:
-            MediumWidget(accountList: accountList)
+            ListWidget(accountList: accountList, itemCount: 2)
         case .systemLarge:
-            LargeWidget(accountList: accountList)
+            ListWidget(accountList: accountList, itemCount: 4)
         default:
             EmptyView()
         }
@@ -103,7 +104,7 @@ struct AccountBookWidget: Widget {
         }
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         .configurationDisplayName("바로 복사")
-        .description("대표 계좌를 설정하여 더 빠르게\n계좌 번호를 복사해 보세요.")
+        .description("대표계좌를 설정하여 더 빠르게\n계좌번호를 복사해 보세요.")
     }
 }
 
