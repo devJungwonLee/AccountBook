@@ -1,5 +1,5 @@
 //
-//  WidgetAccountSelectedInteractor.swift
+//  AccountSelectedInteractor.swift
 //  AccountBook
 //
 //  Created by 이정원 on 2023/06/09.
@@ -8,34 +8,34 @@
 import ModernRIBs
 import Foundation
 
-protocol WidgetAccountSelectedRouting: ViewableRouting {
+protocol AccountSelectedRouting: ViewableRouting {
     func close()
 }
 
-protocol WidgetAccountSelectedPresentable: Presentable {
-    var listener: WidgetAccountSelectedPresentableListener? { get set }
+protocol AccountSelectedPresentable: Presentable {
+    var listener: AccountSelectedPresentableListener? { get set }
     func displayNotice(_ account: Account, _ copyText: String)
 }
 
-protocol WidgetAccountSelectedListener: AnyObject {
-    func closeWidgetAccountSelected()
+protocol AccountSelectedListener: AnyObject {
+    func closeAccountSelected()
 }
 
-protocol WidgetAccountSelectedInteractorDependency {
+protocol AccountSelectedInteractorDependency {
     var account: Account { get }
 }
 
-final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccountSelectedPresentable>, WidgetAccountSelectedInteractable, WidgetAccountSelectedPresentableListener {
+final class AccountSelectedInteractor: PresentableInteractor<AccountSelectedPresentable>, AccountSelectedInteractable, AccountSelectedPresentableListener {
 
-    weak var router: WidgetAccountSelectedRouting?
-    weak var listener: WidgetAccountSelectedListener?
-    private let dependency: WidgetAccountSelectedInteractorDependency
+    weak var router: AccountSelectedRouting?
+    weak var listener: AccountSelectedListener?
+    private let dependency: AccountSelectedInteractorDependency
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     init(
-        presenter: WidgetAccountSelectedPresentable,
-        dependency: WidgetAccountSelectedInteractorDependency
+        presenter: AccountSelectedPresentable,
+        dependency: AccountSelectedInteractorDependency
     ) {
         self.dependency = dependency
         super.init(presenter: presenter)
@@ -62,6 +62,6 @@ final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccount
     }
     
     func didDisappear() {
-        listener?.closeWidgetAccountSelected()
+        listener?.closeAccountSelected()
     }
 }

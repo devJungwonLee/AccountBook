@@ -11,8 +11,8 @@ import Combine
 
 protocol MainRouting: ViewableRouting {
     func attachChildren()
-    func attachWidgetAccountSelected(_ account: Account)
-    func detachWidgetAccountSelected()
+    func attachAccountSelected(_ account: Account)
+    func detachAccountSelected()
 }
 
 protocol MainPresentable: Presentable {
@@ -57,8 +57,8 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         dependency.accountNumberHidingFlagSubject.send(shouldHide)
     }
     
-    func closeWidgetAccountSelected() {
-        router?.detachWidgetAccountSelected()
+    func closeAccountSelected() {
+        router?.detachAccountSelected()
     }
     
     private func addObserver() {
@@ -83,7 +83,7 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
                     print(error)
                 }
             } receiveValue: { [weak self] account in
-                self?.router?.attachWidgetAccountSelected(account)
+                self?.router?.attachAccountSelected(account)
             }
             .cancelOnDeactivate(interactor: self)
     }

@@ -91,10 +91,10 @@
 		5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */; };
 		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
 		5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */; };
-		5EDE33B12A323D1F007A906F /* WidgetAccountSelectedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AD2A323D1F007A906F /* WidgetAccountSelectedRouter.swift */; };
-		5EDE33B22A323D1F007A906F /* WidgetAccountSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AE2A323D1F007A906F /* WidgetAccountSelectedViewController.swift */; };
-		5EDE33B32A323D1F007A906F /* WidgetAccountSelectedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AF2A323D1F007A906F /* WidgetAccountSelectedBuilder.swift */; };
-		5EDE33B42A323D1F007A906F /* WidgetAccountSelectedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33B02A323D1F007A906F /* WidgetAccountSelectedInteractor.swift */; };
+		5EDE33B12A323D1F007A906F /* AccountSelectedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AD2A323D1F007A906F /* AccountSelectedRouter.swift */; };
+		5EDE33B22A323D1F007A906F /* AccountSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AE2A323D1F007A906F /* AccountSelectedViewController.swift */; };
+		5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AF2A323D1F007A906F /* AccountSelectedBuilder.swift */; };
+		5EDE33B42A323D1F007A906F /* AccountSelectedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33B02A323D1F007A906F /* AccountSelectedInteractor.swift */; };
 		5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */; };
 		5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */; };
 		5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */; };
@@ -220,10 +220,10 @@
 		5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
-		5EDE33AD2A323D1F007A906F /* WidgetAccountSelectedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedRouter.swift; sourceTree = "<group>"; };
-		5EDE33AE2A323D1F007A906F /* WidgetAccountSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedViewController.swift; sourceTree = "<group>"; };
-		5EDE33AF2A323D1F007A906F /* WidgetAccountSelectedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedBuilder.swift; sourceTree = "<group>"; };
-		5EDE33B02A323D1F007A906F /* WidgetAccountSelectedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedInteractor.swift; sourceTree = "<group>"; };
+		5EDE33AD2A323D1F007A906F /* AccountSelectedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedRouter.swift; sourceTree = "<group>"; };
+		5EDE33AE2A323D1F007A906F /* AccountSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedViewController.swift; sourceTree = "<group>"; };
+		5EDE33AF2A323D1F007A906F /* AccountSelectedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedBuilder.swift; sourceTree = "<group>"; };
+		5EDE33B02A323D1F007A906F /* AccountSelectedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedInteractor.swift; sourceTree = "<group>"; };
 		5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
 		5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
@@ -530,15 +530,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		5EDE33AC2A323BE1007A906F /* WidgetAccountSelected */ = {
+		5EDE33AC2A323BE1007A906F /* AccountSelected */ = {
 			isa = PBXGroup;
 			children = (
-				5EDE33AD2A323D1F007A906F /* WidgetAccountSelectedRouter.swift */,
-				5EDE33AE2A323D1F007A906F /* WidgetAccountSelectedViewController.swift */,
-				5EDE33AF2A323D1F007A906F /* WidgetAccountSelectedBuilder.swift */,
-				5EDE33B02A323D1F007A906F /* WidgetAccountSelectedInteractor.swift */,
+				5EDE33AD2A323D1F007A906F /* AccountSelectedRouter.swift */,
+				5EDE33AE2A323D1F007A906F /* AccountSelectedViewController.swift */,
+				5EDE33AF2A323D1F007A906F /* AccountSelectedBuilder.swift */,
+				5EDE33B02A323D1F007A906F /* AccountSelectedInteractor.swift */,
 			);
-			path = WidgetAccountSelected;
+			path = AccountSelected;
 			sourceTree = "<group>";
 		};
 		5EE82F512A007F370075D2ED /* LoggedIn */ = {
@@ -611,7 +611,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5EDE33AC2A323BE1007A906F /* WidgetAccountSelected */,
+				5EDE33AC2A323BE1007A906F /* AccountSelected */,
 				5E6ACC7E2A2DD76D00FD63EF /* Constants */,
 				5E20BCC62A272B2200E6A73D /* Setting */,
 				5EAA446B2A1F43B000E0214D /* AccountDetail */,
@@ -865,7 +865,7 @@
 				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
 				5E5BEDAD2A1B247A002EC397 /* AccountRepository.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
-				5EDE33B32A323D1F007A906F /* WidgetAccountSelectedBuilder.swift in Sources */,
+				5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
 				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
 				5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */,
@@ -895,9 +895,9 @@
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
 				5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */,
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
-				5EDE33B42A323D1F007A906F /* WidgetAccountSelectedInteractor.swift in Sources */,
+				5EDE33B42A323D1F007A906F /* AccountSelectedInteractor.swift in Sources */,
 				5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */,
-				5EDE33B12A323D1F007A906F /* WidgetAccountSelectedRouter.swift in Sources */,
+				5EDE33B12A323D1F007A906F /* AccountSelectedRouter.swift in Sources */,
 				5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */,
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
@@ -906,7 +906,7 @@
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
 				5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
-				5EDE33B22A323D1F007A906F /* WidgetAccountSelectedViewController.swift in Sources */,
+				5EDE33B22A323D1F007A906F /* AccountSelectedViewController.swift in Sources */,
 				5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */,
 				5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */,
 			);
