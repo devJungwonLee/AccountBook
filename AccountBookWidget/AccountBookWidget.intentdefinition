@@ -86,7 +86,7 @@
 					<key>INIntentParameterConfigurable</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>대표계좌</string>
+					<string>계좌 선택</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>dNaOKn</string>
 					<key>INIntentParameterDisplayPriority</key>
@@ -112,26 +112,6 @@
 							<true/>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${accountList}’.</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>TXw8GP</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${accountList}’?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>AVCK38</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Confirmation</string>
 						</dict>
 					</array>
 					<key>INIntentParameterSupportsDynamicEnumeration</key>
