@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E09CC8B2A32F557003BA8E0 /* WidgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09CC892A32F552003BA8E0 /* WidgetItemView.swift */; };
+		5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */; };
 		5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC72A272B7000E6A73D /* SettingRouter.swift */; };
 		5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC82A272B7000E6A73D /* SettingViewController.swift */; };
 		5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */; };
@@ -38,6 +40,15 @@
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
+		5E7380182A318434003ED9CA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5E7380172A318434003ED9CA /* Realm */; };
+		5E73801A2A318434003ED9CA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5E7380192A318434003ED9CA /* RealmSwift */; };
+		5E73801B2A3184AE003ED9CA /* AccountObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA62A1B089A002EC397 /* AccountObject.swift */; };
+		5E73801C2A3185C3003ED9CA /* BankObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA42A1B07CF002EC397 /* BankObject.swift */; };
+		5E73801D2A3185DB003ED9CA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
+		5E73801E2A3185FF003ED9CA /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
+		5E73801F2A318606003ED9CA /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
+		5E7380202A318620003ED9CA /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */; };
+		5E7380212A318620003ED9CA /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */; };
 		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
 		5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
 		5E9771192A092C3A00A6B28F /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
@@ -52,10 +63,38 @@
 		5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */; };
 		5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */; };
 		5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */; };
+		5ECF258D2A304C4C001FEEE3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECF258C2A304C4C001FEEE3 /* WidgetKit.framework */; };
+		5ECF258F2A304C4C001FEEE3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECF258E2A304C4C001FEEE3 /* SwiftUI.framework */; };
+		5ECF25922A304C4C001FEEE3 /* AccountBookWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25912A304C4C001FEEE3 /* AccountBookWidgetBundle.swift */; };
+		5ECF25942A304C4C001FEEE3 /* AccountBookWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25932A304C4C001FEEE3 /* AccountBookWidget.swift */; };
+		5ECF25972A304C4D001FEEE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ECF25962A304C4D001FEEE3 /* Assets.xcassets */; };
+		5ECF25992A304C4D001FEEE3 /* AccountBookWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25952A304C4C001FEEE3 /* AccountBookWidget.intentdefinition */; };
+		5ECF259D2A304C4D001FEEE3 /* AccountBookWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5ECF258A2A304C4C001FEEE3 /* AccountBookWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5ECF25AA2A3064FF001FEEE3 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECF25A92A3064FF001FEEE3 /* Intents.framework */; };
+		5ECF25AD2A3064FF001FEEE3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25AC2A3064FF001FEEE3 /* IntentHandler.swift */; };
+		5ECF25C22A3064FF001FEEE3 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5ECF25A82A3064FF001FEEE3 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5ECF25CA2A306631001FEEE3 /* AccountBookWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25952A304C4C001FEEE3 /* AccountBookWidget.intentdefinition */; };
+		5ECF25CC2A306755001FEEE3 /* AccountBookWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25952A304C4C001FEEE3 /* AccountBookWidget.intentdefinition */; };
+		5ECF25CD2A3077D7001FEEE3 /* AccountObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA62A1B089A002EC397 /* AccountObject.swift */; };
+		5ECF25CF2A307899001FEEE3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
+		5ECF25D02A3078C0001FEEE3 /* BankObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA42A1B07CF002EC397 /* BankObject.swift */; };
+		5ECF25D12A3078C3001FEEE3 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
+		5ECF25D32A307989001FEEE3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5ECF25D22A307989001FEEE3 /* Realm */; };
+		5ECF25D52A307989001FEEE3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5ECF25D42A307989001FEEE3 /* RealmSwift */; };
+		5ECF25D82A307B7F001FEEE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
+		5ECF25D92A307B80001FEEE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
+		5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
+		5ECF25DF2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
+		5ECF25E42A309B47001FEEE3 /* SmallWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25E12A309B3E001FEEE3 /* SmallWidget.swift */; };
+		5ECF25E82A30A665001FEEE3 /* ListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25E72A30A665001FEEE3 /* ListWidget.swift */; };
 		5ED5E20B2A0216B6005FEA13 /* AccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */; };
 		5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */; };
 		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
 		5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */; };
+		5EDE33B12A323D1F007A906F /* WidgetAccountSelectedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AD2A323D1F007A906F /* WidgetAccountSelectedRouter.swift */; };
+		5EDE33B22A323D1F007A906F /* WidgetAccountSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AE2A323D1F007A906F /* WidgetAccountSelectedViewController.swift */; };
+		5EDE33B32A323D1F007A906F /* WidgetAccountSelectedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AF2A323D1F007A906F /* WidgetAccountSelectedBuilder.swift */; };
+		5EDE33B42A323D1F007A906F /* WidgetAccountSelectedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33B02A323D1F007A906F /* WidgetAccountSelectedInteractor.swift */; };
 		5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */; };
 		5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */; };
 		5EE82F572A007F4E0075D2ED /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */; };
@@ -81,7 +120,41 @@
 		5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5ECF259B2A304C4D001FEEE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5EFB552929EA81DA006546B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ECF25892A304C4C001FEEE3;
+			remoteInfo = AccountBookWidgetExtension;
+		};
+		5ECF25C02A3064FF001FEEE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5EFB552929EA81DA006546B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ECF25A72A3064FE001FEEE3;
+			remoteInfo = IntentsExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5ECF259E2A304C4D001FEEE3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5ECF25C22A3064FF001FEEE3 /* IntentsExtension.appex in Embed Foundation Extensions */,
+				5ECF259D2A304C4D001FEEE3 /* AccountBookWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5E09CC892A32F552003BA8E0 /* WidgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetItemView.swift; sourceTree = "<group>"; };
+		5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		5E20BCC72A272B7000E6A73D /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		5E20BCC82A272B7000E6A73D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBuilder.swift; sourceTree = "<group>"; };
@@ -124,10 +197,33 @@
 		5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterViewController.swift; sourceTree = "<group>"; };
 		5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterBuilder.swift; sourceTree = "<group>"; };
 		5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterInteractor.swift; sourceTree = "<group>"; };
+		5ECF258A2A304C4C001FEEE3 /* AccountBookWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccountBookWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECF258C2A304C4C001FEEE3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5ECF258E2A304C4C001FEEE3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		5ECF25912A304C4C001FEEE3 /* AccountBookWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookWidgetBundle.swift; sourceTree = "<group>"; };
+		5ECF25932A304C4C001FEEE3 /* AccountBookWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookWidget.swift; sourceTree = "<group>"; };
+		5ECF25952A304C4C001FEEE3 /* AccountBookWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AccountBookWidget.intentdefinition; sourceTree = "<group>"; };
+		5ECF25962A304C4D001FEEE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5ECF25982A304C4D001FEEE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECF25A82A3064FF001FEEE3 /* IntentsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IntentsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECF25A92A3064FF001FEEE3 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		5ECF25AC2A3064FF001FEEE3 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		5ECF25AE2A3064FF001FEEE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ECF25B42A3064FF001FEEE3 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		5ECF25DB2A308B39001FEEE3 /* AccountBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountBook.entitlements; sourceTree = "<group>"; };
+		5ECF25DC2A308B3E001FEEE3 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
+		5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdentifier.swift; sourceTree = "<group>"; };
+		5ECF25E02A30940A001FEEE3 /* AccountBookWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountBookWidgetExtension.entitlements; sourceTree = "<group>"; };
+		5ECF25E12A309B3E001FEEE3 /* SmallWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidget.swift; sourceTree = "<group>"; };
+		5ECF25E72A30A665001FEEE3 /* ListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWidget.swift; sourceTree = "<group>"; };
 		5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionView.swift; sourceTree = "<group>"; };
 		5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
+		5EDE33AD2A323D1F007A906F /* WidgetAccountSelectedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedRouter.swift; sourceTree = "<group>"; };
+		5EDE33AE2A323D1F007A906F /* WidgetAccountSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedViewController.swift; sourceTree = "<group>"; };
+		5EDE33AF2A323D1F007A906F /* WidgetAccountSelectedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedBuilder.swift; sourceTree = "<group>"; };
+		5EDE33B02A323D1F007A906F /* WidgetAccountSelectedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAccountSelectedInteractor.swift; sourceTree = "<group>"; };
 		5EE82F522A007F4E0075D2ED /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
 		5EE82F532A007F4E0075D2ED /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
 		5EE82F542A007F4E0075D2ED /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
@@ -153,6 +249,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5ECF25872A304C4C001FEEE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E73801A2A318434003ED9CA /* RealmSwift in Frameworks */,
+				5E7380182A318434003ED9CA /* Realm in Frameworks */,
+				5ECF258F2A304C4C001FEEE3 /* SwiftUI.framework in Frameworks */,
+				5ECF258D2A304C4C001FEEE3 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECF25A52A3064FE001FEEE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECF25D52A307989001FEEE3 /* RealmSwift in Frameworks */,
+				5ECF25D32A307989001FEEE3 /* Realm in Frameworks */,
+				5ECF25AA2A3064FF001FEEE3 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5EFB552E29EA81DA006546B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -288,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */,
+				5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -353,6 +471,42 @@
 			path = AccountRegister;
 			sourceTree = "<group>";
 		};
+		5ECF258B2A304C4C001FEEE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5ECF258C2A304C4C001FEEE3 /* WidgetKit.framework */,
+				5ECF258E2A304C4C001FEEE3 /* SwiftUI.framework */,
+				5ECF25A92A3064FF001FEEE3 /* Intents.framework */,
+				5ECF25B42A3064FF001FEEE3 /* IntentsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5ECF25902A304C4C001FEEE3 /* AccountBookWidget */ = {
+			isa = PBXGroup;
+			children = (
+				5ECF25912A304C4C001FEEE3 /* AccountBookWidgetBundle.swift */,
+				5ECF25932A304C4C001FEEE3 /* AccountBookWidget.swift */,
+				5ECF25E12A309B3E001FEEE3 /* SmallWidget.swift */,
+				5ECF25E72A30A665001FEEE3 /* ListWidget.swift */,
+				5E09CC892A32F552003BA8E0 /* WidgetItemView.swift */,
+				5ECF25952A304C4C001FEEE3 /* AccountBookWidget.intentdefinition */,
+				5ECF25962A304C4D001FEEE3 /* Assets.xcassets */,
+				5ECF25982A304C4D001FEEE3 /* Info.plist */,
+			);
+			path = AccountBookWidget;
+			sourceTree = "<group>";
+		};
+		5ECF25AB2A3064FF001FEEE3 /* IntentsExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5ECF25DC2A308B3E001FEEE3 /* IntentsExtension.entitlements */,
+				5ECF25AC2A3064FF001FEEE3 /* IntentHandler.swift */,
+				5ECF25AE2A3064FF001FEEE3 /* Info.plist */,
+			);
+			path = IntentsExtension;
+			sourceTree = "<group>";
+		};
 		5ED5E2092A02169A005FEA13 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,8 +525,20 @@
 				5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */,
 				5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */,
 				5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */,
+				5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		5EDE33AC2A323BE1007A906F /* WidgetAccountSelected */ = {
+			isa = PBXGroup;
+			children = (
+				5EDE33AD2A323D1F007A906F /* WidgetAccountSelectedRouter.swift */,
+				5EDE33AE2A323D1F007A906F /* WidgetAccountSelectedViewController.swift */,
+				5EDE33AF2A323D1F007A906F /* WidgetAccountSelectedBuilder.swift */,
+				5EDE33B02A323D1F007A906F /* WidgetAccountSelectedInteractor.swift */,
+			);
+			path = WidgetAccountSelected;
 			sourceTree = "<group>";
 		};
 		5EE82F512A007F370075D2ED /* LoggedIn */ = {
@@ -411,7 +577,11 @@
 		5EFB552829EA81DA006546B5 = {
 			isa = PBXGroup;
 			children = (
+				5ECF25E02A30940A001FEEE3 /* AccountBookWidgetExtension.entitlements */,
 				5EFB553329EA81DA006546B5 /* AccountBook */,
+				5ECF25902A304C4C001FEEE3 /* AccountBookWidget */,
+				5ECF25AB2A3064FF001FEEE3 /* IntentsExtension */,
+				5ECF258B2A304C4C001FEEE3 /* Frameworks */,
 				5EFB553229EA81DA006546B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -420,6 +590,8 @@
 			isa = PBXGroup;
 			children = (
 				5EFB553129EA81DA006546B5 /* AccountBook.app */,
+				5ECF258A2A304C4C001FEEE3 /* AccountBookWidgetExtension.appex */,
+				5ECF25A82A3064FF001FEEE3 /* IntentsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -427,6 +599,7 @@
 		5EFB553329EA81DA006546B5 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				5ECF25DB2A308B39001FEEE3 /* AccountBook.entitlements */,
 				5EFB554A29EA85DA006546B5 /* Resources */,
 				5EFB554829EA8502006546B5 /* Sources */,
 				5EFB553F29EA81DB006546B5 /* LaunchScreen.storyboard */,
@@ -438,6 +611,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5EDE33AC2A323BE1007A906F /* WidgetAccountSelected */,
 				5E6ACC7E2A2DD76D00FD63EF /* Constants */,
 				5E20BCC62A272B2200E6A73D /* Setting */,
 				5EAA446B2A1F43B000E0214D /* AccountDetail */,
@@ -478,6 +652,48 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5ECF25892A304C4C001FEEE3 /* AccountBookWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECF25A12A304C4D001FEEE3 /* Build configuration list for PBXNativeTarget "AccountBookWidgetExtension" */;
+			buildPhases = (
+				5ECF25862A304C4C001FEEE3 /* Sources */,
+				5ECF25872A304C4C001FEEE3 /* Frameworks */,
+				5ECF25882A304C4C001FEEE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AccountBookWidgetExtension;
+			packageProductDependencies = (
+				5E7380172A318434003ED9CA /* Realm */,
+				5E7380192A318434003ED9CA /* RealmSwift */,
+			);
+			productName = AccountBookWidgetExtension;
+			productReference = 5ECF258A2A304C4C001FEEE3 /* AccountBookWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		5ECF25A72A3064FE001FEEE3 /* IntentsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ECF25C62A3064FF001FEEE3 /* Build configuration list for PBXNativeTarget "IntentsExtension" */;
+			buildPhases = (
+				5ECF25A42A3064FE001FEEE3 /* Sources */,
+				5ECF25A52A3064FE001FEEE3 /* Frameworks */,
+				5ECF25A62A3064FE001FEEE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IntentsExtension;
+			packageProductDependencies = (
+				5ECF25D22A307989001FEEE3 /* Realm */,
+				5ECF25D42A307989001FEEE3 /* RealmSwift */,
+			);
+			productName = IntentsExtension;
+			productReference = 5ECF25A82A3064FF001FEEE3 /* IntentsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5EFB553029EA81DA006546B5 /* AccountBook */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EFB554529EA81DB006546B5 /* Build configuration list for PBXNativeTarget "AccountBook" */;
@@ -485,10 +701,13 @@
 				5EFB552D29EA81DA006546B5 /* Sources */,
 				5EFB552E29EA81DA006546B5 /* Frameworks */,
 				5EFB552F29EA81DA006546B5 /* Resources */,
+				5ECF259E2A304C4D001FEEE3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5ECF259C2A304C4D001FEEE3 /* PBXTargetDependency */,
+				5ECF25C12A3064FF001FEEE3 /* PBXTargetDependency */,
 			);
 			name = AccountBook;
 			packageProductDependencies = (
@@ -513,6 +732,12 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					5ECF25892A304C4C001FEEE3 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					5ECF25A72A3064FE001FEEE3 = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					5EFB553029EA81DA006546B5 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -539,11 +764,30 @@
 			projectRoot = "";
 			targets = (
 				5EFB553029EA81DA006546B5 /* AccountBook */,
+				5ECF25892A304C4C001FEEE3 /* AccountBookWidgetExtension */,
+				5ECF25A72A3064FE001FEEE3 /* IntentsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5ECF25882A304C4C001FEEE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECF25D82A307B7F001FEEE3 /* Assets.xcassets in Resources */,
+				5ECF25972A304C4D001FEEE3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECF25A62A3064FE001FEEE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECF25D92A307B80001FEEE3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5EFB552F29EA81DA006546B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -557,6 +801,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5ECF25862A304C4C001FEEE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E7380202A318620003ED9CA /* PersistentStorage.swift in Sources */,
+				5ECF25942A304C4C001FEEE3 /* AccountBookWidget.swift in Sources */,
+				5ECF25E82A30A665001FEEE3 /* ListWidget.swift in Sources */,
+				5E73801B2A3184AE003ED9CA /* AccountObject.swift in Sources */,
+				5ECF25E42A309B47001FEEE3 /* SmallWidget.swift in Sources */,
+				5E73801D2A3185DB003ED9CA /* Account.swift in Sources */,
+				5ECF25922A304C4C001FEEE3 /* AccountBookWidgetBundle.swift in Sources */,
+				5E73801E2A3185FF003ED9CA /* Bank.swift in Sources */,
+				5E73801F2A318606003ED9CA /* GroupIdentifier.swift in Sources */,
+				5E73801C2A3185C3003ED9CA /* BankObject.swift in Sources */,
+				5E09CC8B2A32F557003BA8E0 /* WidgetItemView.swift in Sources */,
+				5ECF25992A304C4D001FEEE3 /* AccountBookWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ECF25A42A3064FE001FEEE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E7380212A318620003ED9CA /* PersistentStorage.swift in Sources */,
+				5ECF25DF2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */,
+				5ECF25CF2A307899001FEEE3 /* Account.swift in Sources */,
+				5ECF25CD2A3077D7001FEEE3 /* AccountObject.swift in Sources */,
+				5ECF25AD2A3064FF001FEEE3 /* IntentHandler.swift in Sources */,
+				5ECF25D02A3078C0001FEEE3 /* BankObject.swift in Sources */,
+				5ECF25CA2A306631001FEEE3 /* AccountBookWidget.intentdefinition in Sources */,
+				5ECF25D12A3078C3001FEEE3 /* Bank.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5EFB552D29EA81DA006546B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -587,6 +865,7 @@
 				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
 				5E5BEDAD2A1B247A002EC397 /* AccountRepository.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
+				5EDE33B32A323D1F007A906F /* WidgetAccountSelectedBuilder.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
 				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
 				5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */,
@@ -596,8 +875,10 @@
 				5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */,
 				5EE82F562A007F4E0075D2ED /* LoggedInBuilder.swift in Sources */,
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
+				5ECF25CC2A306755001FEEE3 /* AccountBookWidget.intentdefinition in Sources */,
 				5EAA44732A1F43C500E0214D /* AccountDetailInteractor.swift in Sources */,
 				5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */,
+				5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
 				5EEA8CC82A28810000CFEEB6 /* AuthenticationNoticeView.swift in Sources */,
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
@@ -614,6 +895,9 @@
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
 				5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */,
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
+				5EDE33B42A323D1F007A906F /* WidgetAccountSelectedInteractor.swift in Sources */,
+				5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */,
+				5EDE33B12A323D1F007A906F /* WidgetAccountSelectedRouter.swift in Sources */,
 				5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */,
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
@@ -622,12 +906,26 @@
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
 				5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,
+				5EDE33B22A323D1F007A906F /* WidgetAccountSelectedViewController.swift in Sources */,
 				5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */,
 				5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5ECF259C2A304C4D001FEEE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ECF25892A304C4C001FEEE3 /* AccountBookWidgetExtension */;
+			targetProxy = 5ECF259B2A304C4D001FEEE3 /* PBXContainerItemProxy */;
+		};
+		5ECF25C12A3064FF001FEEE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ECF25A72A3064FE001FEEE3 /* IntentsExtension */;
+			targetProxy = 5ECF25C02A3064FF001FEEE3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5EFB553F29EA81DB006546B5 /* LaunchScreen.storyboard */ = {
@@ -641,6 +939,118 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5ECF259F2A304C4D001FEEE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AccountBookWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccountBookWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccountBookWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.AccountBookWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5ECF25A02A304C4D001FEEE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AccountBookWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccountBookWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccountBookWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.AccountBookWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		5ECF25C72A3064FF001FEEE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IntentsExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.IntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5ECF25C82A3064FF001FEEE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IntentsExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.IntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		5EFB554329EA81DB006546B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -691,7 +1101,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -745,7 +1155,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -758,13 +1168,16 @@
 		5EFB554629EA81DB006546B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AccountBook/AccountBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VBT5J7U68Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AccountBook/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "계좌번호 숨김 기능을 위해 생체인증을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -790,13 +1203,16 @@
 		5EFB554729EA81DB006546B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AccountBook/AccountBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VBT5J7U68Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AccountBook/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "계좌번호 숨김 기능을 위해 생체인증을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -822,6 +1238,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5ECF25A12A304C4D001FEEE3 /* Build configuration list for PBXNativeTarget "AccountBookWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECF259F2A304C4D001FEEE3 /* Debug */,
+				5ECF25A02A304C4D001FEEE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ECF25C62A3064FF001FEEE3 /* Build configuration list for PBXNativeTarget "IntentsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ECF25C72A3064FF001FEEE3 /* Debug */,
+				5ECF25C82A3064FF001FEEE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5EFB552C29EA81DA006546B5 /* Build configuration list for PBXProject "AccountBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -896,10 +1330,30 @@
 			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
+		5E7380172A318434003ED9CA /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5E7380192A318434003ED9CA /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		5E8A4E1B2A18B2DD00EEA716 /* CombineExt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */;
 			productName = CombineExt;
+		};
+		5ECF25D22A307989001FEEE3 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5ECF25D42A307989001FEEE3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		5EFB554C29EA8884006546B5 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;

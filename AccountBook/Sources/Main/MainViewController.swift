@@ -27,6 +27,13 @@ final class MainViewController: UITabBarController, MainPresentable, MainViewCon
             UINavigationController(rootViewController: $0.uiviewController)
         }
     }
+    
+    func present(viewController: ViewControllable) {
+        presentedViewController?.dismiss(animated: false)
+        let viewController = viewController.uiviewController
+        viewController.modalPresentationStyle = .overFullScreen
+        present(viewController, animated: true)
+    }
 }
 
 private extension MainViewController {

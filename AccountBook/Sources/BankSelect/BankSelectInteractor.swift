@@ -63,7 +63,7 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
     }
     
     func bankNameCreated(_ bankName: String) {
-        let bank = Bank(code: "", name: bankName)
+        let bank = Bank(code: "placeholder", name: bankName)
         bankDecided(bank)
     }
     
