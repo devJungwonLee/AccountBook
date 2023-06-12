@@ -32,7 +32,7 @@ final class WidgetAccountSelectedViewController: UIViewController, WidgetAccount
     
     private let titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
-        $0.text = "의 계좌번호가 복사되었습니다."
+        $0.text = "계좌번호가 복사되었습니다."
     }
     
     private lazy var stackView = UIStackView(arrangedSubviews: [
@@ -70,7 +70,7 @@ final class WidgetAccountSelectedViewController: UIViewController, WidgetAccount
     
     func displayNotice(_ account: Account, _ copyText: String) {
         logoImageView.image = UIImage(named: account.bank.code)
-        nameLabel.text = account.name
+        nameLabel.text = account.name + "의"
         UIPasteboard.general.string = copyText
     }
 }
