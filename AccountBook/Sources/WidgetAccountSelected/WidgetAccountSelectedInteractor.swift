@@ -22,8 +22,7 @@ protocol WidgetAccountSelectedListener: AnyObject {
 }
 
 protocol WidgetAccountSelectedInteractorDependency {
-    var id: String { get }
-    var accountRepository: AccountRepositoryType { get }
+    var account: Account { get }
 }
 
 final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccountSelectedPresentable>, WidgetAccountSelectedInteractable, WidgetAccountSelectedPresentableListener {
@@ -45,7 +44,6 @@ final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccount
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        bind()
     }
 
     override func willResignActive() {
@@ -57,21 +55,13 @@ final class WidgetAccountSelectedInteractor: PresentableInteractor<WidgetAccount
         router?.close()
     }
     
-    func didDisappear() {
-        listener?.closeWidgetAccountSelected()
+    func viewDidLoad() {
+        let account = dependency.account
+        let text = account.bank.name + " " + account.number
+        presenter.displayNotice(account, text)
     }
     
-    private func bind() {
-        guard let uuid = UUID(uuidString: dependency.id) else { return }
-        dependency.accountRepository.fetchAccount(uuid)
-            .sink { completion in
-                if case .failure(let error) = completion {
-                    print(error)
-                }
-            } receiveValue: { [weak self] account in
-                let text = account.bank.name + " " + account.number
-                self?.presenter.displayNotice(account, text)
-            }
-            .cancelOnDeactivate(interactor: self)
+    func didDisappear() {
+        listener?.closeWidgetAccountSelected()
     }
 }

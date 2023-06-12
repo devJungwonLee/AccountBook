@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 protocol WidgetAccountSelectedPresentableListener: AnyObject {
+    func viewDidLoad()
     func doneButtonTapped()
     func didDisappear()
 }
@@ -57,6 +58,7 @@ final class WidgetAccountSelectedViewController: UIViewController, WidgetAccount
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        listener?.viewDidLoad()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

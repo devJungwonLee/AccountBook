@@ -53,12 +53,12 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         viewController.configureChildTabs(viewControllers: viewControllers)
     }
     
-    func attachWidgetAccountSelected(id: String) {
+    func attachWidgetAccountSelected(_ account: Account) {
         if widgetAccountSelectedRouter != nil {
             detachWidgetAccountSelected()
         }
         let widgetAccountSelectedRouter = widgetAccountSelectedBuilder.build(
-            withListener: interactor, id: id
+            withListener: interactor, account: account
         )
         self.widgetAccountSelectedRouter = widgetAccountSelectedRouter
         attachChild(widgetAccountSelectedRouter)

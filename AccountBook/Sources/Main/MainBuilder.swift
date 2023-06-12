@@ -24,6 +24,10 @@ final class MainComponent:
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
         return accountNumberHidingFlagSubject.eraseToAnyPublisher()
     }
+    
+    var accountRepository: AccountRepositoryType = AccountRepository(
+        persistentStorage: PersistentStorage()
+    )
 }
 
 // MARK: - Builder

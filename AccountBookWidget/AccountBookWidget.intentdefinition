@@ -149,6 +149,142 @@
 			<key>INIntentVerb</key>
 			<string>View</string>
 		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescriptionID</key>
+			<string>PZCFOn</string>
+			<key>INIntentInput</key>
+			<string>account</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>6</integer>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key>account</key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>계좌번호 복사</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>OeUL4F</string>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>CopyAccountNumber</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>계좌번호 복사</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>ZUZk6a</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
+					<key>INIntentParameterCustomDisambiguation</key>
+					<true/>
+					<key>INIntentParameterDisplayName</key>
+					<string>계좌</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>wrOxap</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterName</key>
+					<string>account</string>
+					<key>INIntentParameterObjectType</key>
+					<string>IntentAccount</string>
+					<key>INIntentParameterObjectTypeNamespace</key>
+					<string>88xZPY</string>
+					<key>INIntentParameterPromptDialogs</key>
+					<array>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Configuration</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Primary</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>복사할 계좌를 선택해주세요</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>bmfHLz</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationSelection</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>SubsequentIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
+					</array>
+					<key>INIntentParameterSupportsDynamicEnumeration</key>
+					<true/>
+					<key>INIntentParameterSupportsResolution</key>
+					<true/>
+					<key>INIntentParameterTag</key>
+					<integer>6</integer>
+					<key>INIntentParameterType</key>
+					<string>Object</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>계좌번호 복사</string>
+			<key>INIntentTitleID</key>
+			<string>EKz7aw</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Do</string>
+		</dict>
 	</array>
 	<key>INTypes</key>
 	<array>
@@ -158,7 +294,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>BAb5Tg</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>101</integer>
+			<integer>102</integer>
 			<key>INTypeName</key>
 			<string>IntentAccount</string>
 			<key>INTypeProperties</key>

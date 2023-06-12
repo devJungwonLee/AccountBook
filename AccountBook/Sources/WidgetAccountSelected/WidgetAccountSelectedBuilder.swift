@@ -16,14 +16,10 @@ final class WidgetAccountSelectedComponent:
     Component<WidgetAccountSelectedDependency>,
     WidgetAccountSelectedInteractorDependency
 {
-    var id: String
-    var accountRepository: AccountRepositoryType
+    var account: Account
     
-    init(dependency: WidgetAccountSelectedDependency, id: String) {
-        self.id = id
-        accountRepository = AccountRepository(
-            persistentStorage: PersistentStorage()
-        )
+    init(dependency: WidgetAccountSelectedDependency, account: Account) {
+        self.account = account
         super.init(dependency: dependency)
     }
 }
@@ -31,7 +27,7 @@ final class WidgetAccountSelectedComponent:
 // MARK: - Builder
 
 protocol WidgetAccountSelectedBuildable: Buildable {
-    func build(withListener listener: WidgetAccountSelectedListener, id: String) -> WidgetAccountSelectedRouting
+    func build(withListener listener: WidgetAccountSelectedListener, account: Account) -> WidgetAccountSelectedRouting
 }
 
 final class WidgetAccountSelectedBuilder: Builder<WidgetAccountSelectedDependency>, WidgetAccountSelectedBuildable {
@@ -40,8 +36,8 @@ final class WidgetAccountSelectedBuilder: Builder<WidgetAccountSelectedDependenc
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: WidgetAccountSelectedListener, id: String) -> WidgetAccountSelectedRouting {
-        let component = WidgetAccountSelectedComponent(dependency: dependency, id: id)
+    func build(withListener listener: WidgetAccountSelectedListener, account: Account) -> WidgetAccountSelectedRouting {
+        let component = WidgetAccountSelectedComponent(dependency: dependency, account: account)
         let viewController = WidgetAccountSelectedViewController()
         let interactor = WidgetAccountSelectedInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
