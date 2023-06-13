@@ -1,5 +1,5 @@
 //
-//  WidgetAccountSelectedViewController.swift
+//  AccountSelectedViewController.swift
 //  AccountBook
 //
 //  Created by 이정원 on 2023/06/09.
@@ -10,13 +10,14 @@ import UIKit
 import SnapKit
 import Then
 
-protocol WidgetAccountSelectedPresentableListener: AnyObject {
+protocol AccountSelectedPresentableListener: AnyObject {
+    func viewDidLoad()
     func doneButtonTapped()
     func didDisappear()
 }
 
-final class WidgetAccountSelectedViewController: UIViewController, WidgetAccountSelectedPresentable, WidgetAccountSelectedViewControllable {
-    weak var listener: WidgetAccountSelectedPresentableListener?
+final class AccountSelectedViewController: UIViewController, AccountSelectedPresentable, AccountSelectedViewControllable {
+    weak var listener: AccountSelectedPresentableListener?
     
     private let logoImageView = UIImageView().then {
         $0.backgroundColor = .secondarySystemBackground
@@ -57,6 +58,7 @@ final class WidgetAccountSelectedViewController: UIViewController, WidgetAccount
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        listener?.viewDidLoad()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -75,7 +77,7 @@ final class WidgetAccountSelectedViewController: UIViewController, WidgetAccount
     }
 }
 
-private extension WidgetAccountSelectedViewController {
+private extension AccountSelectedViewController {
     func configureAttributes() {
         view.backgroundColor = .systemBackground
     }

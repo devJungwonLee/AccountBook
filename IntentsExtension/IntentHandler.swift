@@ -16,6 +16,32 @@ class IntentHandler: INExtension {
 
 extension IntentHandler: SelectAccountIntentHandling {
     func provideAccountListOptionsCollection(for intent: SelectAccountIntent, with completion: @escaping (INObjectCollection<IntentAccount>?, Error?) -> Void) {
+        let collection = fetchAccountCollection()
+        completion(collection, nil)
+    }
+}
+
+extension IntentHandler: CopyAccountNumberIntentHandling {
+    func handle(intent: CopyAccountNumberIntent, completion: @escaping (CopyAccountNumberIntentResponse) -> Void) {
+        completion(.init(code: .continueInApp, userActivity: nil))
+    }
+    
+    func resolveAccount(for intent: CopyAccountNumberIntent, with completion: @escaping (IntentAccountResolutionResult) -> Void) {
+        guard let account = intent.account else {
+            completion(.needsValue())
+            return
+        }
+        completion(.success(with: account))
+    }
+    
+    func provideAccountOptionsCollection(for intent: CopyAccountNumberIntent, with completion: @escaping (INObjectCollection<IntentAccount>?, Error?) -> Void) {
+        let collection = fetchAccountCollection()
+        completion(collection, nil)
+    }
+}
+
+extension IntentHandler {
+    private func fetchAccountCollection() -> INObjectCollection<IntentAccount>? {
         let persistentStorage: PersistentStorageType = PersistentStorage()
         var accountObjects = [AccountObject]()
         if let results = try? persistentStorage.readAll(type: AccountObject.self) {
@@ -32,6 +58,6 @@ extension IntentHandler: SelectAccountIntentHandling {
             intentAccount.bankCode = accountObject.bank?.code
             return intentAccount
         }.sorted { $0.displayString < $1.displayString }
-        completion(INObjectCollection(items: accounts), nil)
+        return .init(items: accounts)
     }
 }

@@ -11,8 +11,8 @@ import Combine
 
 protocol MainRouting: ViewableRouting {
     func attachChildren()
-    func attachWidgetAccountSelected(id: String)
-    func detachWidgetAccountSelected()
+    func attachAccountSelected(_ account: Account)
+    func detachAccountSelected()
 }
 
 protocol MainPresentable: Presentable {
@@ -26,6 +26,7 @@ protocol MainListener: AnyObject {
 
 protocol MainInteractorDependency {
     var accountNumberHidingFlagSubject: CurrentValueSubject<Bool?, Never> { get }
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
@@ -56,8 +57,8 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         dependency.accountNumberHidingFlagSubject.send(shouldHide)
     }
     
-    func closeWidgetAccountSelected() {
-        router?.detachWidgetAccountSelected()
+    func closeAccountSelected() {
+        router?.detachAccountSelected()
     }
     
     private func addObserver() {
@@ -66,11 +67,24 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         ) { [weak self] notification in
             guard let url = notification.object as? URL else { return }
             let id = url.absoluteString
-            self?.router?.attachWidgetAccountSelected(id: id)
+            self?.fetchAccount(id)
         }
     }
     
     private func removeObserver() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func fetchAccount(_ id: String) {
+        guard let uuid = UUID(uuidString: id) else { return }
+        dependency.accountRepository.fetchAccount(uuid)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] account in
+                self?.router?.attachAccountSelected(account)
+            }
+            .cancelOnDeactivate(interactor: self)
     }
 }

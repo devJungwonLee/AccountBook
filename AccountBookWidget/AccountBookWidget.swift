@@ -103,8 +103,8 @@ struct AccountBookWidget: Widget {
             AccountBookWidgetEntryView(entry: entry)
         }
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
-        .configurationDisplayName("바로 복사")
-        .description("대표계좌를 설정하여 더 빠르게\n계좌번호를 복사해 보세요.")
+        .configurationDisplayName("계좌번호 복사")
+        .description("자주 쓰는 계좌를 등록하여\n더 빠르게 계좌번호를 복사해 보세요.")
     }
 }
 

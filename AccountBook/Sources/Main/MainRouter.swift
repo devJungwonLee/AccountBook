@@ -11,7 +11,7 @@ protocol MainInteractable:
     Interactable,
     HomeListener,
     SettingListener,
-    WidgetAccountSelectedListener
+    AccountSelectedListener
 {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
@@ -29,19 +29,19 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
     private let settingBuilder: SettingBuildable
     private var settingRouter: SettingRouting?
     
-    private let widgetAccountSelectedBuilder: WidgetAccountSelectedBuildable
-    private var widgetAccountSelectedRouter: WidgetAccountSelectedRouting?
+    private let accountSelectedBuilder: AccountSelectedBuildable
+    private var accountSelectedRouter: AccountSelectedRouting?
     
     init(
         homeBuilder: HomeBuildable,
         settingBuilder: SettingBuildable,
-        widgetAccountSelectedBuilder: WidgetAccountSelectedBuildable,
+        accountSelectedBuilder: AccountSelectedBuildable,
         interactor: MainInteractable,
         viewController: MainViewControllable
     ) {
         self.homeBuilder = homeBuilder
         self.settingBuilder = settingBuilder
-        self.widgetAccountSelectedBuilder = widgetAccountSelectedBuilder
+        self.accountSelectedBuilder = accountSelectedBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -53,22 +53,22 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         viewController.configureChildTabs(viewControllers: viewControllers)
     }
     
-    func attachWidgetAccountSelected(id: String) {
-        if widgetAccountSelectedRouter != nil {
-            detachWidgetAccountSelected()
+    func attachAccountSelected(_ account: Account) {
+        if accountSelectedRouter != nil {
+            detachAccountSelected()
         }
-        let widgetAccountSelectedRouter = widgetAccountSelectedBuilder.build(
-            withListener: interactor, id: id
+        let accountSelectedRouter = accountSelectedBuilder.build(
+            withListener: interactor, account: account
         )
-        self.widgetAccountSelectedRouter = widgetAccountSelectedRouter
-        attachChild(widgetAccountSelectedRouter)
-        viewController.present(viewController: widgetAccountSelectedRouter.viewControllable)
+        self.accountSelectedRouter = accountSelectedRouter
+        attachChild(accountSelectedRouter)
+        viewController.present(viewController: accountSelectedRouter.viewControllable)
     }
     
-    func detachWidgetAccountSelected() {
-        guard let widgetAccountSelectedRouter else { return }
-        detachChild(widgetAccountSelectedRouter)
-        self.widgetAccountSelectedRouter = nil
+    func detachAccountSelected() {
+        guard let accountSelectedRouter else { return }
+        detachChild(accountSelectedRouter)
+        self.accountSelectedRouter = nil
     }
     
     private func attachHome() {

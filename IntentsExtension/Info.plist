@@ -12,6 +12,7 @@
 			<array/>
 			<key>IntentsSupported</key>
 			<array>
+				<string>CopyAccountNumberIntent</string>
 				<string>SelectAccountIntent</string>
 			</array>
 		</dict>
