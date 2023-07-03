@@ -20,23 +20,14 @@ protocol PersistentStorageType {
 }
 
 final class PersistentStorage: PersistentStorageType {
-    private var realm: Realm {
-        get throws {
-            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: GroupIdentifier.value)
-            let realmURL = container?.appendingPathComponent("default.realm")
-            let config = Realm.Configuration(fileURL: realmURL, schemaVersion: 1)
-            return try Realm(configuration: config)
-        }
-    }
-    
     func readAll<T: Object>(type: T.Type) throws -> Results<T>  {
-        let realm = try realm
+        let realm = try Realm()
         let objects = realm.objects(T.self)
         return objects
     }
     
     func read<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws -> T {
-        let realm = try realm
+        let realm = try Realm()
         guard let object = realm.object(ofType: T.self, forPrimaryKey: primaryKey) else {
             throw DataBaseError.notFoundError
         }
@@ -44,7 +35,7 @@ final class PersistentStorage: PersistentStorageType {
     }
     
     func create<T: Object>(object: T) throws {
-        let realm = try realm
+        let realm = try Realm()
         try realm.write {
             realm.add(object)
         }
@@ -52,7 +43,7 @@ final class PersistentStorage: PersistentStorageType {
     
     func delete<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws {
         let object = try read(type: T.self, primaryKey: primaryKey)
-        let realm = try realm
+        let realm = try Realm()
         try realm.write {
             realm.delete(object)
         }
