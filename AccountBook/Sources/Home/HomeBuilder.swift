@@ -19,7 +19,7 @@ final class HomeComponent:
     HomeInteractorDependency {
     var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
-    var accountRepository: AccountRepositoryType = AccountRepository(persistentStorage: PersistentStorage())
+    var accountRepository: AccountRepositoryType = MockRepository()
     var localAuthenticationRepository: LocalAuthenticationRepositoryType = LocalAuthenticationRepository()
     
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {

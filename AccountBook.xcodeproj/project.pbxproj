@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E0295BD2A52F9480063248C /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0295BC2A52F9480063248C /* MockRepository.swift */; };
 		5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */; };
 		5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC72A272B7000E6A73D /* SettingRouter.swift */; };
 		5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC82A272B7000E6A73D /* SettingViewController.swift */; };
@@ -22,12 +23,6 @@
 		5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */; };
 		5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5582A07B2770012DEE4 /* BankCell.swift */; };
 		5E3953FD2A13EEC60084A8AD /* BankList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E3953FC2A13EEC60084A8AD /* BankList.json */; };
-		5E5BED9F2A1B07B4002EC397 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5E5BED9E2A1B07B4002EC397 /* Realm */; };
-		5E5BEDA12A1B07B4002EC397 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5E5BEDA02A1B07B4002EC397 /* RealmSwift */; };
-		5E5BEDA52A1B07CF002EC397 /* BankObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA42A1B07CF002EC397 /* BankObject.swift */; };
-		5E5BEDA72A1B089A002EC397 /* AccountObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA62A1B089A002EC397 /* AccountObject.swift */; };
-		5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */; };
-		5E5BEDAD2A1B247A002EC397 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDAC2A1B247A002EC397 /* AccountRepository.swift */; };
 		5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */; };
 		5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */; };
 		5E60C08B2A1DABE400FD7F0C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C08A2A1DABE400FD7F0C /* ToastView.swift */; };
@@ -101,6 +96,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E0295BC2A52F9480063248C /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 		5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		5E20BCC72A272B7000E6A73D /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		5E20BCC82A272B7000E6A73D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -116,10 +112,6 @@
 		5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCollectionView.swift; sourceTree = "<group>"; };
 		5E26A5582A07B2770012DEE4 /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 		5E3953FC2A13EEC60084A8AD /* BankList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BankList.json; path = AccountBook/Resources/BankList.json; sourceTree = SOURCE_ROOT; };
-		5E5BEDA42A1B07CF002EC397 /* BankObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankObject.swift; sourceTree = "<group>"; };
-		5E5BEDA62A1B089A002EC397 /* AccountObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountObject.swift; sourceTree = "<group>"; };
-		5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
-		5E5BEDAC2A1B247A002EC397 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
 		5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPresentable.swift; sourceTree = "<group>"; };
 		5E60C08A2A1DABE400FD7F0C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -182,12 +174,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E5BEDA12A1B07B4002EC397 /* RealmSwift in Frameworks */,
 				5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */,
 				5EFB555329EA88DF006546B5 /* SnapKit in Frameworks */,
 				5EFB554D29EA8884006546B5 /* Then in Frameworks */,
 				5EFB555029EA8891006546B5 /* ModernRIBs in Frameworks */,
-				5E5BED9F2A1B07B4002EC397 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +259,6 @@
 		5E5BEDA32A1B07C0002EC397 /* PersistentData */ = {
 			isa = PBXGroup;
 			children = (
-				5E5BEDA42A1B07CF002EC397 /* BankObject.swift */,
-				5E5BEDA62A1B089A002EC397 /* AccountObject.swift */,
 			);
 			path = PersistentData;
 			sourceTree = "<group>";
@@ -278,7 +266,6 @@
 		5E5BEDA82A1B2185002EC397 /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
-				5E5BEDA92A1B219D002EC397 /* PersistentStorage.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
@@ -286,8 +273,8 @@
 		5E5BEDAB2A1B2438002EC397 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				5E5BEDAC2A1B247A002EC397 /* AccountRepository.swift */,
 				5EEA8CCB2A28866800CFEEB6 /* LocalAuthenticationRepository.swift */,
+				5E0295BC2A52F9480063248C /* MockRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -536,8 +523,6 @@
 				5EFB554F29EA8891006546B5 /* ModernRIBs */,
 				5EFB555229EA88DF006546B5 /* SnapKit */,
 				5E8A4E1B2A18B2DD00EEA716 /* CombineExt */,
-				5E5BED9E2A1B07B4002EC397 /* Realm */,
-				5E5BEDA02A1B07B4002EC397 /* RealmSwift */,
 			);
 			productName = AccountBook;
 			productReference = 5EFB553129EA81DA006546B5 /* AccountBook.app */;
@@ -572,7 +557,6 @@
 				5EFB554E29EA8891006546B5 /* XCRemoteSwiftPackageReference "ModernRIBs" */,
 				5EFB555129EA88DF006546B5 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */,
-				5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 5EFB553229EA81DA006546B5 /* Products */;
 			projectDirPath = "";
@@ -614,7 +598,6 @@
 				5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */,
 				5EAA44712A1F43C500E0214D /* AccountDetailViewController.swift in Sources */,
 				5E6ACC7B2A2DADFB00FD63EF /* Date+.swift in Sources */,
-				5E5BEDA52A1B07CF002EC397 /* BankObject.swift in Sources */,
 				5E26A5532A0683420012DEE4 /* BankSelectBuilder.swift in Sources */,
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
 				5EEA8CCE2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift in Sources */,
@@ -625,13 +608,10 @@
 				5EE82F602A0086D00075D2ED /* MainInteractor.swift in Sources */,
 				5EBA27C12A037682009AB303 /* AccountRegisterRouter.swift in Sources */,
 				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
-				5E5BEDAD2A1B247A002EC397 /* AccountRepository.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
 				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
-				5E5BEDAA2A1B219D002EC397 /* PersistentStorage.swift in Sources */,
-				5E5BEDA72A1B089A002EC397 /* AccountObject.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
 				5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */,
 				5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */,
@@ -658,6 +638,7 @@
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
 				5EDE33B42A323D1F007A906F /* AccountSelectedInteractor.swift in Sources */,
 				5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */,
+				5E0295BD2A52F9480063248C /* MockRepository.swift in Sources */,
 				5EDE33B12A323D1F007A906F /* AccountSelectedRouter.swift in Sources */,
 				5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */,
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,
@@ -893,14 +874,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
@@ -936,16 +909,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5E5BED9E2A1B07B4002EC397 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		5E5BEDA02A1B07B4002EC397 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5E5BED9D2A1B07B4002EC397 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		5E8A4E1B2A18B2DD00EEA716 /* CombineExt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5E8A4E1A2A18B2DD00EEA716 /* XCRemoteSwiftPackageReference "CombineExt" */;
