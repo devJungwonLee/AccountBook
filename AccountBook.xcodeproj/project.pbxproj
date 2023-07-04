@@ -22,6 +22,9 @@
 		5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5502A0683420012DEE4 /* BankSelectInteractor.swift */; };
 		5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */; };
 		5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5582A07B2770012DEE4 /* BankCell.swift */; };
+		5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
+		5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
+		5E36088A2A541A10000E9E71 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
 		5E3953FD2A13EEC60084A8AD /* BankList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E3953FC2A13EEC60084A8AD /* BankList.json */; };
 		5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */; };
 		5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */; };
@@ -111,6 +114,9 @@
 		5E26A5502A0683420012DEE4 /* BankSelectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectInteractor.swift; sourceTree = "<group>"; };
 		5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCollectionView.swift; sourceTree = "<group>"; };
 		5E26A5582A07B2770012DEE4 /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
+		5E36087A2A540EA7000E9E71 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BankObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5E3953FC2A13EEC60084A8AD /* BankList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BankList.json; path = AccountBook/Resources/BankList.json; sourceTree = SOURCE_ROOT; };
 		5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
 		5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPresentable.swift; sourceTree = "<group>"; };
@@ -259,6 +265,8 @@
 		5E5BEDA32A1B07C0002EC397 /* PersistentData */ = {
 			isa = PBXGroup;
 			children = (
+				5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */,
+				5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */,
 			);
 			path = PersistentData;
 			sourceTree = "<group>";
@@ -456,6 +464,7 @@
 				5EFB554829EA8502006546B5 /* Sources */,
 				5EFB553F29EA81DB006546B5 /* LaunchScreen.storyboard */,
 				5EFB554229EA81DB006546B5 /* Info.plist */,
+				5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -628,9 +637,11 @@
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */,
 				5E26A5522A0683420012DEE4 /* BankSelectViewController.swift in Sources */,
+				5E36088A2A541A10000E9E71 /* BankObject+CoreDataClass.swift in Sources */,
 				5E6ACC822A2DDA1C00FD63EF /* UserDefaultsKey.swift in Sources */,
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
+				5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
 				5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */,
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
@@ -644,6 +655,7 @@
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
+				5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */,
 				5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */,
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
 				5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */,
@@ -930,6 +942,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5E36087A2A540EA7000E9E71 /* Model.xcdatamodel */,
+			);
+			currentVersion = 5E36087A2A540EA7000E9E71 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5EFB552929EA81DA006546B5 /* Project object */;
 }
