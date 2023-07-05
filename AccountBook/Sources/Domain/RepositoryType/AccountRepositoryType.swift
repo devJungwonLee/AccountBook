@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+enum RepositoryError: Error {
+    case transform
+}
+
 protocol AccountRepositoryType {
     func fetchAccountList() -> AnyPublisher<[Account], Error>
     func fetchAccount(_ id: UUID) -> AnyPublisher<Account, Error>

@@ -15,4 +15,9 @@ public class BankObject: NSManagedObject {
         guard let code, let name else { return nil }
         return Bank(code: code, name: name)
     }
+    
+    func configure(with bank: Bank) {
+        self.code = bank.code
+        self.name = bank.name
+    }
 }

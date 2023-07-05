@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E0295BD2A52F9480063248C /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0295BC2A52F9480063248C /* MockRepository.swift */; };
+		5E0295BD2A52F9480063248C /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0295BC2A52F9480063248C /* AccountRepository.swift */; };
 		5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */; };
 		5E20BCCB2A272B7000E6A73D /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC72A272B7000E6A73D /* SettingRouter.swift */; };
 		5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20BCC82A272B7000E6A73D /* SettingViewController.swift */; };
@@ -25,6 +25,7 @@
 		5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
 		5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
 		5E36088A2A541A10000E9E71 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
+		5E36088D2A541DFA000E9E71 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36088C2A541DFA000E9E71 /* PersistentStorage.swift */; };
 		5E3953FD2A13EEC60084A8AD /* BankList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E3953FC2A13EEC60084A8AD /* BankList.json */; };
 		5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */; };
 		5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */; };
@@ -99,7 +100,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E0295BC2A52F9480063248C /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
+		5E0295BC2A52F9480063248C /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		5E20BCC72A272B7000E6A73D /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		5E20BCC82A272B7000E6A73D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		5E36087A2A540EA7000E9E71 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BankObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5E36088C2A541DFA000E9E71 /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
 		5E3953FC2A13EEC60084A8AD /* BankList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = BankList.json; path = AccountBook/Resources/BankList.json; sourceTree = SOURCE_ROOT; };
 		5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
 		5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastPresentable.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		5E5BEDA82A1B2185002EC397 /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
+				5E36088C2A541DFA000E9E71 /* PersistentStorage.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
@@ -282,7 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				5EEA8CCB2A28866800CFEEB6 /* LocalAuthenticationRepository.swift */,
-				5E0295BC2A52F9480063248C /* MockRepository.swift */,
+				5E0295BC2A52F9480063248C /* AccountRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */,
+				5E36088D2A541DFA000E9E71 /* PersistentStorage.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
 				5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */,
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
@@ -649,7 +653,7 @@
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
 				5EDE33B42A323D1F007A906F /* AccountSelectedInteractor.swift in Sources */,
 				5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */,
-				5E0295BD2A52F9480063248C /* MockRepository.swift in Sources */,
+				5E0295BD2A52F9480063248C /* AccountRepository.swift in Sources */,
 				5EDE33B12A323D1F007A906F /* AccountSelectedRouter.swift in Sources */,
 				5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */,
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,

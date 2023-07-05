@@ -25,7 +25,7 @@ final class MainComponent:
         return accountNumberHidingFlagSubject.eraseToAnyPublisher()
     }
     
-    var accountRepository: AccountRepositoryType = MockRepository()
+    var accountRepository: AccountRepositoryType = AccountRepository()
 }
 
 // MARK: - Builder

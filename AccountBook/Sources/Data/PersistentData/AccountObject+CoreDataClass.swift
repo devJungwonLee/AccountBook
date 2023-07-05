@@ -12,7 +12,7 @@ import CoreData
 @objc(AccountObject)
 public class AccountObject: NSManagedObject {
     func toDomain() -> Account? {
-        guard let id,
+        guard let uuid,
               let bank = bank?.toDomain(),
               let number,
               let name,
@@ -21,7 +21,7 @@ public class AccountObject: NSManagedObject {
         }
         
         return Account(
-            id: id,
+            id: uuid,
             bank: bank,
             number: number,
             name: name,
@@ -29,4 +29,15 @@ public class AccountObject: NSManagedObject {
         )
     }
     
+    func configure(with account: Account) {
+        guard let context = self.managedObjectContext else { return }
+        self.uuid = account.id
+        self.date = account.date
+        self.name = account.name
+        self.number = account.number
+        if self.bank == nil {
+            self.bank = BankObject(context: context)
+        }
+        self.bank?.configure(with: account.bank)
+    }
 }
