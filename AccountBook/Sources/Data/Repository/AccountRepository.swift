@@ -32,7 +32,7 @@ final class AccountRepository: AccountRepositoryType {
             do {
                 let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: id)
                 guard let account = accountObject.toDomain() else {
-                    return promise(.failure(RepositoryError.transfer))
+                    return promise(.failure(RepositoryError.transform))
                 }
                 return promise(.success(account))
             } catch(let error) {

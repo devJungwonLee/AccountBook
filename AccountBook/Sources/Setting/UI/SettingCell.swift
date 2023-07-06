@@ -15,28 +15,22 @@ struct SettingCellState: Hashable {
     let title: String
     let isOn: Bool?
     
-    init(title: String, isOn: Bool? = nil) {
-        self.title = title
-        self.isOn = isOn
+    init(_ menu: SettingMenu) {
+        self.title = menu.title
+        self.isOn = menu.isOn
     }
 }
 
 final class SettingCell: UICollectionViewListCell {
     weak var delegate: SettingCellDelegate?
     
-    private let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20)
-    }
-    
     private lazy var accountNumberHidingSwitch = UISwitch().then {
         $0.isOn = false
-        $0.addTarget(self, action: #selector(switchTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(switchTapped), for: .valueChanged)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureAttributes()
-        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -44,34 +38,27 @@ final class SettingCell: UICollectionViewListCell {
     }
     
     func configure(with cellState: SettingCellState) {
-        titleLabel.text = cellState.title
+        var content = defaultContentConfiguration()
+        content.text = cellState.title
+        contentConfiguration = content
+        
         if let isOn = cellState.isOn {
             accountNumberHidingSwitch.isOn = isOn
+            accessories = [
+                .customView(
+                    configuration: .init(
+                        customView: accountNumberHidingSwitch,
+                        placement: .trailing()
+                    )
+                )
+            ]
         } else {
-            accountNumberHidingSwitch.isHidden = true
+            accessories = [.disclosureIndicator()]
         }
     }
 }
 
 private extension SettingCell {
-    func configureAttributes() {
-        contentView.backgroundColor = .systemBackground
-    }
-    
-    func configureLayout() {
-        contentView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(20)
-        }
-        
-        contentView.addSubview(accountNumberHidingSwitch)
-        accountNumberHidingSwitch.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(20)
-        }
-    }
-    
     @objc func switchTapped() {
         let isOn = accountNumberHidingSwitch.isOn
         accountNumberHidingSwitch.isOn.toggle()

@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol SettingDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
@@ -13,6 +14,7 @@ protocol SettingDependency: Dependency {
 }
 
 final class SettingComponent: Component<SettingDependency>, SettingInteractorDependency {
+    var menuListSubject: PassthroughSubject<[SettingMenu], Never> = .init()
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
     
     override init(dependency: SettingDependency) {

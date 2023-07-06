@@ -26,6 +26,7 @@ final class MainViewController: UITabBarController, MainPresentable, MainViewCon
         self.viewControllers = viewControllers.map {
             UINavigationController(rootViewController: $0.uiviewController)
         }
+        (self.viewControllers?.last as? UINavigationController)?.navigationBar.prefersLargeTitles = true
     }
     
     func present(viewController: ViewControllable) {

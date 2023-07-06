@@ -52,6 +52,7 @@
 		5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */; };
 		5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */; };
 		5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */; };
+		5EC9A3172A5681060015E5B8 /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9A3162A5681060015E5B8 /* SettingMenu.swift */; };
 		5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
 		5ED5E20B2A0216B6005FEA13 /* AccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */; };
 		5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */; };
@@ -144,6 +145,7 @@
 		5EBA27BE2A037682009AB303 /* AccountRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterViewController.swift; sourceTree = "<group>"; };
 		5EBA27BF2A037682009AB303 /* AccountRegisterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterBuilder.swift; sourceTree = "<group>"; };
 		5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterInteractor.swift; sourceTree = "<group>"; };
+		5EC9A3162A5681060015E5B8 /* SettingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
 		5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdentifier.swift; sourceTree = "<group>"; };
 		5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionView.swift; sourceTree = "<group>"; };
 		5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			children = (
 				5E9771182A092C3A00A6B28F /* Bank.swift */,
 				5E8A4E1D2A18B82400EEA716 /* Account.swift */,
+				5EC9A3162A5681060015E5B8 /* SettingMenu.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
+				5EC9A3172A5681060015E5B8 /* SettingMenu.swift in Sources */,
 				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
 				5E60C0882A1DA69600FD7F0C /* ToastPresentable.swift in Sources */,

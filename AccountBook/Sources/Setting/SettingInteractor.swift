@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 import LocalAuthentication
 
 protocol SettingRouting: ViewableRouting {
@@ -14,8 +15,6 @@ protocol SettingRouting: ViewableRouting {
 
 protocol SettingPresentable: Presentable {
     var listener: SettingPresentableListener? { get set }
-    func displaySwitch(with isOn: Bool)
-    func hideAuthenticationNotice()
 }
 
 protocol SettingListener: AnyObject {
@@ -23,6 +22,7 @@ protocol SettingListener: AnyObject {
 }
 
 protocol SettingInteractorDependency {
+    var menuListSubject: PassthroughSubject<[SettingMenu], Never> { get }
     var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
 }
 
@@ -31,6 +31,10 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     weak var listener: SettingListener?
     private let dependency: SettingInteractorDependency
     private var standard: UserDefaults { UserDefaults.standard }
+    
+    var menuListStream: AnyPublisher<[SettingMenu], Never> {
+        return dependency.menuListSubject.eraseToAnyPublisher()
+    }
     
     init(presenter: SettingPresentable, dependency: SettingInteractorDependency) {
         self.dependency = dependency
@@ -52,8 +56,16 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
         set(newValue) { standard.setValue(newValue, forKey: UserDefaultsKey.accountNumberHidingFlag) }
     }
     
+    private func configureMenuList(with isOn: Bool) {
+        let menuList: [SettingMenu] = [
+            .init(title: "계좌번호 가리기", isOn: isOn),
+            .init(title: "Siri 단축어", isOn: nil)
+        ]
+        dependency.menuListSubject.send(menuList)
+    }
+    
     func viewDidLoad() {
-        presenter.displaySwitch(with: accountNumberHidingFlag)
+        configureMenuList(with: accountNumberHidingFlag)
     }
     
     func switchTapped(_ isOn: Bool) {
@@ -68,8 +80,8 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
             } receiveValue: { [weak self] isSuccess in
                 let result = isSuccess ? isOn : !isOn
                 self?.accountNumberHidingFlag = result
-                self?.presenter.displaySwitch(with: result)
                 self?.listener?.accountNumberHidingFlagChanged(result)
+                self?.configureMenuList(with: result)
                 if isOn { UserDefaults.standard.removeObject(forKey: UserDefaultsKey.lastUnlockTime) }
             }
             .cancelOnDeactivate(interactor: self)
