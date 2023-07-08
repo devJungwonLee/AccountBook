@@ -40,6 +40,6 @@ final class MainViewController: UITabBarController, MainPresentable, MainViewCon
 private extension MainViewController {
     func configureAttributes() {
         view.backgroundColor = .systemBackground
-        tabBar.tintColor = .black
+        tabBar.tintColor = .label
     }
 }

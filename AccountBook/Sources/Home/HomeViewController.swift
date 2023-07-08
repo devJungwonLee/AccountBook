@@ -103,7 +103,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
 private extension HomeViewController {
     func configureTabBarItem() {
         tabBarItem = UITabBarItem(
-            title: "내 계좌",
+            title: "계좌 목록",
             image: UIImage(systemName: "list.bullet.rectangle"),
             selectedImage: UIImage(systemName: "list.bullet.rectangle.fill")
         )
@@ -111,7 +111,7 @@ private extension HomeViewController {
     
     func configureAttributes() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = "내 계좌"
+        navigationItem.title = "계좌 목록"
         navigationItem.rightBarButtonItem = reorderButton
     }
     

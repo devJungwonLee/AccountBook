@@ -40,8 +40,37 @@
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
 		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
 		5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
+		5E9686062A5947AC000F6C52 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9686052A5947AC000F6C52 /* WidgetKit.framework */; };
+		5E9686082A5947AC000F6C52 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9686072A5947AC000F6C52 /* SwiftUI.framework */; };
+		5E96860B2A5947AC000F6C52 /* AccountBookWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96860A2A5947AC000F6C52 /* AccountBookWidgetBundle.swift */; };
+		5E96860D2A5947AC000F6C52 /* AccountBookWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96860C2A5947AC000F6C52 /* AccountBookWidget.swift */; };
+		5E9686102A5947AD000F6C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E96860F2A5947AD000F6C52 /* Assets.xcassets */; };
+		5E9686122A5947AD000F6C52 /* AccountBookIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5E96860E2A5947AC000F6C52 /* AccountBookIntents.intentdefinition */; };
+		5E9686132A5947AD000F6C52 /* AccountBookIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5E96860E2A5947AC000F6C52 /* AccountBookIntents.intentdefinition */; };
+		5E9686162A5947AD000F6C52 /* AccountBookWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5E96861A2A594C46000F6C52 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36088C2A541DFA000E9E71 /* PersistentStorage.swift */; };
+		5E96861B2A594CE0000F6C52 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
+		5E96861C2A594CE4000F6C52 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
+		5E96861D2A594D7B000F6C52 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
+		5E9686222A594F4D000F6C52 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
+		5E9686232A594F4F000F6C52 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
+		5E9686252A59504F000F6C52 /* AccountWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9686242A59504F000F6C52 /* AccountWidgetView.swift */; };
+		5E9686272A595082000F6C52 /* AccountListWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9686262A595082000F6C52 /* AccountListWidgetView.swift */; };
+		5E9686282A595460000F6C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
 		5E9771192A092C3A00A6B28F /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
 		5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */; };
+		5EA80A582A59585D000DBFE0 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E96862E2A5954CC000F6C52 /* Intents.framework */; };
+		5EA80A5B2A59585D000DBFE0 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */; };
+		5EA80A5F2A59585D000DBFE0 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5EA80A572A59585D000DBFE0 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5EA80A632A595871000DBFE0 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36088C2A541DFA000E9E71 /* PersistentStorage.swift */; };
+		5EA80A642A595873000DBFE0 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
+		5EA80A652A595875000DBFE0 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
+		5EA80A662A595878000DBFE0 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
+		5EA80A672A59587A000DBFE0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
+		5EA80A682A59587E000DBFE0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
+		5EA80A692A595881000DBFE0 /* AccountBookIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5E96860E2A5947AC000F6C52 /* AccountBookIntents.intentdefinition */; };
+		5EA80A6A2A595887000DBFE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
+		5EA80A6B2A595934000DBFE0 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */; };
 		5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA446C2A1F43C500E0214D /* AccountDetailRouter.swift */; };
 		5EAA44712A1F43C500E0214D /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA446D2A1F43C500E0214D /* AccountDetailViewController.swift */; };
 		5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA446E2A1F43C500E0214D /* AccountDetailBuilder.swift */; };
@@ -87,6 +116,23 @@
 		5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD8E4B2A0A112F00C0ED03 /* UIAlertController+.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5E9686142A5947AD000F6C52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5EFB552929EA81DA006546B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E9686022A5947AC000F6C52;
+			remoteInfo = AccountBookWidgetExtension;
+		};
+		5EA80A5D2A59585D000DBFE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5EFB552929EA81DA006546B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5EA80A562A59585D000DBFE0;
+			remoteInfo = IntentsExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		5ECF259E2A304C4D001FEEE3 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -94,6 +140,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				5EA80A5F2A59585D000DBFE0 /* IntentsExtension.appex in Embed Foundation Extensions */,
+				5E9686162A5947AD000F6C52 /* AccountBookWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +151,7 @@
 /* Begin PBXFileReference section */
 		5E0295BC2A52F9480063248C /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
+		5E0AB0832A59571C0053A831 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		5E20BCC72A272B7000E6A73D /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		5E20BCC82A272B7000E6A73D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5E20BCC92A272B7000E6A73D /* SettingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBuilder.swift; sourceTree = "<group>"; };
@@ -133,8 +182,26 @@
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		5E8A4E1D2A18B82400EEA716 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccountBookWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E9686052A5947AC000F6C52 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5E9686072A5947AC000F6C52 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		5E96860A2A5947AC000F6C52 /* AccountBookWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookWidgetBundle.swift; sourceTree = "<group>"; };
+		5E96860C2A5947AC000F6C52 /* AccountBookWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookWidget.swift; sourceTree = "<group>"; };
+		5E96860E2A5947AC000F6C52 /* AccountBookIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = AccountBookIntents.intentdefinition; sourceTree = "<group>"; };
+		5E96860F2A5947AD000F6C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E9686112A5947AD000F6C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E9686202A594EA4000F6C52 /* AccountBookWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountBookWidgetExtension.entitlements; sourceTree = "<group>"; };
+		5E9686212A594EB1000F6C52 /* AccountBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccountBook.entitlements; sourceTree = "<group>"; };
+		5E9686242A59504F000F6C52 /* AccountWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWidgetView.swift; sourceTree = "<group>"; };
+		5E9686262A595082000F6C52 /* AccountListWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListWidgetView.swift; sourceTree = "<group>"; };
+		5E96862E2A5954CC000F6C52 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		5E9686312A5954CC000F6C52 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		5E9686332A5954CC000F6C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E9771182A092C3A00A6B28F /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 		5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectFooterView.swift; sourceTree = "<group>"; };
+		5EA80A572A59585D000DBFE0 /* IntentsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IntentsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		5EA80A5C2A59585D000DBFE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EAA446C2A1F43C500E0214D /* AccountDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRouter.swift; sourceTree = "<group>"; };
 		5EAA446D2A1F43C500E0214D /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		5EAA446E2A1F43C500E0214D /* AccountDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailBuilder.swift; sourceTree = "<group>"; };
@@ -180,6 +247,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5E9686002A5947AC000F6C52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E9686082A5947AC000F6C52 /* SwiftUI.framework in Frameworks */,
+				5E9686062A5947AC000F6C52 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EA80A542A59585D000DBFE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EA80A582A59585D000DBFE0 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5EFB552E29EA81DA006546B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -329,6 +413,39 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
+		5E9686042A5947AC000F6C52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E9686052A5947AC000F6C52 /* WidgetKit.framework */,
+				5E9686072A5947AC000F6C52 /* SwiftUI.framework */,
+				5E96862E2A5954CC000F6C52 /* Intents.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E9686092A5947AC000F6C52 /* AccountBookWidget */ = {
+			isa = PBXGroup;
+			children = (
+				5E96860A2A5947AC000F6C52 /* AccountBookWidgetBundle.swift */,
+				5E9686242A59504F000F6C52 /* AccountWidgetView.swift */,
+				5E9686262A595082000F6C52 /* AccountListWidgetView.swift */,
+				5E96860C2A5947AC000F6C52 /* AccountBookWidget.swift */,
+				5E96860F2A5947AD000F6C52 /* Assets.xcassets */,
+				5E9686112A5947AD000F6C52 /* Info.plist */,
+			);
+			path = AccountBookWidget;
+			sourceTree = "<group>";
+		};
+		5E9686302A5954CC000F6C52 /* IntentsExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5E0AB0832A59571C0053A831 /* IntentsExtension.entitlements */,
+				5E9686312A5954CC000F6C52 /* IntentHandler.swift */,
+				5E9686332A5954CC000F6C52 /* Info.plist */,
+			);
+			path = IntentsExtension;
+			sourceTree = "<group>";
+		};
 		5E9771152A092B2500A6B28F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +463,15 @@
 				5EC9A3162A5681060015E5B8 /* SettingMenu.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		5EA80A592A59585D000DBFE0 /* IntentsExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */,
+				5EA80A5C2A59585D000DBFE0 /* Info.plist */,
+			);
+			path = IntentsExtension;
 			sourceTree = "<group>";
 		};
 		5EAA446B2A1F43B000E0214D /* AccountDetail */ = {
@@ -450,7 +576,13 @@
 		5EFB552829EA81DA006546B5 = {
 			isa = PBXGroup;
 			children = (
+				5E9686202A594EA4000F6C52 /* AccountBookWidgetExtension.entitlements */,
 				5EFB553329EA81DA006546B5 /* AccountBook */,
+				5E9686092A5947AC000F6C52 /* AccountBookWidget */,
+				5E9686302A5954CC000F6C52 /* IntentsExtension */,
+				5E96860E2A5947AC000F6C52 /* AccountBookIntents.intentdefinition */,
+				5EA80A592A59585D000DBFE0 /* IntentsExtension */,
+				5E9686042A5947AC000F6C52 /* Frameworks */,
 				5EFB553229EA81DA006546B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -459,6 +591,8 @@
 			isa = PBXGroup;
 			children = (
 				5EFB553129EA81DA006546B5 /* AccountBook.app */,
+				5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */,
+				5EA80A572A59585D000DBFE0 /* IntentsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -466,6 +600,7 @@
 		5EFB553329EA81DA006546B5 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				5E9686212A594EB1000F6C52 /* AccountBook.entitlements */,
 				5EFB554A29EA85DA006546B5 /* Resources */,
 				5EFB554829EA8502006546B5 /* Sources */,
 				5EFB553F29EA81DB006546B5 /* LaunchScreen.storyboard */,
@@ -519,6 +654,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5E9686022A5947AC000F6C52 /* AccountBookWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E9686192A5947AD000F6C52 /* Build configuration list for PBXNativeTarget "AccountBookWidgetExtension" */;
+			buildPhases = (
+				5E9685FF2A5947AC000F6C52 /* Sources */,
+				5E9686002A5947AC000F6C52 /* Frameworks */,
+				5E9686012A5947AC000F6C52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AccountBookWidgetExtension;
+			productName = AccountBookWidgetExtension;
+			productReference = 5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		5EA80A562A59585D000DBFE0 /* IntentsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EA80A602A59585D000DBFE0 /* Build configuration list for PBXNativeTarget "IntentsExtension" */;
+			buildPhases = (
+				5EA80A532A59585D000DBFE0 /* Sources */,
+				5EA80A542A59585D000DBFE0 /* Frameworks */,
+				5EA80A552A59585D000DBFE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IntentsExtension;
+			productName = IntentsExtension;
+			productReference = 5EA80A572A59585D000DBFE0 /* IntentsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5EFB553029EA81DA006546B5 /* AccountBook */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EFB554529EA81DB006546B5 /* Build configuration list for PBXNativeTarget "AccountBook" */;
@@ -531,6 +700,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				5E9686152A5947AD000F6C52 /* PBXTargetDependency */,
+				5EA80A5E2A59585D000DBFE0 /* PBXTargetDependency */,
 			);
 			name = AccountBook;
 			packageProductDependencies = (
@@ -553,6 +724,12 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					5E9686022A5947AC000F6C52 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					5EA80A562A59585D000DBFE0 = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					5EFB553029EA81DA006546B5 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -578,11 +755,30 @@
 			projectRoot = "";
 			targets = (
 				5EFB553029EA81DA006546B5 /* AccountBook */,
+				5E9686022A5947AC000F6C52 /* AccountBookWidgetExtension */,
+				5EA80A562A59585D000DBFE0 /* IntentsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5E9686012A5947AC000F6C52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E9686282A595460000F6C52 /* Assets.xcassets in Resources */,
+				5E9686102A5947AD000F6C52 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EA80A552A59585D000DBFE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EA80A6A2A595887000DBFE0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5EFB552F29EA81DA006546B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,6 +792,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5E9685FF2A5947AC000F6C52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E96861B2A594CE0000F6C52 /* AccountObject+CoreDataClass.swift in Sources */,
+				5E9686222A594F4D000F6C52 /* Bank.swift in Sources */,
+				5E96861A2A594C46000F6C52 /* PersistentStorage.swift in Sources */,
+				5E96860D2A5947AC000F6C52 /* AccountBookWidget.swift in Sources */,
+				5E9686272A595082000F6C52 /* AccountListWidgetView.swift in Sources */,
+				5E96861D2A594D7B000F6C52 /* Model.xcdatamodeld in Sources */,
+				5E9686232A594F4F000F6C52 /* Account.swift in Sources */,
+				5E96860B2A5947AC000F6C52 /* AccountBookWidgetBundle.swift in Sources */,
+				5E96861C2A594CE4000F6C52 /* BankObject+CoreDataClass.swift in Sources */,
+				5E9686252A59504F000F6C52 /* AccountWidgetView.swift in Sources */,
+				5EA80A6B2A595934000DBFE0 /* IntentHandler.swift in Sources */,
+				5E9686122A5947AD000F6C52 /* AccountBookIntents.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EA80A532A59585D000DBFE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EA80A652A595875000DBFE0 /* BankObject+CoreDataClass.swift in Sources */,
+				5EA80A692A595881000DBFE0 /* AccountBookIntents.intentdefinition in Sources */,
+				5EA80A632A595871000DBFE0 /* PersistentStorage.swift in Sources */,
+				5EA80A662A595878000DBFE0 /* Bank.swift in Sources */,
+				5EA80A682A59587E000DBFE0 /* Model.xcdatamodeld in Sources */,
+				5EA80A642A595873000DBFE0 /* AccountObject+CoreDataClass.swift in Sources */,
+				5EA80A5B2A59585D000DBFE0 /* IntentHandler.swift in Sources */,
+				5EA80A672A59587A000DBFE0 /* Account.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5EFB552D29EA81DA006546B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,6 +865,7 @@
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
 				5EAA44732A1F43C500E0214D /* AccountDetailInteractor.swift in Sources */,
 				5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */,
+				5E9686132A5947AD000F6C52 /* AccountBookIntents.intentdefinition in Sources */,
 				5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
 				5EEA8CC82A28810000CFEEB6 /* AuthenticationNoticeView.swift in Sources */,
@@ -676,6 +907,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5E9686152A5947AD000F6C52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E9686022A5947AC000F6C52 /* AccountBookWidgetExtension */;
+			targetProxy = 5E9686142A5947AD000F6C52 /* PBXContainerItemProxy */;
+		};
+		5EA80A5E2A59585D000DBFE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5EA80A562A59585D000DBFE0 /* IntentsExtension */;
+			targetProxy = 5EA80A5D2A59585D000DBFE0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		5EFB553F29EA81DB006546B5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -688,6 +932,118 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5E9686172A5947AD000F6C52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AccountBookWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccountBookWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccountBookWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.AccountBookWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5E9686182A5947AD000F6C52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AccountBookWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AccountBookWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AccountBookWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.AccountBookWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		5EA80A612A59585D000DBFE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IntentsExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.IntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5EA80A622A59585D000DBFE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VBT5J7U68Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IntentsExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook.IntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5EFB554329EA81DB006546B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -808,6 +1164,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AccountBook/AccountBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VBT5J7U68Y;
@@ -842,6 +1199,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AccountBook/AccountBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VBT5J7U68Y;
@@ -873,6 +1231,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5E9686192A5947AD000F6C52 /* Build configuration list for PBXNativeTarget "AccountBookWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E9686172A5947AD000F6C52 /* Debug */,
+				5E9686182A5947AD000F6C52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5EA80A602A59585D000DBFE0 /* Build configuration list for PBXNativeTarget "IntentsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EA80A612A59585D000DBFE0 /* Debug */,
+				5EA80A622A59585D000DBFE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5EFB552C29EA81DA006546B5 /* Build configuration list for PBXProject "AccountBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
