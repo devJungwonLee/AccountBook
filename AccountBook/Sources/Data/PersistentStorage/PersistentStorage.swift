@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import Then
 
 enum DatabaseError: Error {
     case notFound
@@ -15,11 +14,21 @@ enum DatabaseError: Error {
 final class PersistentStorage {
     static let shared = PersistentStorage()
     
-    private lazy var persistentContainer = NSPersistentContainer(name: "Model").then {
-        $0.loadPersistentStores { _, error in
+    private lazy var persistentContainer: NSPersistentContainer = {
+        guard let storeURL = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: "group.AccountBook"
+        )?.appendingPathComponent("Model.sqlite") else {
+            fatalError("container error")
+        }
+        
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        let container = NSPersistentContainer(name: "Model")
+        container.persistentStoreDescriptions = [storeDescription]
+        container.loadPersistentStores { _, error in
             if let error { print(error) }
         }
-    }
+        return container
+    }()
     
     private var context: NSManagedObjectContext {
         return persistentContainer.viewContext

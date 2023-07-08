@@ -7,17 +7,19 @@
 
 import ModernRIBs
 import UIKit
+import Combine
 import SnapKit
 import Then
 
 protocol SettingPresentableListener: AnyObject {
+    var menuListStream: AnyPublisher<[SettingMenu], Never> { get }
     func viewDidLoad()
     func switchTapped(_ isOn: Bool)
 }
 
 final class SettingViewController: UIViewController, SettingPresentable, SettingViewControllable {
     weak var listener: SettingPresentableListener?
-    
+    private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Int, SettingCellState>?
     private let cellRegistration = UICollectionView.CellRegistration<SettingCell, SettingCellState> { cell, _, cellState in
         cell.configure(with: cellState)
@@ -27,7 +29,7 @@ final class SettingViewController: UIViewController, SettingPresentable, Setting
         frame: .zero, collectionViewLayout: listLayout()
     ).then {
         $0.backgroundColor = .systemBackground
-        $0.alwaysBounceVertical = false
+        $0.delegate = self
     }
     
     private let authenticationNoticeView = AuthenticationNoticeView().then {
@@ -48,27 +50,8 @@ final class SettingViewController: UIViewController, SettingPresentable, Setting
         configureAttributes()
         configureLayout()
         configureDiffableDataSource()
+        bind()
         listener?.viewDidLoad()
-    }
-    
-    func displayMenuList() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, SettingCellState>()
-        snapshot.appendSections([0])
-        snapshot.appendItems([.init(title: "계좌번호 가리기", isOn: false)])
-        dataSource?.apply(snapshot)
-    }
-    
-    func displaySwitch(with isOn: Bool) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, SettingCellState>()
-        snapshot.appendSections([0])
-        snapshot.appendItems([.init(title: "계좌번호 가리기", isOn: isOn)])
-        dataSource?.apply(snapshot)
-        hideAuthenticationNotice()
-    }
-    
-    func hideAuthenticationNotice() {
-        authenticationNoticeView.isHidden = true
-        collectionView.isHidden = false
     }
 }
 
@@ -99,7 +82,7 @@ private extension SettingViewController {
     }
     
     func listLayout() -> UICollectionViewCompositionalLayout {
-        let configuration = UICollectionLayoutListConfiguration(appearance: .grouped)
+        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
     
@@ -111,6 +94,25 @@ private extension SettingViewController {
             return cell
         }
     }
+    
+    func bind() {
+        listener?.menuListStream
+            .sink { [weak self] menuList in
+                self?.displayMenuList(menuList)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func displayMenuList(_ menuList: [SettingMenu]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, SettingCellState>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(menuList.map { .init($0) })
+        dataSource?.apply(snapshot)
+        collectionView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.authenticationNoticeView.isHidden = true
+        }
+    }
 }
 
 extension SettingViewController: SettingCellDelegate {
@@ -118,5 +120,21 @@ extension SettingViewController: SettingCellDelegate {
         collectionView.isHidden = true
         authenticationNoticeView.isHidden = false
         listener?.switchTapped(isOn)
+    }
+}
+
+extension SettingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        guard let cellState = dataSource?.itemIdentifier(for: indexPath) else { return false }
+        return cellState.isOn == nil ? true : false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let cellState = dataSource?.itemIdentifier(for: indexPath) else { return false }
+        return cellState.isOn == nil ? true : false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
