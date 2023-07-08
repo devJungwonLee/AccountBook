@@ -25,9 +25,7 @@ final class MainComponent:
         return accountNumberHidingFlagSubject.eraseToAnyPublisher()
     }
     
-    var accountRepository: AccountRepositoryType = AccountRepository(
-        persistentStorage: PersistentStorage()
-    )
+    var accountRepository: AccountRepositoryType = AccountRepository()
 }
 
 // MARK: - Builder

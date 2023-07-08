@@ -2,25 +2,24 @@
 //  AccountRepository.swift
 //  AccountBook
 //
-//  Created by 이정원 on 2023/05/22.
+//  Created by 이정원 on 2023/07/03.
 //
 
 import Foundation
 import Combine
-import RealmSwift
 
 final class AccountRepository: AccountRepositoryType {
-    private let persistentStorage: PersistentStorageType
+    private let persistentStorage: PersistentStorage
     
-    init(persistentStorage: PersistentStorageType) {
+    init(persistentStorage: PersistentStorage = .shared) {
         self.persistentStorage = persistentStorage
     }
     
     func fetchAccountList() -> AnyPublisher<[Account], Error> {
         return Future<[Account], Error> { [unowned self] promise in
             do {
-                let accountObjects = try self.persistentStorage.readAll(type: AccountObject.self)
-                let accounts = Array(accountObjects).map { $0.toDomain() }
+                let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self)
+                let accounts = accountObjects.compactMap { $0.toDomain() }
                 return promise(.success(accounts))
             } catch(let error) {
                 return promise(.failure(error))
@@ -31,8 +30,10 @@ final class AccountRepository: AccountRepositoryType {
     func fetchAccount(_ id: UUID) -> AnyPublisher<Account, Error> {
         return Future<Account, Error> { [unowned self] promise in
             do {
-                let accountObject = try self.persistentStorage.read(type: AccountObject.self, primaryKey: id)
-                let account = accountObject.toDomain()
+                let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: id)
+                guard let account = accountObject.toDomain() else {
+                    return promise(.failure(RepositoryError.transfer))
+                }
                 return promise(.success(account))
             } catch(let error) {
                 return promise(.failure(error))
@@ -41,10 +42,11 @@ final class AccountRepository: AccountRepositoryType {
     }
     
     func saveAccount(_ account: Account) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { [weak self] promise in
+        return Future<Void, Error> { [unowned self] promise in
             do {
-                let accountObject = AccountObject(account: account)
-                try self?.persistentStorage.create(object: accountObject)
+                let accountObject = persistentStorage.create(type: AccountObject.self)
+                accountObject.configure(with: account)
+                try persistentStorage.save()
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))
@@ -53,11 +55,11 @@ final class AccountRepository: AccountRepositoryType {
     }
     
     func updateAccount(_ account: Account) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { [weak self] promise in
+        return Future<Void, Error> { [unowned self] promise in
             do {
-                let accountObject = AccountObject(account: account)
-                try self?.persistentStorage.delete(type: AccountObject.self, primaryKey: account.id)
-                try self?.persistentStorage.create(object: accountObject)
+                let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: account.id)
+                accountObject.configure(with: account)
+                try persistentStorage.save()
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))
@@ -66,9 +68,10 @@ final class AccountRepository: AccountRepositoryType {
     }
     
     func deleteAccount(_ account: Account) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { [weak self] promise in
+        return Future<Void, Error> { [unowned self] promise in
             do {
-                try self?.persistentStorage.delete(type: AccountObject.self, primaryKey: account.id)
+                let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: account.id)
+                try persistentStorage.delete(object: accountObject)
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))

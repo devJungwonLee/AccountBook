@@ -20,17 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
         launchRouter = RootBuilder(dependency: AppComponent()).build()
         launchRouter?.launch(from: window)
-        
-        if let url = connectionOptions.urlContexts.first?.url {
-            NotificationCenter.default.post(name: .copyAccountNumber, object: url)
-        }
-        
-        if let interaction = connectionOptions.userActivities.first?.interaction,
-           let intent = interaction.intent as? CopyAccountNumberIntent,
-           let identifier = intent.account?.identifier,
-           let url = URL(string: identifier) {
-            NotificationCenter.default.post(name: .copyAccountNumber, object: url)
-        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -59,20 +48,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-    }
-
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        guard let url = URLContexts.first?.url else { return }
-        NotificationCenter.default.post(name: .copyAccountNumber, object: url)
-    }
-    
-    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        guard let intent = userActivity.interaction?.intent as? CopyAccountNumberIntent,
-              let identifier = intent.account?.identifier,
-              let url = URL(string: identifier) else {
-            return
-        }
-        NotificationCenter.default.post(name: .copyAccountNumber, object: url)
     }
 }
 

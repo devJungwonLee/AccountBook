@@ -2,59 +2,63 @@
 //  PersistentStorage.swift
 //  AccountBook
 //
-//  Created by 이정원 on 2023/05/22.
+//  Created by 이정원 on 2023/07/04.
 //
 
-import Foundation
-import RealmSwift
+import CoreData
+import Then
 
-enum DataBaseError: Error {
-    case notFoundError
+enum DatabaseError: Error {
+    case notFound
 }
 
-protocol PersistentStorageType {
-    func read<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws -> T
-    func readAll<T: Object>(type: T.Type) throws -> Results<T>
-    func create<T: Object>(object: T) throws
-    func delete<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws
-}
-
-final class PersistentStorage: PersistentStorageType {
-    private var realm: Realm {
-        get throws {
-            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: GroupIdentifier.value)
-            let realmURL = container?.appendingPathComponent("default.realm")
-            let config = Realm.Configuration(fileURL: realmURL, schemaVersion: 1)
-            return try Realm(configuration: config)
+final class PersistentStorage {
+    static let shared = PersistentStorage()
+    
+    private lazy var persistentContainer = NSPersistentContainer(name: "Model").then {
+        $0.loadPersistentStores { _, error in
+            if let error { print(error) }
         }
     }
     
-    func readAll<T: Object>(type: T.Type) throws -> Results<T>  {
-        let realm = try realm
-        let objects = realm.objects(T.self)
-        return objects
+    private var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
     }
     
-    func read<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws -> T {
-        let realm = try realm
-        guard let object = realm.object(ofType: T.self, forPrimaryKey: primaryKey) else {
-            throw DataBaseError.notFoundError
+    private init() { }
+    
+    private func saveContext() throws {
+        guard context.hasChanges else {
+            return
         }
-        return object
+        try context.save()
     }
     
-    func create<T: Object>(object: T) throws {
-        let realm = try realm
-        try realm.write {
-            realm.add(object)
-        }
+    func fetchAll<T: NSFetchRequestResult>(type: T.Type) throws -> [T] {
+        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
+        return try context.fetch(request)
     }
     
-    func delete<T: Object, KeyType>(type: T.Type, primaryKey: KeyType) throws {
-        let object = try read(type: T.self, primaryKey: primaryKey)
-        let realm = try realm
-        try realm.write {
-            realm.delete(object)
+    func fetch<T: NSFetchRequestResult & NSManagedObject, U>(attribute: KeyPath<T, U>, value: U) throws -> T {
+        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
+        let stringValue = NSExpression(forKeyPath: attribute).keyPath
+        request.predicate = NSPredicate(format: "\(stringValue) == %@", argumentArray: [value])
+        guard let result = try context.fetch(request).first else {
+            throw DatabaseError.notFound
         }
+        return result
+    }
+    
+    func create<T: NSManagedObject>(type: T.Type) -> T {
+        return T(context: context)
+    }
+    
+    func save() throws {
+        try saveContext()
+    }
+    
+    func delete(object: NSManagedObject) throws {
+        context.delete(object)
+        try saveContext()
     }
 }
