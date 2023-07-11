@@ -10,7 +10,8 @@ import Combine
 import LocalAuthentication
 
 protocol SettingRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachBackupRecovery()
+    func detachBackupRecovery()
 }
 
 protocol SettingPresentable: Presentable {
@@ -60,7 +61,8 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     
     private func configureMenuList(with isOn: Bool) {
         let menuList: [SettingMenu] = [
-            .init(title: "계좌번호 가리기", isOn: isOn)
+            .init(title: "계좌번호 가리기", isOn: isOn),
+            .init(title: "데이터 백업 및 복구", isOn: nil)
         ]
         dependency.menuListSubject.send(menuList)
     }
@@ -111,5 +113,15 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
                 if isOn { UserDefaults.standard.removeObject(forKey: UserDefaultsKey.lastUnlockTime) }
             }
             .cancelOnDeactivate(interactor: self)
+    }
+    
+    func didSelectItemAt(_ index: Int) {
+        if index == 1 {
+            router?.attachBackupRecovery()
+        }
+    }
+    
+    func closeBackupRecovery() {
+        router?.detachBackupRecovery()
     }
 }

@@ -7,20 +7,39 @@
 
 import ModernRIBs
 
-protocol SettingInteractable: Interactable {
+protocol SettingInteractable: Interactable, BackupRecoveryListener {
     var router: SettingRouting? { get set }
     var listener: SettingListener? { get set }
 }
 
 protocol SettingViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func push(viewController: ViewControllable)
 }
 
 final class SettingRouter: ViewableRouter<SettingInteractable, SettingViewControllable>, SettingRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: SettingInteractable, viewController: SettingViewControllable) {
+    private let backupRecoveryBuilder: BackupRecoveryBuildable
+    private var backupRecoveryRouter: BackupRecoveryRouting?
+    
+    init(
+        backupRecoveryBuilder: BackupRecoveryBuildable,
+        interactor: SettingInteractable,
+        viewController: SettingViewControllable
+    ) {
+        self.backupRecoveryBuilder = backupRecoveryBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func attachBackupRecovery() {
+        let backupRecoveryRouter = backupRecoveryBuilder.build(withListener: interactor)
+        self.backupRecoveryRouter = backupRecoveryRouter
+        attachChild(backupRecoveryRouter)
+        viewController.push(viewController: backupRecoveryRouter.viewControllable)
+    }
+    
+    func detachBackupRecovery() {
+        guard let backupRecoveryRouter else { return }
+        detachChild(backupRecoveryRouter)
+        self.backupRecoveryRouter = nil
     }
 }

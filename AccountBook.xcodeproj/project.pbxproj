@@ -38,6 +38,10 @@
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
+		5E7CE2722A5D2E3C0005C59F /* BackupRecoveryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE26E2A5D2E3C0005C59F /* BackupRecoveryRouter.swift */; };
+		5E7CE2732A5D2E3C0005C59F /* BackupRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */; };
+		5E7CE2742A5D2E3C0005C59F /* BackupRecoveryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */; };
+		5E7CE2752A5D2E3C0005C59F /* BackupRecoveryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */; };
 		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
 		5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
 		5E9686062A5947AC000F6C52 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9686052A5947AC000F6C52 /* WidgetKit.framework */; };
@@ -181,6 +185,10 @@
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		5E7CE26E2A5D2E3C0005C59F /* BackupRecoveryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryRouter.swift; sourceTree = "<group>"; };
+		5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryViewController.swift; sourceTree = "<group>"; };
+		5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryBuilder.swift; sourceTree = "<group>"; };
+		5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryInteractor.swift; sourceTree = "<group>"; };
 		5E8A4E1D2A18B82400EEA716 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccountBookWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9686052A5947AC000F6C52 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -413,6 +421,17 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
+		5E7CE26D2A5D2E140005C59F /* BackupRecovery */ = {
+			isa = PBXGroup;
+			children = (
+				5E7CE26E2A5D2E3C0005C59F /* BackupRecoveryRouter.swift */,
+				5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */,
+				5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */,
+				5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */,
+			);
+			path = BackupRecovery;
+			sourceTree = "<group>";
+		};
 		5E9686042A5947AC000F6C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +632,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5E7CE26D2A5D2E140005C59F /* BackupRecovery */,
 				5EDE33AC2A323BE1007A906F /* AccountSelected */,
 				5E6ACC7E2A2DD76D00FD63EF /* Constants */,
 				5E20BCC62A272B2200E6A73D /* Setting */,
@@ -855,6 +875,7 @@
 				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */,
+				5E7CE2722A5D2E3C0005C59F /* BackupRecoveryRouter.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
 				5EC9A3172A5681060015E5B8 /* SettingMenu.swift in Sources */,
 				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
@@ -872,6 +893,7 @@
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
 				5E20BCCE2A272B7000E6A73D /* SettingInteractor.swift in Sources */,
 				5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */,
+				5E7CE2732A5D2E3C0005C59F /* BackupRecoveryViewController.swift in Sources */,
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */,
 				5E26A5522A0683420012DEE4 /* BankSelectViewController.swift in Sources */,
@@ -880,10 +902,12 @@
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */,
+				5E7CE2742A5D2E3C0005C59F /* BackupRecoveryBuilder.swift in Sources */,
 				5E36088D2A541DFA000E9E71 /* PersistentStorage.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
 				5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */,
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
+				5E7CE2752A5D2E3C0005C59F /* BackupRecoveryInteractor.swift in Sources */,
 				5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */,
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
 				5EDE33B42A323D1F007A906F /* AccountSelectedInteractor.swift in Sources */,
