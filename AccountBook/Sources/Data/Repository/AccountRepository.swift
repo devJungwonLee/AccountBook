@@ -46,7 +46,7 @@ final class AccountRepository: AccountRepositoryType {
             do {
                 let accountObject = persistentStorage.create(type: AccountObject.self)
                 accountObject.configure(with: account)
-                try persistentStorage.save()
+                try persistentStorage.save(object: accountObject)
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))
@@ -59,7 +59,7 @@ final class AccountRepository: AccountRepositoryType {
             do {
                 let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: account.id)
                 accountObject.configure(with: account)
-                try persistentStorage.save()
+                try persistentStorage.save(object: accountObject)
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))
@@ -72,6 +72,32 @@ final class AccountRepository: AccountRepositoryType {
             do {
                 let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: account.id)
                 try persistentStorage.delete(object: accountObject)
+                return promise(.success(()))
+            } catch(let error) {
+                return promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func uploadAccounts() -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { [unowned self] promise in
+            do {
+                let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self)
+                let copy = accountObjects.compactMap { $0.copy() }
+                try persistentStorage.upload(with: copy)
+                return promise(.success(()))
+            } catch(let error) {
+                return promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func downloadAccounts() -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { [unowned self] promise in
+            do {
+                let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self, storeType: .cloud)
+                let copy = accountObjects.compactMap { $0.copy() }
+                try persistentStorage.download(with: copy)
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))

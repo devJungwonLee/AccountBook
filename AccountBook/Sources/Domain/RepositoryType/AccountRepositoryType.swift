@@ -18,4 +18,6 @@ protocol AccountRepositoryType {
     func saveAccount(_ account: Account) -> AnyPublisher<Void, Error>
     func updateAccount(_ account: Account) -> AnyPublisher<Void, Error>
     func deleteAccount(_ account: Account) -> AnyPublisher<Void, Error>
+    func uploadAccounts() -> AnyPublisher<Void, Error>
+    func downloadAccounts() -> AnyPublisher<Void, Error>
 }

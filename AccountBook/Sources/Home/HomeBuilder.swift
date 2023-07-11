@@ -10,6 +10,7 @@ import Combine
 
 protocol HomeDependency: Dependency {
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
+    var accountsDownloadedEventStream: AnyPublisher<Void, Never> { get }
 }
 
 final class HomeComponent:
@@ -24,6 +25,10 @@ final class HomeComponent:
     
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
         return dependency.accountNumberHidingFlagStream
+    }
+    
+    var accountsDownloadedEventStream: AnyPublisher<Void, Never> {
+        return dependency.accountsDownloadedEventStream
     }
 }
 

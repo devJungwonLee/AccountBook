@@ -19,11 +19,13 @@ protocol SettingPresentable: Presentable {
 
 protocol SettingListener: AnyObject {
     func accountNumberHidingFlagChanged(_ shouldHide: Bool)
+    func accountsDownloaded()
 }
 
 protocol SettingInteractorDependency {
     var menuListSubject: PassthroughSubject<[SettingMenu], Never> { get }
     var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class SettingInteractor: PresentableInteractor<SettingPresentable>, SettingInteractable, SettingPresentableListener {
@@ -65,6 +67,31 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     
     func viewDidLoad() {
         configureMenuList(with: accountNumberHidingFlag)
+    }
+    
+    func uploadButtonTapped() {
+        dependency.accountRepository.uploadAccounts()
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: {
+                
+            }
+            .cancelOnDeactivate(interactor: self)
+
+    }
+    
+    func downloadButtonTapped() {
+        dependency.accountRepository.downloadAccounts()
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
+            } receiveValue: { [weak self] in
+                self?.listener?.accountsDownloaded()
+            }
+            .cancelOnDeactivate(interactor: self)
     }
     
     func switchTapped(_ isOn: Bool) {

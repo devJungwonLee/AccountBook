@@ -12,4 +12,8 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountObject" inverseName="bank" inverseEntity="AccountObject"/>
     </entity>
+    <configuration name="Cloud" usedWithCloudKit="YES">
+        <memberEntity name="AccountObject"/>
+        <memberEntity name="BankObject"/>
+    </configuration>
 </model>

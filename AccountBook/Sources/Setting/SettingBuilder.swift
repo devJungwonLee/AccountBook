@@ -16,9 +16,11 @@ protocol SettingDependency: Dependency {
 final class SettingComponent: Component<SettingDependency>, SettingInteractorDependency {
     var menuListSubject: PassthroughSubject<[SettingMenu], Never> = .init()
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
+    var accountRepository: AccountRepositoryType
     
     override init(dependency: SettingDependency) {
         self.localAuthenticationRepository = LocalAuthenticationRepository()
+        self.accountRepository = AccountRepository()
         super.init(dependency: dependency)
     }
 }
