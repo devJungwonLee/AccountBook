@@ -26,7 +26,6 @@ protocol SettingListener: AnyObject {
 protocol SettingInteractorDependency {
     var menuListSubject: PassthroughSubject<[SettingMenu], Never> { get }
     var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
-    var accountRepository: AccountRepositoryType { get }
 }
 
 final class SettingInteractor: PresentableInteractor<SettingPresentable>, SettingInteractable, SettingPresentableListener {
@@ -71,31 +70,6 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
         configureMenuList(with: accountNumberHidingFlag)
     }
     
-    func uploadButtonTapped() {
-        dependency.accountRepository.uploadAccounts()
-            .sink { completion in
-                if case .failure(let error) = completion {
-                    print(error)
-                }
-            } receiveValue: {
-                
-            }
-            .cancelOnDeactivate(interactor: self)
-
-    }
-    
-    func downloadButtonTapped() {
-        dependency.accountRepository.downloadAccounts()
-            .sink { completion in
-                if case .failure(let error) = completion {
-                    print(error)
-                }
-            } receiveValue: { [weak self] in
-                self?.listener?.accountsDownloaded()
-            }
-            .cancelOnDeactivate(interactor: self)
-    }
-    
     func switchTapped(_ isOn: Bool) {
         dependency
             .localAuthenticationRepository
@@ -123,5 +97,9 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     
     func closeBackupRecovery() {
         router?.detachBackupRecovery()
+    }
+    
+    func accountsDownloaded() {
+        listener?.accountsDownloaded()
     }
 }

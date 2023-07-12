@@ -18,13 +18,12 @@ final class SettingComponent:
     SettingInteractorDependency,
     BackupRecoveryDependency
 {
-    var menuListSubject: PassthroughSubject<[SettingMenu], Never> = .init()
+    var menuListSubject: PassthroughSubject<[SettingMenu], Never>
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
-    var accountRepository: AccountRepositoryType
     
     override init(dependency: SettingDependency) {
+        self.menuListSubject = .init()
         self.localAuthenticationRepository = LocalAuthenticationRepository()
-        self.accountRepository = AccountRepository()
         super.init(dependency: dependency)
     }
 }

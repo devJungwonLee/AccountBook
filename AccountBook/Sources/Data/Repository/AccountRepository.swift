@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+enum BackupError: Error {
+    case empty
+}
+
 final class AccountRepository: AccountRepositoryType {
     private let persistentStorage: PersistentStorage
     
@@ -79,13 +83,14 @@ final class AccountRepository: AccountRepositoryType {
         }.eraseToAnyPublisher()
     }
     
-    func uploadAccounts() -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { [unowned self] promise in
+    func uploadAccounts() -> AnyPublisher<Int, Error> {
+        return Future<Int, Error> { [unowned self] promise in
             do {
                 let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self)
+                if accountObjects.isEmpty { return promise(.failure(BackupError.empty)) }
                 let copy = accountObjects.compactMap { $0.copy() }
                 try persistentStorage.upload(with: copy)
-                return promise(.success(()))
+                return promise(.success(accountObjects.count))
             } catch(let error) {
                 return promise(.failure(error))
             }

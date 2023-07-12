@@ -42,6 +42,7 @@
 		5E7CE2732A5D2E3C0005C59F /* BackupRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */; };
 		5E7CE2742A5D2E3C0005C59F /* BackupRecoveryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */; };
 		5E7CE2752A5D2E3C0005C59F /* BackupRecoveryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */; };
+		5E8967162A5E809B00607077 /* KeyValueStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8967152A5E809B00607077 /* KeyValueStoreKey.swift */; };
 		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
 		5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
 		5E9686062A5947AC000F6C52 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9686052A5947AC000F6C52 /* WidgetKit.framework */; };
@@ -189,6 +190,7 @@
 		5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryViewController.swift; sourceTree = "<group>"; };
 		5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryBuilder.swift; sourceTree = "<group>"; };
 		5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryInteractor.swift; sourceTree = "<group>"; };
+		5E8967152A5E809B00607077 /* KeyValueStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueStoreKey.swift; sourceTree = "<group>"; };
 		5E8A4E1D2A18B82400EEA716 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccountBookWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9686052A5947AC000F6C52 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -406,6 +408,7 @@
 			children = (
 				5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */,
 				5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */,
+				5E8967152A5E809B00607077 /* KeyValueStoreKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -917,6 +920,7 @@
 				5E20BCD12A2730DC00E6A73D /* SettingCell.swift in Sources */,
 				5EAA44702A1F43C500E0214D /* AccountDetailRouter.swift in Sources */,
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
+				5E8967162A5E809B00607077 /* KeyValueStoreKey.swift in Sources */,
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
 				5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */,
 				5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */,

@@ -6,13 +6,33 @@
 //
 
 import ModernRIBs
+import Foundation
+import Combine
+import CombineExt
 
 protocol BackupRecoveryDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
 
-final class BackupRecoveryComponent: Component<BackupRecoveryDependency> {
+final class BackupRecoveryComponent:
+    Component<BackupRecoveryDependency>,
+    BackupRecoveryInteractorDependency
+{
+    var accountRepository: AccountRepositoryType
+    var keyValueStore: NSUbiquitousKeyValueStore
+    var backupDateSubject: ReplaySubject<String, Never>
+    var accountCountSubject: ReplaySubject<String, Never>
+    var errorMessageSubject: PassthroughSubject<String, Never>
+    
+    override init(dependency: BackupRecoveryDependency) {
+        self.accountRepository = AccountRepository()
+        self.keyValueStore = NSUbiquitousKeyValueStore()
+        self.backupDateSubject = .init(bufferSize: 1)
+        self.accountCountSubject = .init(bufferSize: 1)
+        self.errorMessageSubject = .init()
+        super.init(dependency: dependency)
+    }
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -30,9 +50,9 @@ final class BackupRecoveryBuilder: Builder<BackupRecoveryDependency>, BackupReco
     }
 
     func build(withListener listener: BackupRecoveryListener) -> BackupRecoveryRouting {
-        _ = BackupRecoveryComponent(dependency: dependency)
+        let component = BackupRecoveryComponent(dependency: dependency)
         let viewController = BackupRecoveryViewController()
-        let interactor = BackupRecoveryInteractor(presenter: viewController)
+        let interactor = BackupRecoveryInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return BackupRecoveryRouter(interactor: interactor, viewController: viewController)
     }

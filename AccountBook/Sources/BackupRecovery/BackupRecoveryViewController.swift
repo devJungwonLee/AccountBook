@@ -7,15 +7,27 @@
 
 import ModernRIBs
 import UIKit
+import Combine
 import SnapKit
 import Then
 
 protocol BackupRecoveryPresentableListener: AnyObject {
     func didDisappear()
+    func backupButtonTapped()
+    func recoveryButtonTapped()
+    var backupDateStream: AnyPublisher<String, Never> { get }
+    var accountCountStream: AnyPublisher<String, Never> { get }
+    var errorMessageStream: AnyPublisher<String, Never> { get }
 }
 
-final class BackupRecoveryViewController: UIViewController, BackupRecoveryPresentable, BackupRecoveryViewControllable {
+final class BackupRecoveryViewController:
+    UIViewController,
+    BackupRecoveryPresentable,
+    BackupRecoveryViewControllable,
+    AlertPresentable
+{
     weak var listener: BackupRecoveryPresentableListener?
+    private var cancellables = Set<AnyCancellable>()
     
     private let noticeLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
@@ -28,13 +40,11 @@ final class BackupRecoveryViewController: UIViewController, BackupRecoveryPresen
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.textAlignment = .center
         $0.numberOfLines = 2
-        $0.text = "마지막으로 133개의 계좌가 백업되었습니다."
     }
     
     private let backupDateLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.textAlignment = .center
-        $0.text = "2023년 7월 10일 월요일 오후 5:49"
     }
     
     private lazy var backupInfoStackView = UIStackView(arrangedSubviews: [
@@ -81,6 +91,7 @@ final class BackupRecoveryViewController: UIViewController, BackupRecoveryPresen
         super.viewDidLoad()
         configureAttributes()
         configureLayout()
+        bind()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -125,11 +136,35 @@ private extension BackupRecoveryViewController {
         }
     }
     
-    @objc func backupButtonTapped() {
+    func bind() {
+        listener?.backupDateStream
+            .sink(receiveValue: { [weak self] dateString in
+                self?.backupDateLabel.text = dateString
+            })
+            .store(in: &cancellables)
         
+        listener?.accountCountStream
+            .sink(receiveValue: { [weak self] countString in
+                if countString.isEmpty {
+                    self?.backupInfoLabel.text = "백업된 데이터가 없습니다."
+                } else {
+                    self?.backupInfoLabel.text = "마지막으로 \(countString)개의 계좌가 백업되었습니다."
+                }
+            })
+            .store(in: &cancellables)
+        
+        listener?.errorMessageStream
+            .sink(receiveValue: { [weak self] message in
+                self?.presentNoticeAlert(message: message)
+            })
+            .store(in: &cancellables)
+    }
+    
+    @objc func backupButtonTapped() {
+        listener?.backupButtonTapped()
     }
     
     @objc func recoveryButtonTapped() {
-        
+        listener?.recoveryButtonTapped()
     }
 }

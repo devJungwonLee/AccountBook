@@ -15,8 +15,6 @@ protocol SettingPresentableListener: AnyObject {
     var menuListStream: AnyPublisher<[SettingMenu], Never> { get }
     func viewDidLoad()
     func switchTapped(_ isOn: Bool)
-    func uploadButtonTapped()
-    func downloadButtonTapped()
     func didSelectItemAt(_ index: Int)
 }
 
@@ -27,20 +25,6 @@ final class SettingViewController: UIViewController, SettingPresentable, Setting
     private let cellRegistration = UICollectionView.CellRegistration<SettingCell, SettingCellState> { cell, _, cellState in
         cell.configure(with: cellState)
     }
-    
-    private lazy var uploadButton = UIBarButtonItem(
-        image: UIImage(systemName: "arrow.up.circle"),
-        style: .plain,
-        target: self,
-        action: #selector(uploadButtonTapped)
-    )
-    
-    private lazy var downloadButton = UIBarButtonItem(
-        image: UIImage(systemName: "arrow.down.circle"),
-        style: .plain,
-        target: self,
-        action: #selector(downloadButtonTapped)
-    )
     
     private lazy var collectionView = UICollectionView(
         frame: .zero, collectionViewLayout: listLayout()
@@ -89,7 +73,6 @@ private extension SettingViewController {
     func configureAttributes() {
         view.backgroundColor = .systemBackground
         navigationItem.title = "설정"
-        navigationItem.rightBarButtonItems = [uploadButton, downloadButton]
     }
     
     func configureLayout() {
@@ -135,14 +118,6 @@ private extension SettingViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.authenticationNoticeView.isHidden = true
         }
-    }
-    
-    @objc func uploadButtonTapped() {
-        listener?.uploadButtonTapped()
-    }
-    
-    @objc func downloadButtonTapped() {
-        listener?.downloadButtonTapped()
     }
 }
 

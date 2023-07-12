@@ -9,9 +9,22 @@ import UIKit
 
 protocol AlertPresentable where Self: UIViewController {
     func presentTextFieldAlert(title: String, message: String?, completion: @escaping (String) -> Void)
+    func presentNoticeAlert(title: String?, message: String?, completion: (() -> Void)?)
 }
 
 extension AlertPresentable {
+    func presentNoticeAlert(title: String? = nil, message: String? = nil, completion: (() -> Void)? = nil) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        let confirm = UIAlertAction(title: "확인", style: .default)
+        alertController.addAction(confirm)
+        present(alertController, animated: true)
+    }
+    
     func presentTextFieldAlert(title: String, message: String? = nil, completion: @escaping (String) -> Void) {
         let alertController = UIAlertController(
             title: title,
