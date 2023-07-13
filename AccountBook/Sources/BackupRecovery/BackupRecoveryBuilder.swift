@@ -20,14 +20,14 @@ final class BackupRecoveryComponent:
     BackupRecoveryInteractorDependency
 {
     var accountRepository: AccountRepositoryType
-    var keyValueStore: NSUbiquitousKeyValueStore
+    var backupRecoveryRepository: BackupRecoveryRepositoryType
     var backupDateSubject: ReplaySubject<String, Never>
     var accountCountSubject: ReplaySubject<String, Never>
     var errorMessageSubject: PassthroughSubject<String, Never>
     
     override init(dependency: BackupRecoveryDependency) {
         self.accountRepository = AccountRepository()
-        self.keyValueStore = NSUbiquitousKeyValueStore()
+        self.backupRecoveryRepository = BackupRecoveryRepository()
         self.backupDateSubject = .init(bufferSize: 1)
         self.accountCountSubject = .init(bufferSize: 1)
         self.errorMessageSubject = .init()

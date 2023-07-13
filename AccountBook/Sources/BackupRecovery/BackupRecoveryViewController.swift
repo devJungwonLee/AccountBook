@@ -15,6 +15,7 @@ protocol BackupRecoveryPresentableListener: AnyObject {
     func didDisappear()
     func backupButtonTapped()
     func recoveryButtonTapped()
+    func deleteButtonTapped()
     var backupDateStream: AnyPublisher<String, Never> { get }
     var accountCountStream: AnyPublisher<String, Never> { get }
     var errorMessageStream: AnyPublisher<String, Never> { get }
@@ -84,6 +85,7 @@ final class BackupRecoveryViewController:
         $0.configuration?.attributedTitle = AttributedString("백업 데이터 삭제")
         $0.configuration?.attributedTitle?.underlineStyle = .init(rawValue: 1)
         $0.configuration?.baseForegroundColor = .systemRed
+        $0.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [
@@ -172,5 +174,9 @@ private extension BackupRecoveryViewController {
     
     @objc func recoveryButtonTapped() {
         listener?.recoveryButtonTapped()
+    }
+    
+    @objc func deleteButtonTapped() {
+        listener?.deleteButtonTapped()
     }
 }

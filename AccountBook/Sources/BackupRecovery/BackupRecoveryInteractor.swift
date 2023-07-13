@@ -26,7 +26,7 @@ protocol BackupRecoveryListener: AnyObject {
 
 protocol BackupRecoveryInteractorDependency {
     var accountRepository: AccountRepositoryType { get }
-    var keyValueStore: NSUbiquitousKeyValueStore { get }
+    var backupRecoveryRepository: BackupRecoveryRepositoryType { get }
     var backupDateSubject: ReplaySubject<String, Never> { get }
     var accountCountSubject: ReplaySubject<String, Never> { get }
     var errorMessageSubject: PassthroughSubject<String, Never> { get }
@@ -36,16 +36,6 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
     weak var router: BackupRecoveryRouting?
     weak var listener: BackupRecoveryListener?
     private let dependency: BackupRecoveryInteractorDependency
-    
-    private var backupDate: Date {
-        get { dependency.keyValueStore.object(forKey: KeyValueStoreKey.backupDate) as? Date ?? Date() }
-        set(newValue) { dependency.keyValueStore.set(newValue, forKey: KeyValueStoreKey.backupDate) }
-    }
-    
-    private var accountCount: String {
-        get { dependency.keyValueStore.string(forKey: KeyValueStoreKey.accountCount) ?? "" }
-        set(newValue) { dependency.keyValueStore.set(newValue, forKey: KeyValueStoreKey.accountCount) }
-    }
     
     var backupDateStream: AnyPublisher<String, Never> {
         return dependency.backupDateSubject.eraseToAnyPublisher()
@@ -70,7 +60,7 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        sendBackupInfo()
+        fetchBackupInfo()
     }
 
     override func willResignActive() {
@@ -78,9 +68,27 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
         // TODO: Pause any business logic.
     }
     
-    private func sendBackupInfo() {
-        dependency.backupDateSubject.send(backupDate.toString)
-        dependency.accountCountSubject.send(accountCount)
+    private func fetchBackupInfo() {
+        dependency.backupRecoveryRepository.fetchBackupDate()
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion,
+                   case DatabaseError.notFound = error {
+                    self?.dependency.backupDateSubject.send(Date().toString)
+                }
+            } receiveValue: { [weak self] date in
+                let dateString = (date ?? Date()).toString
+                self?.dependency.backupDateSubject.send(dateString)
+            }
+            .cancelOnDeactivate(interactor: self)
+        
+        dependency.backupRecoveryRepository.fetchAccountCount()
+            .sink { completion in
+                if case .failure(let error) = completion { print(error) }
+            } receiveValue: { [weak self] count in
+                let countString = count == 0 ? "" : String(count)
+                self?.dependency.accountCountSubject.send(countString)
+            }
+            .cancelOnDeactivate(interactor: self)
     }
     
     func didDisappear() {
@@ -96,11 +104,18 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
                 }
             } receiveValue: { [weak self] count in
                 let currentDate = Date()
-                let countString = String(count)
-                self?.backupDate = currentDate
-                self?.dependency.backupDateSubject.send(currentDate.toString)
-                self?.accountCount = countString
-                self?.dependency.accountCountSubject.send(countString)
+                self?.saveBackupDate(currentDate)
+                self?.dependency.accountCountSubject.send(String(count))
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
+    private func saveBackupDate(_ date: Date) {
+        dependency.backupRecoveryRepository.saveBackupDate(date)
+            .sink { completion in
+                if case .failure(let error) = completion { print(error) }
+            } receiveValue: { [weak self] in
+                self?.dependency.backupDateSubject.send(date.toString)
             }
             .cancelOnDeactivate(interactor: self)
     }
@@ -113,6 +128,17 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
                 }
             } receiveValue: { [weak self] in
                 self?.listener?.accountsDownloaded()
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
+    func deleteButtonTapped() {
+        dependency.backupRecoveryRepository.deleteBackupData()
+            .sink { completion in
+                if case .failure(let error) = completion { print(error) }
+            } receiveValue: { [weak self] in
+                self?.dependency.accountCountSubject.send("")
+                self?.dependency.backupDateSubject.send(Date().toString)
             }
             .cancelOnDeactivate(interactor: self)
     }

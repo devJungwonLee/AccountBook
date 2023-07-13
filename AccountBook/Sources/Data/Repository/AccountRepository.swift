@@ -50,7 +50,7 @@ final class AccountRepository: AccountRepositoryType {
             do {
                 let accountObject = persistentStorage.create(type: AccountObject.self)
                 accountObject.configure(with: account)
-                try persistentStorage.save(object: accountObject)
+                try persistentStorage.save()
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))
@@ -63,7 +63,7 @@ final class AccountRepository: AccountRepositoryType {
             do {
                 let accountObject = try persistentStorage.fetch(attribute: \AccountObject.uuid, value: account.id)
                 accountObject.configure(with: account)
-                try persistentStorage.save(object: accountObject)
+                try persistentStorage.save()
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))

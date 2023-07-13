@@ -98,13 +98,14 @@ final class PersistentStorage {
         return result
     }
     
-    func create<T: NSManagedObject>(type: T.Type) -> T {
+    func create<T: NSManagedObject>(type: T.Type, storeType: StoreType = .local) -> T {
         let object = T(context: context)
-        context.assign(object, to: localPersistentStore)
+        let store = storeType == .local ? localPersistentStore : cloudPersistentStore
+        context.assign(object, to: store)
         return object
     }
     
-    func save(object: NSManagedObject) throws {
+    func save() throws {
         try saveContext()
     }
     
@@ -113,9 +114,13 @@ final class PersistentStorage {
         try saveContext()
     }
     
+    func deleteAll<T: NSManagedObject>(type: T.Type, storeType: StoreType) throws {
+        let objects = try fetchAll(type: T.self, storeType: storeType)
+        objects.forEach { context.delete($0) }
+    }
+    
     func upload<T: NSManagedObject>(with objects: [T]) throws {
-        let localObjects = try fetchAll(type: T.self, storeType: .cloud)
-        localObjects.forEach { context.delete($0) }
+        try deleteAll(type: T.self, storeType: .cloud)
         
         objects.forEach { object in
             context.assign(object, to: cloudPersistentStore)
@@ -124,8 +129,7 @@ final class PersistentStorage {
     }
     
     func download<T: NSManagedObject>(with objects: [T]) throws {
-        let localObjects = try fetchAll(type: T.self, storeType: .local)
-        localObjects.forEach { context.delete($0) }
+        try deleteAll(type: T.self, storeType: .local)
         
         objects.forEach { object in
             context.assign(object, to: localPersistentStore)
