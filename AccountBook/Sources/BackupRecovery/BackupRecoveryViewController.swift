@@ -80,8 +80,14 @@ final class BackupRecoveryViewController:
         $0.addTarget(self, action: #selector(recoveryButtonTapped), for: .touchUpInside)
     }
     
+    private lazy var deleteButton = UIButton(configuration: .plain()).then {
+        $0.configuration?.attributedTitle = AttributedString("백업 데이터 삭제")
+        $0.configuration?.attributedTitle?.underlineStyle = .init(rawValue: 1)
+        $0.configuration?.baseForegroundColor = .systemRed
+    }
+    
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [
-        backupButton, recoveryButton
+        backupButton, recoveryButton, deleteButton
     ]).then {
         $0.axis = .vertical
         $0.spacing = 40
@@ -132,7 +138,7 @@ private extension BackupRecoveryViewController {
         view.addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints { make in
             make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.centerY.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.centerY.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
