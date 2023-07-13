@@ -29,7 +29,7 @@ protocol BackupRecoveryInteractorDependency {
     var backupRecoveryRepository: BackupRecoveryRepositoryType { get }
     var backupDateSubject: ReplaySubject<String, Never> { get }
     var accountCountSubject: ReplaySubject<String, Never> { get }
-    var errorMessageSubject: PassthroughSubject<String, Never> { get }
+    var messageSubject: PassthroughSubject<String, Never> { get }
 }
 
 final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresentable>, BackupRecoveryInteractable, BackupRecoveryPresentableListener {
@@ -45,8 +45,8 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
         return dependency.accountCountSubject.eraseToAnyPublisher()
     }
     
-    var errorMessageStream: AnyPublisher<String, Never> {
-        return dependency.errorMessageSubject.eraseToAnyPublisher()
+    var messageStream: AnyPublisher<String, Never> {
+        return dependency.messageSubject.eraseToAnyPublisher()
     }
     
     init(
@@ -76,17 +76,18 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
                     self?.dependency.backupDateSubject.send(Date().toString)
                 }
             } receiveValue: { [weak self] date in
-                let dateString = (date ?? Date()).toString
-                self?.dependency.backupDateSubject.send(dateString)
+                self?.dependency.backupDateSubject.send(date.toString)
             }
             .cancelOnDeactivate(interactor: self)
         
         dependency.backupRecoveryRepository.fetchAccountCount()
-            .sink { completion in
-                if case .failure(let error) = completion { print(error) }
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion,
+                   case DatabaseError.empty = error {
+                    self?.dependency.accountCountSubject.send("")
+                }
             } receiveValue: { [weak self] count in
-                let countString = count == 0 ? "" : String(count)
-                self?.dependency.accountCountSubject.send(countString)
+                self?.dependency.accountCountSubject.send(String(count))
             }
             .cancelOnDeactivate(interactor: self)
     }
@@ -96,16 +97,17 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
     }
     
     func backupButtonTapped() {
-        dependency.accountRepository.uploadAccounts()
+        dependency.backupRecoveryRepository.uploadAccounts()
             .sink { [weak self] completion in
                 if case .failure(let error) = completion,
-                   case BackupError.empty = error {
-                    self?.dependency.errorMessageSubject.send("백업할 데이터가 없습니다.")
+                   case DatabaseError.empty = error {
+                    self?.dependency.messageSubject.send("백업할 데이터가 없습니다.")
                 }
             } receiveValue: { [weak self] count in
                 let currentDate = Date()
                 self?.saveBackupDate(currentDate)
                 self?.dependency.accountCountSubject.send(String(count))
+                self?.dependency.messageSubject.send("백업이 완료되었습니다.")
             }
             .cancelOnDeactivate(interactor: self)
     }
@@ -121,13 +123,15 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
     }
     
     func recoveryButtonTapped() {
-        dependency.accountRepository.downloadAccounts()
-            .sink { completion in
-                if case .failure(let error) = completion {
-                    print(error)
+        dependency.backupRecoveryRepository.downloadAccounts()
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion,
+                   case DatabaseError.empty = error {
+                    self?.dependency.messageSubject.send("복구할 데이터가 없습니다.")
                 }
             } receiveValue: { [weak self] in
                 self?.listener?.accountsDownloaded()
+                self?.dependency.messageSubject.send("복구가 완료되었습니다.")
             }
             .cancelOnDeactivate(interactor: self)
     }
@@ -139,6 +143,7 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
             } receiveValue: { [weak self] in
                 self?.dependency.accountCountSubject.send("")
                 self?.dependency.backupDateSubject.send(Date().toString)
+                self?.dependency.messageSubject.send("삭제가 완료되었습니다.")
             }
             .cancelOnDeactivate(interactor: self)
     }

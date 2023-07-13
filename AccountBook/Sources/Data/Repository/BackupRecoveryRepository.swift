@@ -15,12 +15,11 @@ final class BackupRecoveryRepository: BackupRecoveryRepositoryType {
         self.persistentStorage = persistentStorage
     }
     
-    func fetchBackupDate() -> AnyPublisher<Date?, Error> {
-        return Future<Date?, Error> { [unowned self] promise in
+    func fetchBackupDate() -> AnyPublisher<Date, Error> {
+        return Future<Date, Error> { [unowned self] promise in
             do {
                 let backupObjects = try persistentStorage.fetchAll(type: BackupObject.self, storeType: .cloud)
-                print(backupObjects.map { $0.backupDate })
-                let backupDate = backupObjects.first?.backupDate
+                guard let backupDate = backupObjects.first?.backupDate else { throw DatabaseError.notFound }
                 return promise(.success(backupDate))
             } catch(let error) {
                 return promise(.failure(error))
@@ -46,7 +45,8 @@ final class BackupRecoveryRepository: BackupRecoveryRepositoryType {
         return Future<Int, Error> { [unowned self] promise in
             do {
                 let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self, storeType: .cloud)
-                promise(.success(accountObjects.count))
+                if accountObjects.isEmpty {  return promise(.failure(DatabaseError.empty)) }
+                return promise(.success(accountObjects.count))
             } catch(let error) {
                 return promise(.failure(error))
             }
@@ -59,6 +59,34 @@ final class BackupRecoveryRepository: BackupRecoveryRepositoryType {
                 try persistentStorage.deleteAll(type: AccountObject.self, storeType: .cloud)
                 try persistentStorage.deleteAll(type: BackupObject.self, storeType: .cloud)
                 try persistentStorage.save()
+                return promise(.success(()))
+            } catch(let error) {
+                return promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func uploadAccounts() -> AnyPublisher<Int, Error> {
+        return Future<Int, Error> { [unowned self] promise in
+            do {
+                let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self)
+                if accountObjects.isEmpty { return promise(.failure(DatabaseError.empty)) }
+                let copy = accountObjects.compactMap { $0.copy() }
+                try persistentStorage.upload(with: copy)
+                return promise(.success(accountObjects.count))
+            } catch(let error) {
+                return promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func downloadAccounts() -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { [unowned self] promise in
+            do {
+                let accountObjects = try persistentStorage.fetchAll(type: AccountObject.self, storeType: .cloud)
+                if accountObjects.isEmpty { return promise(.failure(DatabaseError.empty)) }
+                let copy = accountObjects.compactMap { $0.copy() }
+                try persistentStorage.download(with: copy)
                 return promise(.success(()))
             } catch(let error) {
                 return promise(.failure(error))

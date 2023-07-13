@@ -9,6 +9,7 @@ import CoreData
 
 enum DatabaseError: Error {
     case notFound
+    case empty
 }
 
 final class PersistentStorage {

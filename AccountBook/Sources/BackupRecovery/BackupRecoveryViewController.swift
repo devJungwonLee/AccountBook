@@ -18,7 +18,7 @@ protocol BackupRecoveryPresentableListener: AnyObject {
     func deleteButtonTapped()
     var backupDateStream: AnyPublisher<String, Never> { get }
     var accountCountStream: AnyPublisher<String, Never> { get }
-    var errorMessageStream: AnyPublisher<String, Never> { get }
+    var messageStream: AnyPublisher<String, Never> { get }
 }
 
 final class BackupRecoveryViewController:
@@ -161,7 +161,7 @@ private extension BackupRecoveryViewController {
             })
             .store(in: &cancellables)
         
-        listener?.errorMessageStream
+        listener?.messageStream
             .sink(receiveValue: { [weak self] message in
                 self?.presentNoticeAlert(message: message)
             })
@@ -169,14 +169,26 @@ private extension BackupRecoveryViewController {
     }
     
     @objc func backupButtonTapped() {
-        listener?.backupButtonTapped()
+        let title = "데이터 백업"
+        let message = "데이터를 백업하시겠습니까?\n기존 백업된 데이터를 덮어쓰게 됩니다."
+        presentAskAlert(title: title, message: message) { [weak self] in
+            self?.listener?.backupButtonTapped()
+        }
     }
     
     @objc func recoveryButtonTapped() {
-        listener?.recoveryButtonTapped()
+        let title = "데이터 복구"
+        let message = "데이터를 복구하시겠습니까?\n기존 디바이스 데이터를 덮어쓰게 됩니다."
+        presentAskAlert(title: title, message: message) { [weak self] in
+            self?.listener?.recoveryButtonTapped()
+        }
     }
     
     @objc func deleteButtonTapped() {
-        listener?.deleteButtonTapped()
+        let title = "백업 데이터 삭제"
+        let message = "백업된 데이터를 삭제하시겠습니까?\n삭제된 백업 데이터는 복구할 수 없습니다."
+        presentAskAlert(title: title, message: message) { [weak self] in
+            self?.listener?.deleteButtonTapped()
+        }
     }
 }

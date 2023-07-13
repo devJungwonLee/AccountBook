@@ -9,8 +9,10 @@ import Foundation
 import Combine
 
 protocol BackupRecoveryRepositoryType {
-    func fetchBackupDate() -> AnyPublisher<Date?, Error>
+    func fetchBackupDate() -> AnyPublisher<Date, Error>
     func saveBackupDate(_ date: Date) -> AnyPublisher<Void, Error>
     func fetchAccountCount() -> AnyPublisher<Int, Error>
     func deleteBackupData() -> AnyPublisher<Void, Error>
+    func uploadAccounts() -> AnyPublisher<Int, Error>
+    func downloadAccounts() -> AnyPublisher<Void, Error>
 }
