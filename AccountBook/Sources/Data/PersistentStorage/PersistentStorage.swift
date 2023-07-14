@@ -21,7 +21,7 @@ final class PersistentStorage {
     
     private var storeURL: URL {
         guard let storeURL = FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: "group.AccountBook"
+            forSecurityApplicationGroupIdentifier: GroupIdentifier.value
         ) else {
             fatalError("storeURL Error")
         }
@@ -42,7 +42,7 @@ final class PersistentStorage {
         
         let cloudStoreDescription = NSPersistentStoreDescription(url: cloudURL)
         cloudStoreDescription.configuration = "Cloud"
-        cloudStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.jungwon.AccountBook")
+        cloudStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: ContainerIdentifier.value)
         
         let container = NSPersistentCloudKitContainer(name: "Model")
         container.persistentStoreDescriptions = [
