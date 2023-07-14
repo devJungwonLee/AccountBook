@@ -40,4 +40,12 @@ public class AccountObject: NSManagedObject {
         }
         self.bank?.configure(with: account.bank)
     }
+    
+    func copy() -> AccountObject? {
+        guard let context = self.managedObjectContext,
+              let account = self.toDomain() else { return nil }
+        let accountObject = AccountObject(context: context)
+        accountObject.configure(with: account)
+        return accountObject
+    }
 }

@@ -8,6 +8,6 @@
 import Foundation
 
 struct GroupIdentifier {
-    static let value = "group.com.accountbook"
+    static let value = "group.AccountBook"
     private init() { }
 }

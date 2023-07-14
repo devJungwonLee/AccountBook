@@ -13,11 +13,16 @@ protocol SettingDependency: Dependency {
     // created by this RIB.
 }
 
-final class SettingComponent: Component<SettingDependency>, SettingInteractorDependency {
-    var menuListSubject: PassthroughSubject<[SettingMenu], Never> = .init()
+final class SettingComponent:
+    Component<SettingDependency>,
+    SettingInteractorDependency,
+    BackupRecoveryDependency
+{
+    var menuListSubject: PassthroughSubject<[SettingMenu], Never>
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
     
     override init(dependency: SettingDependency) {
+        self.menuListSubject = .init()
         self.localAuthenticationRepository = LocalAuthenticationRepository()
         super.init(dependency: dependency)
     }
@@ -37,9 +42,16 @@ final class SettingBuilder: Builder<SettingDependency>, SettingBuildable {
 
     func build(withListener listener: SettingListener) -> SettingRouting {
         let component = SettingComponent(dependency: dependency)
+        let backupRecoveryBuilder = BackupRecoveryBuilder(dependency: component)
+        
         let viewController = SettingViewController()
         let interactor = SettingInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
-        return SettingRouter(interactor: interactor, viewController: viewController)
+        
+        return SettingRouter(
+            backupRecoveryBuilder: backupRecoveryBuilder,
+            interactor: interactor,
+            viewController: viewController
+        )
     }
 }

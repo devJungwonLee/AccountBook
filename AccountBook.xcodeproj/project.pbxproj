@@ -38,6 +38,10 @@
 		5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */; };
 		5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */; };
 		5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */; };
+		5E7CE2722A5D2E3C0005C59F /* BackupRecoveryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE26E2A5D2E3C0005C59F /* BackupRecoveryRouter.swift */; };
+		5E7CE2732A5D2E3C0005C59F /* BackupRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */; };
+		5E7CE2742A5D2E3C0005C59F /* BackupRecoveryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */; };
+		5E7CE2752A5D2E3C0005C59F /* BackupRecoveryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */; };
 		5E8A4E1C2A18B2DD00EEA716 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8A4E1B2A18B2DD00EEA716 /* CombineExt */; };
 		5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
 		5E9686062A5947AC000F6C52 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9686052A5947AC000F6C52 /* WidgetKit.framework */; };
@@ -51,7 +55,6 @@
 		5E96861A2A594C46000F6C52 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36088C2A541DFA000E9E71 /* PersistentStorage.swift */; };
 		5E96861B2A594CE0000F6C52 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
 		5E96861C2A594CE4000F6C52 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
-		5E96861D2A594D7B000F6C52 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
 		5E9686222A594F4D000F6C52 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
 		5E9686232A594F4F000F6C52 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
 		5E9686252A59504F000F6C52 /* AccountWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9686242A59504F000F6C52 /* AccountWidgetView.swift */; };
@@ -67,7 +70,6 @@
 		5EA80A652A595875000DBFE0 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
 		5EA80A662A595878000DBFE0 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
 		5EA80A672A59587A000DBFE0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A4E1D2A18B82400EEA716 /* Account.swift */; };
-		5EA80A682A59587E000DBFE0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
 		5EA80A692A595881000DBFE0 /* AccountBookIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5E96860E2A5947AC000F6C52 /* AccountBookIntents.intentdefinition */; };
 		5EA80A6A2A595887000DBFE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
 		5EA80A6B2A595934000DBFE0 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */; };
@@ -83,10 +85,22 @@
 		5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */; };
 		5EC9A3172A5681060015E5B8 /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9A3162A5681060015E5B8 /* SettingMenu.swift */; };
 		5ECF25DE2A308D70001FEEE3 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
+		5ED57AEE2A5FD99F0062114C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
+		5ED57AEF2A5FD9A00062114C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
+		5ED57AF22A5FDA950062114C /* BackupObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED57AF02A5FDA950062114C /* BackupObject+CoreDataClass.swift */; };
+		5ED57AF42A5FDAB40062114C /* BackupObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED57AF02A5FDA950062114C /* BackupObject+CoreDataClass.swift */; };
+		5ED57AF52A5FDAB40062114C /* BackupObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED57AF02A5FDA950062114C /* BackupObject+CoreDataClass.swift */; };
+		5ED57AF72A5FDBA40062114C /* BackupRecoveryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED57AF62A5FDBA40062114C /* BackupRecoveryRepository.swift */; };
+		5ED57AF92A5FDED20062114C /* BackupRecoveryRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED57AF82A5FDED20062114C /* BackupRecoveryRepositoryType.swift */; };
 		5ED5E20B2A0216B6005FEA13 /* AccountCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */; };
 		5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */; };
 		5ED5E2102A02902E005FEA13 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E20F2A02902E005FEA13 /* UIColor+.swift */; };
 		5ED5E2122A029EAF005FEA13 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */; };
+		5EDAD1F42A611D1D008D0EB7 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
+		5EDAD1F52A611D1D008D0EB7 /* GroupIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */; };
+		5EDAD1F72A611DAA008D0EB7 /* ContainerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDAD1F62A611DAA008D0EB7 /* ContainerIdentifier.swift */; };
+		5EDAD1F82A611DAA008D0EB7 /* ContainerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDAD1F62A611DAA008D0EB7 /* ContainerIdentifier.swift */; };
+		5EDAD1F92A611DAA008D0EB7 /* ContainerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDAD1F62A611DAA008D0EB7 /* ContainerIdentifier.swift */; };
 		5EDE33B12A323D1F007A906F /* AccountSelectedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AD2A323D1F007A906F /* AccountSelectedRouter.swift */; };
 		5EDE33B22A323D1F007A906F /* AccountSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AE2A323D1F007A906F /* AccountSelectedViewController.swift */; };
 		5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE33AF2A323D1F007A906F /* AccountSelectedBuilder.swift */; };
@@ -181,6 +195,10 @@
 		5E6BCE6829EBC7A1008CEFE5 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		5E6BCE6E29EBC850008CEFE5 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		5E7CE26E2A5D2E3C0005C59F /* BackupRecoveryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryRouter.swift; sourceTree = "<group>"; };
+		5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryViewController.swift; sourceTree = "<group>"; };
+		5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryBuilder.swift; sourceTree = "<group>"; };
+		5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryInteractor.swift; sourceTree = "<group>"; };
 		5E8A4E1D2A18B82400EEA716 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5E9686032A5947AC000F6C52 /* AccountBookWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AccountBookWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9686052A5947AC000F6C52 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -214,10 +232,14 @@
 		5EBA27C02A037682009AB303 /* AccountRegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterInteractor.swift; sourceTree = "<group>"; };
 		5EC9A3162A5681060015E5B8 /* SettingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
 		5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdentifier.swift; sourceTree = "<group>"; };
+		5ED57AF02A5FDA950062114C /* BackupObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackupObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5ED57AF62A5FDBA40062114C /* BackupRecoveryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryRepository.swift; sourceTree = "<group>"; };
+		5ED57AF82A5FDED20062114C /* BackupRecoveryRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRecoveryRepositoryType.swift; sourceTree = "<group>"; };
 		5ED5E20A2A0216B6005FEA13 /* AccountCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionView.swift; sourceTree = "<group>"; };
 		5ED5E20C2A0216DC005FEA13 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		5ED5E20F2A02902E005FEA13 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		5ED5E2112A029EAF005FEA13 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
+		5EDAD1F62A611DAA008D0EB7 /* ContainerIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerIdentifier.swift; sourceTree = "<group>"; };
 		5EDE33AD2A323D1F007A906F /* AccountSelectedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedRouter.swift; sourceTree = "<group>"; };
 		5EDE33AE2A323D1F007A906F /* AccountSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedViewController.swift; sourceTree = "<group>"; };
 		5EDE33AF2A323D1F007A906F /* AccountSelectedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectedBuilder.swift; sourceTree = "<group>"; };
@@ -355,6 +377,7 @@
 			children = (
 				5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */,
 				5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */,
+				5ED57AF02A5FDA950062114C /* BackupObject+CoreDataClass.swift */,
 			);
 			path = PersistentData;
 			sourceTree = "<group>";
@@ -372,6 +395,7 @@
 			children = (
 				5EEA8CCB2A28866800CFEEB6 /* LocalAuthenticationRepository.swift */,
 				5E0295BC2A52F9480063248C /* AccountRepository.swift */,
+				5ED57AF62A5FDBA40062114C /* BackupRecoveryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -381,6 +405,7 @@
 			children = (
 				5E5BEDB92A1B5C67002EC397 /* AccountRepositoryType.swift */,
 				5EEA8CCD2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift */,
+				5ED57AF82A5FDED20062114C /* BackupRecoveryRepositoryType.swift */,
 			);
 			path = RepositoryType;
 			sourceTree = "<group>";
@@ -398,6 +423,7 @@
 			children = (
 				5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */,
 				5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */,
+				5EDAD1F62A611DAA008D0EB7 /* ContainerIdentifier.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -411,6 +437,17 @@
 				5E6BCE6929EBC7A1008CEFE5 /* RootInteractor.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		5E7CE26D2A5D2E140005C59F /* BackupRecovery */ = {
+			isa = PBXGroup;
+			children = (
+				5E7CE26E2A5D2E3C0005C59F /* BackupRecoveryRouter.swift */,
+				5E7CE26F2A5D2E3C0005C59F /* BackupRecoveryViewController.swift */,
+				5E7CE2702A5D2E3C0005C59F /* BackupRecoveryBuilder.swift */,
+				5E7CE2712A5D2E3C0005C59F /* BackupRecoveryInteractor.swift */,
+			);
+			path = BackupRecovery;
 			sourceTree = "<group>";
 		};
 		5E9686042A5947AC000F6C52 /* Frameworks */ = {
@@ -613,6 +650,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5E7CE26D2A5D2E140005C59F /* BackupRecovery */,
 				5EDE33AC2A323BE1007A906F /* AccountSelected */,
 				5E6ACC7E2A2DD76D00FD63EF /* Constants */,
 				5E20BCC62A272B2200E6A73D /* Setting */,
@@ -796,18 +834,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED57AF52A5FDAB40062114C /* BackupObject+CoreDataClass.swift in Sources */,
 				5E96861B2A594CE0000F6C52 /* AccountObject+CoreDataClass.swift in Sources */,
 				5E9686222A594F4D000F6C52 /* Bank.swift in Sources */,
+				5EDAD1F82A611DAA008D0EB7 /* ContainerIdentifier.swift in Sources */,
 				5E96861A2A594C46000F6C52 /* PersistentStorage.swift in Sources */,
+				5EDAD1F42A611D1D008D0EB7 /* GroupIdentifier.swift in Sources */,
 				5E96860D2A5947AC000F6C52 /* AccountBookWidget.swift in Sources */,
 				5E9686272A595082000F6C52 /* AccountListWidgetView.swift in Sources */,
-				5E96861D2A594D7B000F6C52 /* Model.xcdatamodeld in Sources */,
 				5E9686232A594F4F000F6C52 /* Account.swift in Sources */,
 				5E96860B2A5947AC000F6C52 /* AccountBookWidgetBundle.swift in Sources */,
 				5E96861C2A594CE4000F6C52 /* BankObject+CoreDataClass.swift in Sources */,
 				5E9686252A59504F000F6C52 /* AccountWidgetView.swift in Sources */,
 				5EA80A6B2A595934000DBFE0 /* IntentHandler.swift in Sources */,
 				5E9686122A5947AD000F6C52 /* AccountBookIntents.intentdefinition in Sources */,
+				5ED57AEE2A5FD99F0062114C /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,11 +859,14 @@
 				5EA80A652A595875000DBFE0 /* BankObject+CoreDataClass.swift in Sources */,
 				5EA80A692A595881000DBFE0 /* AccountBookIntents.intentdefinition in Sources */,
 				5EA80A632A595871000DBFE0 /* PersistentStorage.swift in Sources */,
+				5ED57AEF2A5FD9A00062114C /* Model.xcdatamodeld in Sources */,
+				5EDAD1F52A611D1D008D0EB7 /* GroupIdentifier.swift in Sources */,
+				5EDAD1F92A611DAA008D0EB7 /* ContainerIdentifier.swift in Sources */,
 				5EA80A662A595878000DBFE0 /* Bank.swift in Sources */,
-				5EA80A682A59587E000DBFE0 /* Model.xcdatamodeld in Sources */,
 				5EA80A642A595873000DBFE0 /* AccountObject+CoreDataClass.swift in Sources */,
 				5EA80A5B2A59585D000DBFE0 /* IntentHandler.swift in Sources */,
 				5EA80A672A59587A000DBFE0 /* Account.swift in Sources */,
+				5ED57AF42A5FDAB40062114C /* BackupObject+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +878,7 @@
 				5E6BCE6B29EBC7A1008CEFE5 /* RootViewController.swift in Sources */,
 				5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */,
 				5EE82F552A007F4E0075D2ED /* LoggedInRouter.swift in Sources */,
+				5ED57AF72A5FDBA40062114C /* BackupRecoveryRepository.swift in Sources */,
 				5EFD8E4A2A09FDCF00C0ED03 /* AlertPresentable.swift in Sources */,
 				5EEA8CCC2A28866800CFEEB6 /* LocalAuthenticationRepository.swift in Sources */,
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
@@ -855,7 +900,10 @@
 				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */,
+				5E7CE2722A5D2E3C0005C59F /* BackupRecoveryRouter.swift in Sources */,
+				5ED57AF22A5FDA950062114C /* BackupObject+CoreDataClass.swift in Sources */,
 				5E9771192A092C3A00A6B28F /* Bank.swift in Sources */,
+				5ED57AF92A5FDED20062114C /* BackupRecoveryRepositoryType.swift in Sources */,
 				5EC9A3172A5681060015E5B8 /* SettingMenu.swift in Sources */,
 				5E20BCCC2A272B7000E6A73D /* SettingViewController.swift in Sources */,
 				5E6BCE6A29EBC7A1008CEFE5 /* RootRouter.swift in Sources */,
@@ -872,6 +920,7 @@
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
 				5E20BCCE2A272B7000E6A73D /* SettingInteractor.swift in Sources */,
 				5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */,
+				5E7CE2732A5D2E3C0005C59F /* BackupRecoveryViewController.swift in Sources */,
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */,
 				5E26A5522A0683420012DEE4 /* BankSelectViewController.swift in Sources */,
@@ -880,10 +929,13 @@
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */,
+				5E7CE2742A5D2E3C0005C59F /* BackupRecoveryBuilder.swift in Sources */,
 				5E36088D2A541DFA000E9E71 /* PersistentStorage.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
+				5EDAD1F72A611DAA008D0EB7 /* ContainerIdentifier.swift in Sources */,
 				5EFB553729EA81DB006546B5 /* SceneDelegate.swift in Sources */,
 				5EBA27C42A037682009AB303 /* AccountRegisterInteractor.swift in Sources */,
+				5E7CE2752A5D2E3C0005C59F /* BackupRecoveryInteractor.swift in Sources */,
 				5EBA27C32A037682009AB303 /* AccountRegisterBuilder.swift in Sources */,
 				5EE82F5D2A0086D00075D2ED /* MainRouter.swift in Sources */,
 				5EDE33B42A323D1F007A906F /* AccountSelectedInteractor.swift in Sources */,

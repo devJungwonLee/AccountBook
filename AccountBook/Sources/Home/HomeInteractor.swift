@@ -32,6 +32,7 @@ protocol HomeInteractorDependency {
     var accountListSubject: CurrentValueSubject<[Account], Never> { get }
     var accountRepository: AccountRepositoryType { get }
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
+    var accountsDownloadedEventStream: AnyPublisher<Void, Never> { get }
     var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
 }
 
@@ -71,12 +72,21 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        bind()
         fetchAccountList()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    private func bind() {
+        dependency.accountsDownloadedEventStream
+            .sink { [weak self] in
+                self?.fetchAccountList()
+            }
+            .cancelOnDeactivate(interactor: self)
     }
     
     private func fetchAccountList() {
@@ -95,6 +105,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
                     return $0.date < $1.date
                 }
                 self?.dependency.accountListSubject.send(sortedAccounts)
+                WidgetCenter.shared.reloadAllTimelines()
             }
             .cancelOnDeactivate(interactor: self)
     }

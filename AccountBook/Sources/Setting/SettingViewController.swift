@@ -15,6 +15,7 @@ protocol SettingPresentableListener: AnyObject {
     var menuListStream: AnyPublisher<[SettingMenu], Never> { get }
     func viewDidLoad()
     func switchTapped(_ isOn: Bool)
+    func didSelectItemAt(_ index: Int)
 }
 
 final class SettingViewController: UIViewController, SettingPresentable, SettingViewControllable {
@@ -52,6 +53,11 @@ final class SettingViewController: UIViewController, SettingPresentable, Setting
         configureDiffableDataSource()
         bind()
         listener?.viewDidLoad()
+    }
+    
+    func push(viewController: ViewControllable) {
+        viewController.uiviewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(viewController.uiviewController, animated: true)
     }
 }
 
@@ -135,6 +141,7 @@ extension SettingViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listener?.didSelectItemAt(indexPath.item)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }

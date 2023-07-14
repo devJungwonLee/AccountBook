@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountObject" representedClassName="AccountObject" syncable="YES" codeGenerationType="category">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -7,9 +7,17 @@
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="bank" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="BankObject" inverseName="accounts" inverseEntity="BankObject"/>
     </entity>
+    <entity name="BackupObject" representedClassName="BackupObject" syncable="YES" codeGenerationType="category">
+        <attribute name="backupDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="BankObject" representedClassName="BankObject" syncable="YES" codeGenerationType="category">
         <attribute name="code" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountObject" inverseName="bank" inverseEntity="AccountObject"/>
     </entity>
+    <configuration name="Cloud" usedWithCloudKit="YES">
+        <memberEntity name="AccountObject"/>
+        <memberEntity name="BankObject"/>
+        <memberEntity name="BackupObject"/>
+    </configuration>
 </model>

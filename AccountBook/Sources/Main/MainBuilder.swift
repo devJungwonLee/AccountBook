@@ -25,6 +25,11 @@ final class MainComponent:
         return accountNumberHidingFlagSubject.eraseToAnyPublisher()
     }
     
+    var accountsDownloadedEventSubject = CurrentValueSubject<Void, Never>(())
+    var accountsDownloadedEventStream: AnyPublisher<Void, Never> {
+        return accountsDownloadedEventSubject.eraseToAnyPublisher()
+    }
+    
     var accountRepository: AccountRepositoryType = AccountRepository()
 }
 

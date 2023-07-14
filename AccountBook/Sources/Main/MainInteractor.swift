@@ -26,6 +26,7 @@ protocol MainListener: AnyObject {
 
 protocol MainInteractorDependency {
     var accountNumberHidingFlagSubject: CurrentValueSubject<Bool?, Never> { get }
+    var accountsDownloadedEventSubject: CurrentValueSubject<Void, Never> { get }
     var accountRepository: AccountRepositoryType { get }
 }
 
@@ -55,6 +56,10 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     
     func accountNumberHidingFlagChanged(_ shouldHide: Bool) {
         dependency.accountNumberHidingFlagSubject.send(shouldHide)
+    }
+    
+    func accountsDownloaded() {
+        dependency.accountsDownloadedEventSubject.send(())
     }
     
     func closeAccountSelected() {
