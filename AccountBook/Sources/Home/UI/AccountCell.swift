@@ -57,8 +57,8 @@ final class AccountCell: UICollectionViewListCell {
     }
     
     private lazy var copyButton = UIButton(configuration: .filled()).then {
-        $0.configuration?.baseBackgroundColor = .systemGroupedBackground
-        $0.configuration?.baseForegroundColor = .darkGray
+        $0.configuration?.baseBackgroundColor = .systemGray6
+        $0.configuration?.baseForegroundColor = .systemGray
         $0.configuration?.cornerStyle = .large
         var attributedString = AttributedString("복사")
         attributedString.font = .systemFont(ofSize: 16, weight: .medium)
