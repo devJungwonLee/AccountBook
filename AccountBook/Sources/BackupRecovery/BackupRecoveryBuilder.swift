@@ -21,6 +21,7 @@ final class BackupRecoveryComponent:
 {
     var accountRepository: AccountRepositoryType
     var backupRecoveryRepository: BackupRecoveryRepositoryType
+    var localAuthenticationRepository: LocalAuthenticationRepositoryType
     var backupDateSubject: ReplaySubject<String, Never>
     var accountCountSubject: ReplaySubject<String, Never>
     var messageSubject: PassthroughSubject<String, Never>
@@ -28,6 +29,7 @@ final class BackupRecoveryComponent:
     override init(dependency: BackupRecoveryDependency) {
         self.accountRepository = AccountRepository()
         self.backupRecoveryRepository = BackupRecoveryRepository()
+        self.localAuthenticationRepository = LocalAuthenticationRepository()
         self.backupDateSubject = .init(bufferSize: 1)
         self.accountCountSubject = .init(bufferSize: 1)
         self.messageSubject = .init()

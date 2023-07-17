@@ -49,6 +49,7 @@ final class PersistentStorage {
             cloudStoreDescription,
             localStoreDescription
         ]
+        container.viewContext.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
         
         container.loadPersistentStores { _, error in
             if let error { print(error) }
