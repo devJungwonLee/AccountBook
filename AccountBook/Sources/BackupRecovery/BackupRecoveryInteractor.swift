@@ -27,6 +27,7 @@ protocol BackupRecoveryListener: AnyObject {
 protocol BackupRecoveryInteractorDependency {
     var accountRepository: AccountRepositoryType { get }
     var backupRecoveryRepository: BackupRecoveryRepositoryType { get }
+    var localAuthenticationRepository: LocalAuthenticationRepositoryType { get }
     var backupDateSubject: ReplaySubject<String, Never> { get }
     var accountCountSubject: ReplaySubject<String, Never> { get }
     var messageSubject: PassthroughSubject<String, Never> { get }
@@ -96,8 +97,23 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
         listener?.closeBackupRecovery()
     }
     
+    private func saveBackupDate(_ date: Date) {
+        dependency.backupRecoveryRepository.saveBackupDate(date)
+            .sink { completion in
+                if case .failure(let error) = completion { print(error) }
+            } receiveValue: { [weak self] in
+                self?.dependency.backupDateSubject.send(date.toString)
+            }
+            .cancelOnDeactivate(interactor: self)
+    }
+    
     func backupButtonTapped() {
-        dependency.backupRecoveryRepository.uploadAccounts()
+        dependency.localAuthenticationRepository.authenticate(localizedReason: "데이터 백업을 위해 인증을 진행합니다.")
+            .delay(for: 0.7, scheduler: DispatchQueue.main)
+            .filter { $0 }
+            .flatMap { [unowned self] _ in
+                return dependency.backupRecoveryRepository.uploadAccounts()
+            }
             .sink { [weak self] completion in
                 if case .failure(let error) = completion,
                    case DatabaseError.empty = error {
@@ -112,18 +128,13 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
             .cancelOnDeactivate(interactor: self)
     }
     
-    private func saveBackupDate(_ date: Date) {
-        dependency.backupRecoveryRepository.saveBackupDate(date)
-            .sink { completion in
-                if case .failure(let error) = completion { print(error) }
-            } receiveValue: { [weak self] in
-                self?.dependency.backupDateSubject.send(date.toString)
-            }
-            .cancelOnDeactivate(interactor: self)
-    }
-    
     func recoveryButtonTapped() {
-        dependency.backupRecoveryRepository.downloadAccounts()
+        dependency.localAuthenticationRepository.authenticate(localizedReason: "데이터 복구를 위해 인증을 진행합니다.")
+            .delay(for: 0.7, scheduler: DispatchQueue.main)
+            .filter { $0 }
+            .flatMap { [unowned self] _ in
+                return dependency.backupRecoveryRepository.downloadAccounts()
+            }
             .sink { [weak self] completion in
                 if case .failure(let error) = completion,
                    case DatabaseError.empty = error {
@@ -137,7 +148,12 @@ final class BackupRecoveryInteractor: PresentableInteractor<BackupRecoveryPresen
     }
     
     func deleteButtonTapped() {
-        dependency.backupRecoveryRepository.deleteBackupData()
+        dependency.localAuthenticationRepository.authenticate(localizedReason: "데이터 삭제를 위해 인증을 진행합니다.")
+            .delay(for: 0.7, scheduler: DispatchQueue.main)
+            .filter { $0 }
+            .flatMap { [unowned self] _ in
+                return dependency.backupRecoveryRepository.deleteBackupData()
+            }
             .sink { completion in
                 if case .failure(let error) = completion { print(error) }
             } receiveValue: { [weak self] in

@@ -1222,7 +1222,7 @@
 				DEVELOPMENT_TEAM = VBT5J7U68Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AccountBook/Info.plist;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "계좌번호 숨김 기능을 위해 생체인증을 허용해주세요.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "생체인증을 통해 보안이 필요한 동작을 수행할 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -1257,7 +1257,7 @@
 				DEVELOPMENT_TEAM = VBT5J7U68Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AccountBook/Info.plist;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "계좌번호 숨김 기능을 위해 생체인증을 허용해주세요.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "생체인증을 통해 보안이 필요한 동작을 수행할 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
