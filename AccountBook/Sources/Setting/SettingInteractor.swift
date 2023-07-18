@@ -61,7 +61,13 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     private func configureMenuList(with isOn: Bool) {
         let menuList: [SettingMenu] = [
             .init(title: "계좌번호 가리기", isOn: isOn),
-            .init(title: "데이터 백업 및 복구", isOn: nil)
+            .init(title: "데이터 백업 및 복구", isOn: nil),
+            .init(title: "버그, 오류 제보", isOn: nil),
+            .init(title: "평가, 리뷰 남기기", isOn: nil),
+            .init(title: "오픈소스 라이선스", isOn: nil),
+            .init(title: "개인정보 처리방침", isOn: nil),
+            .init(title: "앱 공유하기", isOn: nil),
+            .init(title: "앱 버전", isOn: nil)
         ]
         dependency.menuListSubject.send(menuList)
     }
