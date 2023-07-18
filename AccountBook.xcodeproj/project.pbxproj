@@ -62,6 +62,10 @@
 		5E9686282A595460000F6C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB553D29EA81DB006546B5 /* Assets.xcassets */; };
 		5E9771192A092C3A00A6B28F /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9771182A092C3A00A6B28F /* Bank.swift */; };
 		5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */; };
+		5EA61B7B2A66430B0020225D /* SafariPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA61B7A2A66430B0020225D /* SafariPresentable.swift */; };
+		5EA61B7D2A66448C0020225D /* URLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA61B7C2A66448C0020225D /* URLString.swift */; };
+		5EA61B7F2A6647A50020225D /* URLRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA61B7E2A6647A50020225D /* URLRoutable.swift */; };
+		5EA61B812A664CB20020225D /* ActivityViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA61B802A664CB20020225D /* ActivityViewPresentable.swift */; };
 		5EA80A582A59585D000DBFE0 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E96862E2A5954CC000F6C52 /* Intents.framework */; };
 		5EA80A5B2A59585D000DBFE0 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */; };
 		5EA80A5F2A59585D000DBFE0 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5EA80A572A59585D000DBFE0 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -217,6 +221,10 @@
 		5E9686332A5954CC000F6C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E9771182A092C3A00A6B28F /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 		5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectFooterView.swift; sourceTree = "<group>"; };
+		5EA61B7A2A66430B0020225D /* SafariPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariPresentable.swift; sourceTree = "<group>"; };
+		5EA61B7C2A66448C0020225D /* URLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLString.swift; sourceTree = "<group>"; };
+		5EA61B7E2A6647A50020225D /* URLRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRoutable.swift; sourceTree = "<group>"; };
+		5EA61B802A664CB20020225D /* ActivityViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewPresentable.swift; sourceTree = "<group>"; };
 		5EA80A572A59585D000DBFE0 /* IntentsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IntentsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA80A5A2A59585D000DBFE0 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		5EA80A5C2A59585D000DBFE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -336,6 +344,9 @@
 				5E26A5482A0644CC0012DEE4 /* KeyboardObservable.swift */,
 				5EFD8E492A09FDCF00C0ED03 /* AlertPresentable.swift */,
 				5E60C0872A1DA69600FD7F0C /* ToastPresentable.swift */,
+				5EA61B7A2A66430B0020225D /* SafariPresentable.swift */,
+				5EA61B7E2A6647A50020225D /* URLRoutable.swift */,
+				5EA61B802A664CB20020225D /* ActivityViewPresentable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -424,6 +435,7 @@
 				5E6ACC812A2DDA1C00FD63EF /* UserDefaultsKey.swift */,
 				5ECF25DD2A308D70001FEEE3 /* GroupIdentifier.swift */,
 				5EDAD1F62A611DAA008D0EB7 /* ContainerIdentifier.swift */,
+				5EA61B7C2A66448C0020225D /* URLString.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -890,6 +902,7 @@
 				5E6ACC7B2A2DADFB00FD63EF /* Date+.swift in Sources */,
 				5E26A5532A0683420012DEE4 /* BankSelectBuilder.swift in Sources */,
 				5EE82F662A0096050075D2ED /* HomeRouter.swift in Sources */,
+				5EA61B7D2A66448C0020225D /* URLString.swift in Sources */,
 				5EEA8CCE2A288BBD00CFEEB6 /* LocalAuthenticationRepositoryType.swift in Sources */,
 				5E26A5512A0683420012DEE4 /* BankSelectRouter.swift in Sources */,
 				5E8A4E1E2A18B82400EEA716 /* Account.swift in Sources */,
@@ -920,6 +933,7 @@
 				5EE82F672A0096050075D2ED /* HomeViewController.swift in Sources */,
 				5E20BCCE2A272B7000E6A73D /* SettingInteractor.swift in Sources */,
 				5EFD8E4C2A0A112F00C0ED03 /* UIAlertController+.swift in Sources */,
+				5EA61B7B2A66430B0020225D /* SafariPresentable.swift in Sources */,
 				5E7CE2732A5D2E3C0005C59F /* BackupRecoveryViewController.swift in Sources */,
 				5EB10D012A04E89100D6DE83 /* UnderLineTextField.swift in Sources */,
 				5EAA44722A1F43C500E0214D /* AccountDetailBuilder.swift in Sources */,
@@ -929,6 +943,7 @@
 				5EAA44752A1F574300E0214D /* BankSelectInputView.swift in Sources */,
 				5E26A5492A0644CC0012DEE4 /* KeyboardObservable.swift in Sources */,
 				5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */,
+				5EA61B812A664CB20020225D /* ActivityViewPresentable.swift in Sources */,
 				5E7CE2742A5D2E3C0005C59F /* BackupRecoveryBuilder.swift in Sources */,
 				5E36088D2A541DFA000E9E71 /* PersistentStorage.swift in Sources */,
 				5EFB553529EA81DB006546B5 /* AppDelegate.swift in Sources */,
@@ -948,6 +963,7 @@
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
 				5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */,
 				5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */,
+				5EA61B7F2A6647A50020225D /* URLRoutable.swift in Sources */,
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,
 				5E97711B2A093FA300A6B28F /* BankSelectFooterView.swift in Sources */,
 				5E6BCE6C29EBC7A1008CEFE5 /* RootBuilder.swift in Sources */,

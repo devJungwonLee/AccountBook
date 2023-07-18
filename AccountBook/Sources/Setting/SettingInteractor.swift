@@ -12,6 +12,9 @@ import LocalAuthentication
 protocol SettingRouting: ViewableRouting {
     func attachBackupRecovery()
     func detachBackupRecovery()
+    func routeToSafari(with urlString: String)
+    func route(to urlString: String)
+    func presentActivityView(with urlString: String)
 }
 
 protocol SettingPresentable: Presentable {
@@ -98,6 +101,14 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     func didSelectItemAt(_ index: Int) {
         if index == 1 {
             router?.attachBackupRecovery()
+        } else if index == 2 {
+            router?.routeToSafari(with: URLString.bugErrorReport)
+        } else if index == 3 {
+            router?.route(to: URLString.review)
+        } else if index == 5 {
+            router?.routeToSafari(with: URLString.privacyPolicy)
+        } else if index == 6 {
+            router?.presentActivityView(with: URLString.appStore)
         }
     }
     

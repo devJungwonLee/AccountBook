@@ -14,6 +14,9 @@ protocol SettingInteractable: Interactable, BackupRecoveryListener {
 
 protocol SettingViewControllable: ViewControllable {
     func push(viewController: ViewControllable)
+    func presentSafari(with urlString: String)
+    func open(with urlString: String)
+    func presentActivityView(with urlString: String)
 }
 
 final class SettingRouter: ViewableRouter<SettingInteractable, SettingViewControllable>, SettingRouting {
@@ -41,5 +44,17 @@ final class SettingRouter: ViewableRouter<SettingInteractable, SettingViewContro
         guard let backupRecoveryRouter else { return }
         detachChild(backupRecoveryRouter)
         self.backupRecoveryRouter = nil
+    }
+    
+    func routeToSafari(with urlString: String) {
+        viewController.presentSafari(with: urlString)
+    }
+    
+    func route(to urlString: String) {
+        viewController.open(with: urlString)
+    }
+    
+    func presentActivityView(with urlString: String) {
+        viewController.presentActivityView(with: urlString)
     }
 }
