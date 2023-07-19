@@ -9,7 +9,7 @@ import ModernRIBs
 import Foundation
 
 protocol OpenSourceLicenseRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToSafari(with urlString: String)
 }
 
 protocol OpenSourceLicensePresentable: Presentable {
@@ -21,14 +21,22 @@ protocol OpenSourceLicenseListener: AnyObject {
     func closeOpenSourceLicense()
 }
 
-final class OpenSourceLicenseInteractor: PresentableInteractor<OpenSourceLicensePresentable>, OpenSourceLicenseInteractable, OpenSourceLicensePresentableListener {
+protocol OpenSourceLicenseInteractorDependency {
+    var frameworks: [Framework] { get set }
+}
 
+final class OpenSourceLicenseInteractor: PresentableInteractor<OpenSourceLicensePresentable>, OpenSourceLicenseInteractable, OpenSourceLicensePresentableListener {
     weak var router: OpenSourceLicenseRouting?
     weak var listener: OpenSourceLicenseListener?
+    private var dependency: OpenSourceLicenseInteractorDependency
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: OpenSourceLicensePresentable) {
+    init(
+        presenter: OpenSourceLicensePresentable,
+        dependency: OpenSourceLicenseInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -50,6 +58,12 @@ final class OpenSourceLicenseInteractor: PresentableInteractor<OpenSourceLicense
         let frameworks = fetchFrameworkList()
         let licenses = fetchLicenseList()
         presenter.displayOpenSourceInfo(frameworks: frameworks, licenses: licenses)
+        dependency.frameworks = frameworks
+    }
+    
+    func urlButtonTapped(index: Int) {
+        let urlString = dependency.frameworks[index].urlString
+        router?.routeToSafari(with: urlString)
     }
     
     private func fetchFrameworkList() -> [Framework] {

@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
+protocol FrameworkCellDelegate: AnyObject {
+    func urlButtonTapped(_ cell: FrameworkCell)
+}
+
 struct FrameworkCellState: Hashable {
     let title: String
     let urlString: String
@@ -24,6 +28,8 @@ struct FrameworkCellState: Hashable {
 }
 
 final class FrameworkCell: UICollectionViewListCell {
+    weak var delegate: FrameworkCellDelegate?
+    
     private let titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
@@ -32,6 +38,7 @@ final class FrameworkCell: UICollectionViewListCell {
         $0.configuration?.baseForegroundColor = .systemBlue
         $0.configuration?.contentInsets = .zero
         $0.contentHorizontalAlignment = .leading
+        $0.addTarget(self, action: #selector(urlButtonTapped), for: .touchUpInside)
     }
     
     private let copyrightLabel = UILabel().then {
@@ -91,5 +98,9 @@ private extension FrameworkCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.bottom.equalToSuperview().inset(20)
         }
+    }
+    
+    @objc func urlButtonTapped() {
+        delegate?.urlButtonTapped(self)
     }
 }

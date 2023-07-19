@@ -19,9 +19,15 @@ enum OpenSourceItem: Hashable {
 protocol OpenSourceLicensePresentableListener: AnyObject {
     func viewDidLoad()
     func didDisappear()
+    func urlButtonTapped(index: Int)
 }
 
-final class OpenSourceLicenseViewController: UIViewController, OpenSourceLicensePresentable, OpenSourceLicenseViewControllable {
+final class OpenSourceLicenseViewController:
+    UIViewController,
+    OpenSourceLicensePresentable,
+    OpenSourceLicenseViewControllable,
+    SafariPresentable
+{
     weak var listener: OpenSourceLicensePresentableListener?
     private var dataSource: UICollectionViewDiffableDataSource<OpenSourceSection, OpenSourceItem>?
     private let frameworkCellRegistration = UICollectionView.CellRegistration<FrameworkCell, FrameworkCellState> { cell, _, cellState in
@@ -48,7 +54,9 @@ final class OpenSourceLicenseViewController: UIViewController, OpenSourceLicense
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        listener?.didDisappear()
+        if isMovingFromParent {
+            listener?.didDisappear()
+        }
     }
     
     func displayOpenSourceInfo(frameworks: [Framework], licenses: [License]) {
@@ -91,11 +99,19 @@ private extension OpenSourceLicenseViewController {
             switch item {
             case .frameWorkItem(let cellState):
                 let cell = collectionView.dequeueConfiguredReusableCell(using: frameworkCellRegistration, for: indexPath, item: cellState)
+                cell.delegate = self
                 return cell
             case .licenseItem(let cellState):
                 let cell = collectionView.dequeueConfiguredReusableCell(using: licenseCellRegistration, for: indexPath, item: cellState)
                 return cell
             }
         }
+    }
+}
+
+extension OpenSourceLicenseViewController: FrameworkCellDelegate {
+    func urlButtonTapped(_ cell: FrameworkCell) {
+        guard let index = collectionView.indexPath(for: cell)?.item else { return }
+        listener?.urlButtonTapped(index: index)
     }
 }

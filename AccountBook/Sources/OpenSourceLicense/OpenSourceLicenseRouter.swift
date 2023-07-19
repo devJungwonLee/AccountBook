@@ -13,7 +13,7 @@ protocol OpenSourceLicenseInteractable: Interactable {
 }
 
 protocol OpenSourceLicenseViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func presentSafari(with urlString: String)
 }
 
 final class OpenSourceLicenseRouter: ViewableRouter<OpenSourceLicenseInteractable, OpenSourceLicenseViewControllable>, OpenSourceLicenseRouting {
@@ -22,5 +22,9 @@ final class OpenSourceLicenseRouter: ViewableRouter<OpenSourceLicenseInteractabl
     override init(interactor: OpenSourceLicenseInteractable, viewController: OpenSourceLicenseViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func routeToSafari(with urlString: String) {
+        viewController.presentSafari(with: urlString)
     }
 }

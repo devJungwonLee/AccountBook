@@ -12,9 +12,11 @@ protocol OpenSourceLicenseDependency: Dependency {
     // created by this RIB.
 }
 
-final class OpenSourceLicenseComponent: Component<OpenSourceLicenseDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class OpenSourceLicenseComponent:
+    Component<OpenSourceLicenseDependency>,
+    OpenSourceLicenseInteractorDependency
+{
+    var frameworks: [Framework] = []
 }
 
 // MARK: - Builder
@@ -30,9 +32,9 @@ final class OpenSourceLicenseBuilder: Builder<OpenSourceLicenseDependency>, Open
     }
 
     func build(withListener listener: OpenSourceLicenseListener) -> OpenSourceLicenseRouting {
-        _ = OpenSourceLicenseComponent(dependency: dependency)
+        let compoenet = OpenSourceLicenseComponent(dependency: dependency)
         let viewController = OpenSourceLicenseViewController()
-        let interactor = OpenSourceLicenseInteractor(presenter: viewController)
+        let interactor = OpenSourceLicenseInteractor(presenter: viewController, dependency: compoenet)
         interactor.listener = listener
         return OpenSourceLicenseRouter(interactor: interactor, viewController: viewController)
     }
