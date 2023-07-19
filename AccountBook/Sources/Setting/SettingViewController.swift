@@ -101,7 +101,7 @@ private extension SettingViewController {
     
     func configureDiffableDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, SettingCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, setting in
-            guard let self else { return  nil }
+            guard let self else { return nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: setting)
             cell.delegate = self
             return cell

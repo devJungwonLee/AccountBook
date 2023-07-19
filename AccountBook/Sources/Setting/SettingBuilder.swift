@@ -16,7 +16,8 @@ protocol SettingDependency: Dependency {
 final class SettingComponent:
     Component<SettingDependency>,
     SettingInteractorDependency,
-    BackupRecoveryDependency
+    BackupRecoveryDependency,
+    OpenSourceLicenseDependency
 {
     var menuListSubject: PassthroughSubject<[SettingMenu], Never>
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
@@ -43,6 +44,7 @@ final class SettingBuilder: Builder<SettingDependency>, SettingBuildable {
     func build(withListener listener: SettingListener) -> SettingRouting {
         let component = SettingComponent(dependency: dependency)
         let backupRecoveryBuilder = BackupRecoveryBuilder(dependency: component)
+        let openSourceLicenseBuilder = OpenSourceLicenseBuilder(dependency: component)
         
         let viewController = SettingViewController()
         let interactor = SettingInteractor(presenter: viewController, dependency: component)
@@ -50,6 +52,7 @@ final class SettingBuilder: Builder<SettingDependency>, SettingBuildable {
         
         return SettingRouter(
             backupRecoveryBuilder: backupRecoveryBuilder,
+            openSourceLicenseBuilder: openSourceLicenseBuilder,
             interactor: interactor,
             viewController: viewController
         )

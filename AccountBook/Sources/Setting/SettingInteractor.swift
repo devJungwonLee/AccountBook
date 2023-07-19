@@ -12,6 +12,8 @@ import LocalAuthentication
 protocol SettingRouting: ViewableRouting {
     func attachBackupRecovery()
     func detachBackupRecovery()
+    func attachOpenSourceLicense()
+    func detachOpenSourceLicense()
     func routeToSafari(with urlString: String)
     func route(to urlString: String)
     func presentActivityView(with urlString: String)
@@ -105,6 +107,8 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
             router?.routeToSafari(with: URLString.bugErrorReport)
         } else if index == 3 {
             router?.route(to: URLString.review)
+        } else if index == 4 {
+            router?.attachOpenSourceLicense()
         } else if index == 5 {
             router?.routeToSafari(with: URLString.privacyPolicy)
         } else if index == 6 {
@@ -114,6 +118,10 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     
     func closeBackupRecovery() {
         router?.detachBackupRecovery()
+    }
+    
+    func closeOpenSourceLicense() {
+        router?.detachOpenSourceLicense()
     }
     
     func accountsDownloaded() {
