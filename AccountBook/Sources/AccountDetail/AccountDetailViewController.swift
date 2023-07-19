@@ -84,7 +84,9 @@ final class AccountDetailViewController: UIViewController, AccountDetailPresenta
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        listener?.didDisappear()
+        if isBeingDismissed {
+            listener?.didDisappear()
+        }
     }
     
     func displayAccount(_ account: Account) {

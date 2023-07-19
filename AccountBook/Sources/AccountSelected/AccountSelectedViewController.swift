@@ -63,7 +63,9 @@ final class AccountSelectedViewController: UIViewController, AccountSelectedPres
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        listener?.didDisappear()
+        if isBeingDismissed {
+            listener?.didDisappear()
+        }
     }
     
     func dismiss() {

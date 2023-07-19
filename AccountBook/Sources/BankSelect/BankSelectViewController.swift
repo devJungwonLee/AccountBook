@@ -43,7 +43,9 @@ final class BankSelectViewController: UIViewController, BankSelectPresentable, B
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        listener?.didDisappear()
+        if navigationController?.isBeingDismissed ?? false {
+            listener?.didDisappear()
+        }
     }
     
     func dismiss() {
