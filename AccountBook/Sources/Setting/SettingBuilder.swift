@@ -17,7 +17,8 @@ final class SettingComponent:
     Component<SettingDependency>,
     SettingInteractorDependency,
     BackupRecoveryDependency,
-    OpenSourceLicenseDependency
+    OpenSourceLicenseDependency,
+    AppVersionDependency
 {
     var menuListSubject: PassthroughSubject<[SettingMenu], Never>
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
@@ -45,6 +46,7 @@ final class SettingBuilder: Builder<SettingDependency>, SettingBuildable {
         let component = SettingComponent(dependency: dependency)
         let backupRecoveryBuilder = BackupRecoveryBuilder(dependency: component)
         let openSourceLicenseBuilder = OpenSourceLicenseBuilder(dependency: component)
+        let appVersionBuilder = AppVersionBuilder(dependency: component)
         
         let viewController = SettingViewController()
         let interactor = SettingInteractor(presenter: viewController, dependency: component)
@@ -53,6 +55,7 @@ final class SettingBuilder: Builder<SettingDependency>, SettingBuildable {
         return SettingRouter(
             backupRecoveryBuilder: backupRecoveryBuilder,
             openSourceLicenseBuilder: openSourceLicenseBuilder,
+            appVersionBuilder: appVersionBuilder,
             interactor: interactor,
             viewController: viewController
         )

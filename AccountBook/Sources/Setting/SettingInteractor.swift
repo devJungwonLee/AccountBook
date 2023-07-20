@@ -14,6 +14,8 @@ protocol SettingRouting: ViewableRouting {
     func detachBackupRecovery()
     func attachOpenSourceLicense()
     func detachOpenSourceLicense()
+    func attachAppVersion()
+    func detachAppVersion()
     func routeToSafari(with urlString: String)
     func route(to urlString: String)
     func presentActivityView(with urlString: String)
@@ -113,6 +115,8 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
             router?.routeToSafari(with: URLString.privacyPolicy)
         } else if index == 6 {
             router?.presentActivityView(with: URLString.appStore)
+        } else if index == 7 {
+            router?.attachAppVersion()
         }
     }
     
@@ -122,6 +126,10 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     
     func closeOpenSourceLicense() {
         router?.detachOpenSourceLicense()
+    }
+    
+    func closeAppVersion() {
+        router?.detachAppVersion()
     }
     
     func accountsDownloaded() {

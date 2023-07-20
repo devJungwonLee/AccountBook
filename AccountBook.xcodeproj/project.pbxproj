@@ -22,6 +22,10 @@
 		5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5502A0683420012DEE4 /* BankSelectInteractor.swift */; };
 		5E26A5572A07ACC20012DEE4 /* BankCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */; };
 		5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26A5582A07B2770012DEE4 /* BankCell.swift */; };
+		5E2A51512A69020300DB505A /* AppVersionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A514D2A69020300DB505A /* AppVersionRouter.swift */; };
+		5E2A51522A69020300DB505A /* AppVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A514E2A69020300DB505A /* AppVersionViewController.swift */; };
+		5E2A51532A69020300DB505A /* AppVersionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A514F2A69020300DB505A /* AppVersionBuilder.swift */; };
+		5E2A51542A69020300DB505A /* AppVersionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A51502A69020300DB505A /* AppVersionInteractor.swift */; };
 		5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
 		5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
 		5E36088A2A541A10000E9E71 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
@@ -195,6 +199,10 @@
 		5E26A5502A0683420012DEE4 /* BankSelectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectInteractor.swift; sourceTree = "<group>"; };
 		5E26A5562A07ACC20012DEE4 /* BankCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCollectionView.swift; sourceTree = "<group>"; };
 		5E26A5582A07B2770012DEE4 /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
+		5E2A514D2A69020300DB505A /* AppVersionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionRouter.swift; sourceTree = "<group>"; };
+		5E2A514E2A69020300DB505A /* AppVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionViewController.swift; sourceTree = "<group>"; };
+		5E2A514F2A69020300DB505A /* AppVersionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionBuilder.swift; sourceTree = "<group>"; };
+		5E2A51502A69020300DB505A /* AppVersionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionInteractor.swift; sourceTree = "<group>"; };
 		5E36087A2A540EA7000E9E71 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BankObject+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -395,6 +403,17 @@
 				5E97711A2A093FA300A6B28F /* BankSelectFooterView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		5E2A514C2A6901EE00DB505A /* AppVersion */ = {
+			isa = PBXGroup;
+			children = (
+				5E2A514D2A69020300DB505A /* AppVersionRouter.swift */,
+				5E2A514E2A69020300DB505A /* AppVersionViewController.swift */,
+				5E2A514F2A69020300DB505A /* AppVersionBuilder.swift */,
+				5E2A51502A69020300DB505A /* AppVersionInteractor.swift */,
+			);
+			path = AppVersion;
 			sourceTree = "<group>";
 		};
 		5E41EB312A67CE6E0033A911 /* UI */ = {
@@ -709,6 +728,7 @@
 		5EFB554829EA8502006546B5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5E2A514C2A6901EE00DB505A /* AppVersion */,
 				5E6B66D12A67C49700BAEAAC /* OpenSourceLicense */,
 				5E7CE26D2A5D2E140005C59F /* BackupRecovery */,
 				5EDE33AC2A323BE1007A906F /* AccountSelected */,
@@ -954,6 +974,7 @@
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
 				5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */,
 				5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */,
+				5E2A51512A69020300DB505A /* AppVersionRouter.swift in Sources */,
 				5EAA44712A1F43C500E0214D /* AccountDetailViewController.swift in Sources */,
 				5E6ACC7B2A2DADFB00FD63EF /* Date+.swift in Sources */,
 				5E26A5532A0683420012DEE4 /* BankSelectBuilder.swift in Sources */,
@@ -970,6 +991,7 @@
 				5E20BCCD2A272B7000E6A73D /* SettingBuilder.swift in Sources */,
 				5EE82F5F2A0086D00075D2ED /* MainBuilder.swift in Sources */,
 				5E41EB3F2A67EC1C0033A911 /* License.swift in Sources */,
+				5E2A51522A69020300DB505A /* AppVersionViewController.swift in Sources */,
 				5EDE33B32A323D1F007A906F /* AccountSelectedBuilder.swift in Sources */,
 				5E7CE2722A5D2E3C0005C59F /* BackupRecoveryRouter.swift in Sources */,
 				5ED57AF22A5FDA950062114C /* BackupObject+CoreDataClass.swift in Sources */,
@@ -984,6 +1006,7 @@
 				5E6BCE6D29EBC7A1008CEFE5 /* RootInteractor.swift in Sources */,
 				5EAA44732A1F43C500E0214D /* AccountDetailInteractor.swift in Sources */,
 				5E6ACC7D2A2DD08D00FD63EF /* UserDefaults+.swift in Sources */,
+				5E2A51532A69020300DB505A /* AppVersionBuilder.swift in Sources */,
 				5E9686132A5947AD000F6C52 /* AccountBookIntents.intentdefinition in Sources */,
 				5E09CC8D2A32FE37003BA8E0 /* NotificationName+.swift in Sources */,
 				5EBA27C22A037682009AB303 /* AccountRegisterViewController.swift in Sources */,
@@ -1026,6 +1049,7 @@
 				5EE82F692A0096050075D2ED /* HomeInteractor.swift in Sources */,
 				5EE82F682A0096050075D2ED /* HomeBuilder.swift in Sources */,
 				5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */,
+				5E2A51542A69020300DB505A /* AppVersionInteractor.swift in Sources */,
 				5E26A5592A07B2770012DEE4 /* BankCell.swift in Sources */,
 				5EA61B7F2A6647A50020225D /* URLRoutable.swift in Sources */,
 				5E26A54B2A066F9D0012DEE4 /* UIScrollView+.swift in Sources */,

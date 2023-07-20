@@ -10,7 +10,8 @@ import ModernRIBs
 protocol SettingInteractable:
     Interactable,
     BackupRecoveryListener,
-    OpenSourceLicenseListener
+    OpenSourceLicenseListener,
+    AppVersionListener
 {
     var router: SettingRouting? { get set }
     var listener: SettingListener? { get set }
@@ -30,14 +31,19 @@ final class SettingRouter: ViewableRouter<SettingInteractable, SettingViewContro
     private let openSourceLicenseBuilder: OpenSourceLicenseBuildable
     private var openSourceLicenseRouter: OpenSourceLicenseRouting?
     
+    private let appVersionBuilder: AppVersionBuildable
+    private var appVersionRouter: AppVersionRouting?
+    
     init(
         backupRecoveryBuilder: BackupRecoveryBuildable,
         openSourceLicenseBuilder: OpenSourceLicenseBuildable,
+        appVersionBuilder: AppVersionBuildable,
         interactor: SettingInteractable,
         viewController: SettingViewControllable
     ) {
         self.backupRecoveryBuilder = backupRecoveryBuilder
         self.openSourceLicenseBuilder = openSourceLicenseBuilder
+        self.appVersionBuilder = appVersionBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -66,6 +72,19 @@ final class SettingRouter: ViewableRouter<SettingInteractable, SettingViewContro
         guard let openSourceLicenseRouter else { return }
         detachChild(openSourceLicenseRouter)
         self.openSourceLicenseRouter = nil
+    }
+    
+    func attachAppVersion() {
+        let appVersionRouter = appVersionBuilder.build(withListener: interactor)
+        self.appVersionRouter = appVersionRouter
+        attachChild(appVersionRouter)
+        viewController.push(viewController: appVersionRouter.viewControllable)
+    }
+    
+    func detachAppVersion() {
+        guard let appVersionRouter else { return }
+        detachChild(appVersionRouter)
+        self.appVersionRouter = nil
     }
     
     func routeToSafari(with urlString: String) {
