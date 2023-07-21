@@ -13,7 +13,8 @@ protocol AppVersionInteractable: Interactable {
 }
 
 protocol AppVersionViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+    func open(with urlString: String)
+    func presentSafari(with urlString: String)
 }
 
 final class AppVersionRouter: ViewableRouter<AppVersionInteractable, AppVersionViewControllable>, AppVersionRouting {
@@ -22,5 +23,13 @@ final class AppVersionRouter: ViewableRouter<AppVersionInteractable, AppVersionV
     override init(interactor: AppVersionInteractable, viewController: AppVersionViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func route(to urlString: String) {
+        viewController.open(with: urlString)
+    }
+    
+    func routeToSafari(with urlString: String) {
+        viewController.presentSafari(with: urlString)
     }
 }

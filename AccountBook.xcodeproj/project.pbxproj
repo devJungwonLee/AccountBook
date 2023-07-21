@@ -26,6 +26,7 @@
 		5E2A51522A69020300DB505A /* AppVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A514E2A69020300DB505A /* AppVersionViewController.swift */; };
 		5E2A51532A69020300DB505A /* AppVersionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A514F2A69020300DB505A /* AppVersionBuilder.swift */; };
 		5E2A51542A69020300DB505A /* AppVersionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A51502A69020300DB505A /* AppVersionInteractor.swift */; };
+		5E2A51562A6A497D00DB505A /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A51552A6A497D00DB505A /* Bundle+.swift */; };
 		5E36087B2A540EA7000E9E71 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608792A540EA7000E9E71 /* Model.xcdatamodeld */; };
 		5E3608882A541A10000E9E71 /* AccountObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */; };
 		5E36088A2A541A10000E9E71 /* BankObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */; };
@@ -203,6 +204,7 @@
 		5E2A514E2A69020300DB505A /* AppVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionViewController.swift; sourceTree = "<group>"; };
 		5E2A514F2A69020300DB505A /* AppVersionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionBuilder.swift; sourceTree = "<group>"; };
 		5E2A51502A69020300DB505A /* AppVersionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionInteractor.swift; sourceTree = "<group>"; };
+		5E2A51552A6A497D00DB505A /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		5E36087A2A540EA7000E9E71 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		5E3608842A541A10000E9E71 /* AccountObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5E3608862A541A10000E9E71 /* BankObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BankObject+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				5E6ACC7A2A2DADFB00FD63EF /* Date+.swift */,
 				5E6ACC7C2A2DD08D00FD63EF /* UserDefaults+.swift */,
 				5E09CC8C2A32FE37003BA8E0 /* NotificationName+.swift */,
+				5E2A51552A6A497D00DB505A /* Bundle+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -972,6 +975,7 @@
 				5E6BCE6F29EBC850008CEFE5 /* AppComponent.swift in Sources */,
 				5E5BEDBA2A1B5C67002EC397 /* AccountRepositoryType.swift in Sources */,
 				5EE82F5E2A0086D00075D2ED /* MainViewController.swift in Sources */,
+				5E2A51562A6A497D00DB505A /* Bundle+.swift in Sources */,
 				5ED5E20D2A0216DC005FEA13 /* AccountCell.swift in Sources */,
 				5E26A5542A0683420012DEE4 /* BankSelectInteractor.swift in Sources */,
 				5E2A51512A69020300DB505A /* AppVersionRouter.swift in Sources */,
@@ -1339,7 +1343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1374,7 +1378,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jungwon.AccountBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

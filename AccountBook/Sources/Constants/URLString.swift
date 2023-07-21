@@ -10,5 +10,6 @@ struct URLString {
     static let review = "https://apps.apple.com/kr/app/id640199958?action=write-review"
     static let privacyPolicy = "https://policies.google.com/privacy?hl=ko"
     static let appStore = "https://apps.apple.com/kr/app/id640199958"
+    static let github = "https://github.com/devJungwonLee"
     private init() { }
 }

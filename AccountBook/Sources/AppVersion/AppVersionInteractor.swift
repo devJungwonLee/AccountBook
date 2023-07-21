@@ -6,14 +6,16 @@
 //
 
 import ModernRIBs
+import Foundation
 
 protocol AppVersionRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToSafari(with urlString: String)
+    func route(to urlString: String)
 }
 
 protocol AppVersionPresentable: Presentable {
     var listener: AppVersionPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func displayAppVersion(_ version: String)
 }
 
 protocol AppVersionListener: AnyObject {
@@ -44,5 +46,18 @@ final class AppVersionInteractor: PresentableInteractor<AppVersionPresentable>, 
     
     func didDisappear() {
         listener?.closeAppVersion()
+    }
+    
+    func githubButtonTapped() {
+        router?.routeToSafari(with: URLString.github)
+    }
+    
+    func updateButtonTapped() {
+        router?.route(to: URLString.appStore)
+    }
+    
+    func fetchAppVersion() {
+        let appVersion = Bundle.appVersion
+        presenter.displayAppVersion(appVersion)
     }
 }
