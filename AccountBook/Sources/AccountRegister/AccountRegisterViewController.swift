@@ -124,7 +124,9 @@ final class AccountRegisterViewController: UIViewController, AccountRegisterPres
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        listener?.didDisappear()
+        if isMovingFromParent {
+            listener?.didDisappear()
+        }
     }
     
     deinit {

@@ -142,8 +142,9 @@ private extension HomeViewController {
     
     func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
         guard let index = indexPath?.item else { return nil }
-        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, _ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, completion in
             self?.listener?.trailingSwiped(index)
+            completion(true)
         }
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }

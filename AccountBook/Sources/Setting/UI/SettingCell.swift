@@ -25,6 +25,7 @@ final class SettingCell: UICollectionViewListCell {
     weak var delegate: SettingCellDelegate?
     
     private lazy var accountNumberHidingSwitch = UISwitch().then {
+        $0.onTintColor = .main
         $0.isOn = false
         $0.addTarget(self, action: #selector(switchTapped), for: .valueChanged)
     }

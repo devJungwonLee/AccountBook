@@ -12,6 +12,13 @@ import LocalAuthentication
 protocol SettingRouting: ViewableRouting {
     func attachBackupRecovery()
     func detachBackupRecovery()
+    func attachOpenSourceLicense()
+    func detachOpenSourceLicense()
+    func attachAppVersion()
+    func detachAppVersion()
+    func routeToSafari(with urlString: String)
+    func route(to urlString: String)
+    func presentActivityView(with urlString: String)
 }
 
 protocol SettingPresentable: Presentable {
@@ -61,7 +68,13 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     private func configureMenuList(with isOn: Bool) {
         let menuList: [SettingMenu] = [
             .init(title: "계좌번호 가리기", isOn: isOn),
-            .init(title: "데이터 백업 및 복구", isOn: nil)
+            .init(title: "데이터 백업 및 복구", isOn: nil),
+            .init(title: "버그, 오류 제보", isOn: nil),
+            .init(title: "평가, 리뷰 남기기", isOn: nil),
+            .init(title: "오픈소스 라이선스", isOn: nil),
+            .init(title: "개인정보 처리방침", isOn: nil),
+            .init(title: "앱 공유하기", isOn: nil),
+            .init(title: "앱 버전", isOn: nil)
         ]
         dependency.menuListSubject.send(menuList)
     }
@@ -92,11 +105,31 @@ final class SettingInteractor: PresentableInteractor<SettingPresentable>, Settin
     func didSelectItemAt(_ index: Int) {
         if index == 1 {
             router?.attachBackupRecovery()
+        } else if index == 2 {
+            router?.routeToSafari(with: URLString.bugErrorReport)
+        } else if index == 3 {
+            router?.route(to: URLString.review)
+        } else if index == 4 {
+            router?.attachOpenSourceLicense()
+        } else if index == 5 {
+            router?.routeToSafari(with: URLString.privacyPolicy)
+        } else if index == 6 {
+            router?.presentActivityView(with: URLString.appStore)
+        } else if index == 7 {
+            router?.attachAppVersion()
         }
     }
     
     func closeBackupRecovery() {
         router?.detachBackupRecovery()
+    }
+    
+    func closeOpenSourceLicense() {
+        router?.detachOpenSourceLicense()
+    }
+    
+    func closeAppVersion() {
+        router?.detachAppVersion()
     }
     
     func accountsDownloaded() {

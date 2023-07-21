@@ -18,7 +18,14 @@ protocol SettingPresentableListener: AnyObject {
     func didSelectItemAt(_ index: Int)
 }
 
-final class SettingViewController: UIViewController, SettingPresentable, SettingViewControllable {
+final class SettingViewController:
+    UIViewController,
+    SettingPresentable,
+    SettingViewControllable,
+    SafariPresentable,
+    URLRoutable,
+    ActivityViewPresentable
+{
     weak var listener: SettingPresentableListener?
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Int, SettingCellState>?
@@ -94,7 +101,7 @@ private extension SettingViewController {
     
     func configureDiffableDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, SettingCellState>(collectionView: collectionView) { [weak self] collectionView, indexPath, setting in
-            guard let self else { return  nil }
+            guard let self else { return nil }
             let cell = collectionView.dequeueConfiguredReusableCell(using: self.cellRegistration, for: indexPath, item: setting)
             cell.delegate = self
             return cell
