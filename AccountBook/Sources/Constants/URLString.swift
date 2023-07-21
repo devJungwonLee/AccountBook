@@ -7,9 +7,9 @@
 
 struct URLString {
     static let bugErrorReport = "https://forms.gle/AGq1FrpHpW7oJQVd7"
-    static let review = "https://apps.apple.com/kr/app/id640199958?action=write-review"
+    static let review = "https://apps.apple.com/kr/app/id6451920272?action=write-review"
     static let privacyPolicy = "https://bit.ly/accountbookprivacypolicy"
-    static let appStore = "https://apps.apple.com/kr/app/id640199958"
+    static let appStore = "https://apps.apple.com/kr/app/id6451920272"
     static let github = "https://github.com/devJungwonLee"
     private init() { }
 }
