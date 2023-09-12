@@ -1,0 +1,26 @@
+[
+    {
+        "title": "CombineExt",
+        "urlString": "https://github.com/CombineCommunity/CombineExt",
+        "copyright": "Copyright 2020 Combine Community, and/or Shai Mishali",
+        "license": "MIT License"
+    },
+    {
+        "title": "ModernRIBs",
+        "urlString": "https://github.com/DevYeom/ModernRIBs",
+        "copyright": "",
+        "license": "Apache License 2.0"
+    },
+    {
+        "title": "SnapKit",
+        "urlString": "https://github.com/SnapKit/SnapKit",
+        "copyright": "Copyright 2011-Present SnapKit Team",
+        "license": "MIT License"
+    },
+    {
+        "title": "Then",
+        "urlString": "https://github.com/devxoul/Then",
+        "copyright": "Copyright 2015 Suyeol Jeon",
+        "license": "MIT License"
+    }
+]
