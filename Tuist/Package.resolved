@@ -1,4 +1,5 @@
 {
+  "originHash" : "877894678cc9f0a7ce7ebbd6778827ac462c1e567e45b32a186443ca3ebf23a9",
   "pins" : [
     {
       "identity" : "combineext",
@@ -37,5 +38,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

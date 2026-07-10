@@ -81,15 +81,31 @@ struct AccountBookWidgetEntryView : View {
 
     var body: some View {
         let accountList = entry.configuration.accounts
-        switch widgetFamily {
-        case .systemSmall:
-            AccountWidgetView(account: accountList?.first)
-        case .systemMedium:
-            AccountListWidgetView(accountList: accountList, itemCount: 2)
-        case .systemLarge:
-            AccountListWidgetView(accountList: accountList, itemCount: 4)
-        default:
-            EmptyView()
+        Group {
+            switch widgetFamily {
+            case .systemSmall:
+                AccountWidgetView(account: accountList?.first)
+            case .systemMedium:
+                AccountListWidgetView(accountList: accountList, itemCount: 2)
+            case .systemLarge:
+                AccountListWidgetView(accountList: accountList, itemCount: 4)
+            default:
+                EmptyView()
+            }
+        }
+        .widgetContainerBackground()
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func widgetContainerBackground() -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            containerBackground(for: .widget) {
+                Color(.systemBackground)
+            }
+        } else {
+            self
         }
     }
 }
