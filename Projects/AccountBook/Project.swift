@@ -47,14 +47,14 @@ let project = Project(
                 "ONLY_ACTIVE_ARCH": "YES",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            ]),
+            ], xcconfig: "Config/Secrets.xcconfig"),
             .release(name: "Release", settings: [
                 "INFOPLIST_KEY_CFBundleDisplayName": "계좌번호부",
                 "MTL_ENABLE_DEBUG_INFO": "NO",
                 "SWIFT_COMPILATION_MODE": "wholemodule",
                 "SWIFT_OPTIMIZATION_LEVEL": "-O",
                 "VALIDATE_PRODUCT": "YES",
-            ]),
+            ], xcconfig: "Config/Secrets.xcconfig"),
         ]
     ),
     targets: [
