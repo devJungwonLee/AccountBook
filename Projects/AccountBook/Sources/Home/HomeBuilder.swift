@@ -11,6 +11,7 @@ import Combine
 protocol HomeDependency: Dependency {
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
     var accountsDownloadedEventStream: AnyPublisher<Void, Never> { get }
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class HomeComponent:
@@ -20,8 +21,11 @@ final class HomeComponent:
     HomeInteractorDependency {
     var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
-    var accountRepository: AccountRepositoryType = AccountRepository()
     var localAuthenticationRepository: LocalAuthenticationRepositoryType = LocalAuthenticationRepository()
+    
+    var accountRepository: AccountRepositoryType {
+        dependency.accountRepository
+    }
     
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
         return dependency.accountNumberHidingFlagStream

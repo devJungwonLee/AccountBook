@@ -11,15 +11,13 @@ import Combine
 import CombineExt
 
 protocol BackupRecoveryDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class BackupRecoveryComponent:
     Component<BackupRecoveryDependency>,
     BackupRecoveryInteractorDependency
 {
-    var accountRepository: AccountRepositoryType
     var backupRecoveryRepository: BackupRecoveryRepositoryType
     var localAuthenticationRepository: LocalAuthenticationRepositoryType
     var backupDateSubject: ReplaySubject<String, Never>
@@ -27,7 +25,6 @@ final class BackupRecoveryComponent:
     var messageSubject: PassthroughSubject<String, Never>
     
     override init(dependency: BackupRecoveryDependency) {
-        self.accountRepository = AccountRepository()
         self.backupRecoveryRepository = BackupRecoveryRepository()
         self.localAuthenticationRepository = LocalAuthenticationRepository()
         self.backupDateSubject = .init(bufferSize: 1)
@@ -35,8 +32,10 @@ final class BackupRecoveryComponent:
         self.messageSubject = .init()
         super.init(dependency: dependency)
     }
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    
+    var accountRepository: AccountRepositoryType {
+        dependency.accountRepository
+    }
 }
 
 // MARK: - Builder

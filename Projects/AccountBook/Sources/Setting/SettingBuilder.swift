@@ -9,8 +9,7 @@ import ModernRIBs
 import Combine
 
 protocol SettingDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var accountRepository: AccountRepositoryType { get }
 }
 
 final class SettingComponent:
@@ -27,6 +26,10 @@ final class SettingComponent:
         self.menuListSubject = .init()
         self.localAuthenticationRepository = LocalAuthenticationRepository()
         super.init(dependency: dependency)
+    }
+    
+    var accountRepository: AccountRepositoryType {
+        dependency.accountRepository
     }
 }
 

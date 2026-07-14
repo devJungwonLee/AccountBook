@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIAlertController: UITextFieldDelegate {
+extension UIAlertController: @retroactive UITextFieldDelegate {
     func addTextFieldTarget() {
         guard let textFields else { return }
         textFields[0].addTarget(self, action: #selector(textChanged), for: .editingChanged)
@@ -21,4 +21,3 @@ extension UIAlertController: UITextFieldDelegate {
         }
     }
 }
-
