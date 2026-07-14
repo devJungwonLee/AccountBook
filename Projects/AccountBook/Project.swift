@@ -1,7 +1,7 @@
 import ProjectDescription
 
 let appName = "AccountBook"
-let deploymentTarget = "15.0"
+let deploymentTarget = "16.0"
 let developmentTeam = "VBT5J7U68Y"
 
 let baseTargetSettings: SettingsDictionary = [
@@ -80,26 +80,37 @@ let project = Project(
                 .external(name: "ModernRIBs"),
                 .external(name: "SnapKit"),
                 .external(name: "CombineExt"),
+                .external(name: "ZIPFoundation"),
                 .sdk(name: "WidgetKit", type: .framework),
             ],
-            settings: .settings(base: baseTargetSettings.merging([
-                "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
-                "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
-                "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
-                "INFOPLIST_KEY_NSFaceIDUsageDescription": "생체인증을 통해 보안이 필요한 동작을 수행할 수 있습니다.",
-                "INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents": "YES",
-                "INFOPLIST_KEY_UIMainStoryboardFile": "",
-                "INFOPLIST_KEY_UISupportedInterfaceOrientations": "UIInterfaceOrientationPortrait",
-                "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad": "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                ],
-                "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator",
-                "SUPPORTS_MACCATALYST": "NO",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
-                "TARGETED_DEVICE_FAMILY": "1",
-            ])),
+            settings: .settings(
+                base: baseTargetSettings.merging([
+                    "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+                    "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
+                    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
+                    "INFOPLIST_KEY_NSFaceIDUsageDescription": "생체인증을 통해 보안이 필요한 동작을 수행할 수 있습니다.",
+                    "INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents": "YES",
+                    "INFOPLIST_KEY_UIMainStoryboardFile": "",
+                    "INFOPLIST_KEY_UISupportedInterfaceOrientations": "UIInterfaceOrientationPortrait",
+                    "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad": "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown",
+                    "LD_RUNPATH_SEARCH_PATHS": [
+                        "$(inherited)",
+                        "@executable_path/Frameworks",
+                    ],
+                    "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator",
+                    "SUPPORTS_MACCATALYST": "NO",
+                    "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
+                    "TARGETED_DEVICE_FAMILY": "1",
+                ]),
+                configurations: [
+                    .debug(name: "Debug", settings: [
+                        "INFOPLIST_FILE": "Support/Info-Debug.plist",
+                    ]),
+                    .release(name: "Release", settings: [
+                        "INFOPLIST_FILE": "Support/Info.plist",
+                    ]),
+                ]
+            ),
             coreDataModels: [
                 .coreDataModel("Model.xcdatamodeld"),
             ]

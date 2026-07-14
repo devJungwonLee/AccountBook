@@ -21,14 +21,18 @@ protocol RootListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol RootInteractorDependency {
+    var bankAssetRepository: BankAssetRepositoryType { get }
+}
+
 final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
 
     weak var router: RootRouting?
     weak var listener: RootListener?
+    private let dependency: RootInteractorDependency
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: RootPresentable) {
+    init(presenter: RootPresentable, dependency: RootInteractorDependency) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -36,6 +40,16 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     override func didBecomeActive() {
         super.didBecomeActive()
         router?.attachLoggedIn()
+
+        Task { [weak self] in
+            guard let self else { return }
+
+            do {
+                try await self.dependency.bankAssetRepository.synchronize()
+            } catch {
+                // TODO: 에러 처리
+            }
+        }
     }
 
     override func willResignActive() {

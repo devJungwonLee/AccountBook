@@ -17,5 +17,6 @@ let package = Package(
         .package(url: "https://github.com/DevYeom/ModernRIBs.git", exact: "1.0.2"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", exact: "5.6.0"),
         .package(url: "https://github.com/CombineCommunity/CombineExt.git", exact: "1.8.1"),
+        .package(url: "https://github.com/weichsel/ZIPFoundation.git", exact: "0.9.20"),
     ]
 )

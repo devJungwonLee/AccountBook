@@ -8,7 +8,11 @@
 import Foundation
 
 extension Bundle {
-    static var appVersion: String {
-        return (main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
-    }
+    static let appVersion: String = {
+        main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    }()
+    
+    static let assetsURL: String = {
+        main.infoDictionary?["AssetsURL"] as? String ?? ""
+    }()
 }

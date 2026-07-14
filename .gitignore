@@ -51,23 +51,14 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
-### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
-/*.gcno
-
-### Projects ###
-*.xcodeproj
-*.xcworkspace
-
-### Tuist derived files ###
+### Tuist generated files ###
+*.xcodeproj/
+*.xcworkspace/
 graph.dot
 Derived/
 
 ### Tuist managed dependencies ###
-Tuist/.build
+Tuist/.build/
 
 ### Local configuration ###
 Projects/AccountBook/Config/Secrets.xcconfig

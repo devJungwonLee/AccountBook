@@ -23,5 +23,8 @@
       <FileRef
          location = "group:Tuist/.build/tuist-derived/Projects/Then/Then.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/ZIPFoundation/ZIPFoundation.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
