@@ -14,7 +14,7 @@ protocol RootRouting: ViewableRouting {
 
 protocol RootPresentable: Presentable {
     var listener: RootPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setLoading(_ isLoading: Bool)
 }
 
 protocol RootListener: AnyObject {
@@ -39,21 +39,22 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        router?.attachLoggedIn()
-
-        Task { [weak self] in
-            guard let self else { return }
-
-            do {
-                try await self.dependency.bankAssetRepository.synchronize()
-            } catch {
-                // TODO: 에러 처리
-            }
-        }
+        synchronizeAssets()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+}
+
+private extension RootInteractor {
+    func synchronizeAssets() {
+        Task { @MainActor [weak self] in
+            self?.presenter.setLoading(true)
+            try? await self?.dependency.bankAssetRepository.synchronize()
+            self?.presenter.setLoading(false)
+            self?.router?.attachLoggedIn()
+        }
     }
 }
