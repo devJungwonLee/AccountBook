@@ -31,8 +31,9 @@ struct BankAssetRepository: BankAssetRepositoryType {
         try await saveAssets(manifest)
     }
 
-    func fetchBankList() async throws -> [Bank] {
-        throw BankAssetRepositoryError.notImplemented
+    func fetchBankList() throws -> [Bank] {
+        let data = try Data(contentsOf: bankListURL)
+        return try JSONDecoder().decode([Bank].self, from: data)
     }
 
     func logoURL(for bankCode: String) -> URL? {
@@ -100,6 +101,13 @@ private extension BankAssetRepository {
         get throws {
             try fileManager.assetStorageURL
                 .appendingPathComponent("temp")
+        }
+    }
+    
+    var bankListURL: URL {
+        get throws {
+            try bankAssetsURL
+                .appendingPathComponent("bank_list.json")
         }
     }
 }

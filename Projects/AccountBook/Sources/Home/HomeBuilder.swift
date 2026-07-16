@@ -12,6 +12,7 @@ protocol HomeDependency: Dependency {
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> { get }
     var accountsDownloadedEventStream: AnyPublisher<Void, Never> { get }
     var accountRepository: AccountRepositoryType { get }
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
 final class HomeComponent:
@@ -22,11 +23,15 @@ final class HomeComponent:
     var copyTextSubject: PassthroughSubject<String, Never> = .init()
     var accountListSubject: CurrentValueSubject<[Account], Never> = .init([])
     var localAuthenticationRepository: LocalAuthenticationRepositoryType = LocalAuthenticationRepository()
-    
+
     var accountRepository: AccountRepositoryType {
         dependency.accountRepository
     }
     
+    var bankAssetRepository: BankAssetRepositoryType {
+        dependency.bankAssetRepository
+    }
+
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
         return dependency.accountNumberHidingFlagStream
     }

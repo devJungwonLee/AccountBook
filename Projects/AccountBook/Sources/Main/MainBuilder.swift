@@ -9,8 +9,7 @@ import ModernRIBs
 import Combine
 
 protocol MainDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
 final class MainComponent:
@@ -24,13 +23,17 @@ final class MainComponent:
     var accountNumberHidingFlagStream: AnyPublisher<Bool?, Never> {
         return accountNumberHidingFlagSubject.eraseToAnyPublisher()
     }
-    
+
     var accountsDownloadedEventSubject = CurrentValueSubject<Void, Never>(())
     var accountsDownloadedEventStream: AnyPublisher<Void, Never> {
         return accountsDownloadedEventSubject.eraseToAnyPublisher()
     }
     
     var accountRepository: AccountRepositoryType = AccountRepository()
+
+    var bankAssetRepository: BankAssetRepositoryType {
+        dependency.bankAssetRepository
+    }
 }
 
 // MARK: - Builder
