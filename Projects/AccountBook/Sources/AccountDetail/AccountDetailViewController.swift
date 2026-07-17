@@ -90,8 +90,7 @@ final class AccountDetailViewController: UIViewController, AccountDetailPresenta
     }
     
     func displayAccount(_ account: Account) {
-        let imageName = account.bank.code.isEmpty ? "placeholder" : account.bank.code
-        logoImageView.image = UIImage(named: imageName)
+        logoImageView.image = account.bank.image
         nameLabel.text = account.name
         numberButton.configuration?.attributedTitle = AttributedString(account.number)
         numberButton.configuration?.attributedTitle?.underlineStyle = .init(rawValue: 1)

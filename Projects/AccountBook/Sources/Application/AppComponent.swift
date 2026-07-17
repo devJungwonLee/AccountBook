@@ -8,6 +8,8 @@
 import ModernRIBs
 
 class AppComponent: Component<EmptyDependency>, RootDependency {
+    let bankAssetRepository: BankAssetRepositoryType = BankAssetRepository()
+
     init() {
         super.init(dependency: EmptyComponent())
     }

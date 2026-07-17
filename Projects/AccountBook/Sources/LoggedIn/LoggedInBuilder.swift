@@ -9,8 +9,7 @@ import ModernRIBs
 
 protocol LoggedInDependency: Dependency {
     var loggedInViewController: LoggedInViewControllable { get }
-    // TODO: Declare the set of dependencies required by this RIB, but won't be
-    // created by this RIB.
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
 final class LoggedInComponent: Component<LoggedInDependency>, MainDependency {
@@ -18,7 +17,9 @@ final class LoggedInComponent: Component<LoggedInDependency>, MainDependency {
         return dependency.loggedInViewController
     }
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var bankAssetRepository: BankAssetRepositoryType {
+        dependency.bankAssetRepository
+    }
 }
 
 // MARK: - Builder

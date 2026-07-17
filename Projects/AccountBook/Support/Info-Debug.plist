@@ -24,6 +24,8 @@
 	<string>$(ASSETS_URL)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>생체인증을 통해 보안이 필요한 동작을 수행할 수 있습니다.</string>
 	<key>NSUserActivityTypes</key>
@@ -52,6 +54,8 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchScreen</key>

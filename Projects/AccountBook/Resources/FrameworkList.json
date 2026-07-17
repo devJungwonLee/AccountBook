@@ -22,5 +22,11 @@
         "urlString": "https://github.com/devxoul/Then",
         "copyright": "Copyright 2015 Suyeol Jeon",
         "license": "MIT License"
+    },
+    {
+        "title": "ZIPFoundation",
+        "urlString": "https://github.com/weichsel/ZIPFoundation",
+        "copyright": "Copyright 2017-Present Thomas Zoechling",
+        "license": "MIT License"
     }
 ]

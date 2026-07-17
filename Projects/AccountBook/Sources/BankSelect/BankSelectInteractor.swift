@@ -25,6 +25,7 @@ protocol BankSelectListener: AnyObject {
 
 protocol BankSelectInteractorDependency {
     var banks: CurrentValueSubject<[Bank], Never> { get }
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
 final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, BankSelectInteractable, BankSelectPresentableListener {
@@ -80,10 +81,13 @@ final class BankSelectInteractor: PresentableInteractor<BankSelectPresentable>, 
     }
     
     private func fetchBankList() {
-        guard let url = Bundle.main.url(forResource: "BankList", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let banks = try? JSONDecoder().decode([Bank].self, from: data) else { return }
-        dependency.banks.send(banks)
+        do {
+            let repository = dependency.bankAssetRepository
+            let banks = try repository.fetchBankList()
+            dependency.banks.send(banks)
+        } catch {
+            print(error)
+        }
     }
     
     private func bankDecided(_ bank: Bank) {

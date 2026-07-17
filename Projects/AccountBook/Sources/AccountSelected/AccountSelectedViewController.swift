@@ -73,7 +73,7 @@ final class AccountSelectedViewController: UIViewController, AccountSelectedPres
     }
     
     func displayNotice(_ account: Account, _ copyText: String) {
-        logoImageView.image = UIImage(named: account.bank.code)
+        logoImageView.image = account.bank.image
         nameLabel.text = account.name + "의"
         UIPasteboard.general.string = copyText
     }

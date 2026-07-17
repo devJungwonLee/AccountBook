@@ -9,8 +9,7 @@ import ModernRIBs
 import Combine
 
 protocol AccountRegisterDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
 final class AccountRegisterComponent:
@@ -25,6 +24,10 @@ final class AccountRegisterComponent:
     var accountNameSubject: PassthroughSubject<String, Never> = .init()
     var accountNameErrorSubject: PassthroughSubject<Bool, Never> = .init()
     var doneEventSubject: PassthroughSubject<Void, Never> = .init()
+
+    var bankAssetRepository: BankAssetRepositoryType {
+        dependency.bankAssetRepository
+    }
     
     init(dependency: AccountRegisterDependency, account: Account? = nil) {
         self.accountToEdit = account

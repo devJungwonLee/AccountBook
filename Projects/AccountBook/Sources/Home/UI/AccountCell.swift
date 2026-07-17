@@ -77,8 +77,7 @@ final class AccountCell: UICollectionViewListCell {
     }
     
     func configure(with cellState: AccountCellState) {
-        let imageName = cellState.bank.code.isEmpty ? "placeholder" : cellState.bank.code
-        bankLogoImageView.image = UIImage(named: imageName)
+        bankLogoImageView.image = cellState.bank.image
         nameLabel.text = cellState.name
         numberLabel.text = cellState.number
         numberLabel.isHidden = cellState.shouldHide

@@ -9,12 +9,15 @@ import ModernRIBs
 import Combine
 
 protocol BankSelectDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
 final class BankSelectComponent: Component<BankSelectDependency>, BankSelectInteractorDependency {
     var banks: CurrentValueSubject<[Bank], Never> = .init([])
+
+    var bankAssetRepository: BankAssetRepositoryType {
+        dependency.bankAssetRepository
+    }
 }
 
 // MARK: - Builder

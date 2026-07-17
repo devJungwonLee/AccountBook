@@ -8,12 +8,19 @@
 import ModernRIBs
 
 protocol RootDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var bankAssetRepository: BankAssetRepositoryType { get }
 }
 
-final class RootComponent: Component<RootDependency>, LoggedInDependency {
+final class RootComponent:
+    Component<RootDependency>,
+    LoggedInDependency,
+    RootInteractorDependency
+{
     private let rootViewController: RootViewController
+
+    var bankAssetRepository: BankAssetRepositoryType {
+        dependency.bankAssetRepository
+    }
     
     var loggedInViewController: LoggedInViewControllable {
         return rootViewController
@@ -43,9 +50,8 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
 
     func build() -> LaunchRouting {
         let viewController = RootViewController()
-        let interactor = RootInteractor(presenter: viewController)
-        
         let component = RootComponent(dependency: dependency, rootViewController: viewController)
+        let interactor = RootInteractor(presenter: viewController, dependency: component)
         let loggedInBuilder = LoggedInBuilder(dependency: component)
         
         return RootRouter(

@@ -14,32 +14,47 @@ protocol RootRouting: ViewableRouting {
 
 protocol RootPresentable: Presentable {
     var listener: RootPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setLoading(_ isLoading: Bool)
 }
 
 protocol RootListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol RootInteractorDependency {
+    var bankAssetRepository: BankAssetRepositoryType { get }
+}
+
 final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
 
     weak var router: RootRouting?
     weak var listener: RootListener?
+    private let dependency: RootInteractorDependency
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: RootPresentable) {
+    init(presenter: RootPresentable, dependency: RootInteractorDependency) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        router?.attachLoggedIn()
+        synchronizeAssets()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+}
+
+private extension RootInteractor {
+    func synchronizeAssets() {
+        Task { @MainActor [weak self] in
+            self?.presenter.setLoading(true)
+            try? await self?.dependency.bankAssetRepository.synchronize()
+            self?.presenter.setLoading(false)
+            self?.router?.attachLoggedIn()
+        }
     }
 }

@@ -12,8 +12,7 @@ struct AccountWidgetView: View {
         
     var body: some View {
         VStack(spacing: 16) {
-            Image(account?.bankCode ?? "placeholder")
-                .resizable()
+            BankLogoView(account: account)
                 .frame(width: 60, height: 60)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(30)
@@ -28,11 +27,5 @@ struct AccountWidgetView: View {
             .padding(.horizontal, 8)
         }
         .widgetURL(URL(string: account?.identifier ?? ""))
-    }
-}
-
-struct AccountWidgetView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountWidgetView()
     }
 }

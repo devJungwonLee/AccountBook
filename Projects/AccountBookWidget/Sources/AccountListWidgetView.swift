@@ -50,8 +50,7 @@ struct WidgetItemView: View {
     
     var body: some View {
         HStack {
-            Image(account.bankCode ?? "placeholder")
-                .resizable()
+            BankLogoView(account: account)
                 .frame(width: 52, height: 52)
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(26)

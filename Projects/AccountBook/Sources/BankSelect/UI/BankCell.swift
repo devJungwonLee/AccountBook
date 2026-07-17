@@ -12,10 +12,12 @@ import Then
 struct BankCellState: Hashable {
     let code: String
     let name: String
+    let logoURL: URL?
     
     init(_ bank: Bank) {
         self.code = bank.code
         self.name = bank.name
+        self.logoURL = bank.logoURL
     }
 }
 
@@ -49,7 +51,7 @@ final class BankCell: UICollectionViewCell {
     
     func configure(with cellState: BankCellState) {
         titleLabel.text = cellState.name
-        logoImageView.image = UIImage(named: cellState.code)
+        logoImageView.image = cellState.image
     }
 }
 
