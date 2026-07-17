@@ -13,7 +13,8 @@ import CoreData
 public class BankObject: NSManagedObject {
     func toDomain() -> Bank? {
         guard let code, let name else { return nil }
-        return Bank(code: code, name: name)
+        let logoURL = FileManager.default.logoURL(code)
+        return Bank(code: code, name: name, logoURL: logoURL)
     }
     
     func configure(with bank: Bank) {

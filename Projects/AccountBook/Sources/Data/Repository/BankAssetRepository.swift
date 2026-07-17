@@ -33,7 +33,12 @@ struct BankAssetRepository: BankAssetRepositoryType {
 
     func fetchBankList() throws -> [Bank] {
         let data = try Data(contentsOf: bankListURL)
-        return try JSONDecoder().decode([Bank].self, from: data)
+        let banks = try JSONDecoder().decode([Bank].self, from: data)
+        
+        return banks.map {
+            let logoURL = FileManager.default.logoURL($0.code)
+            return Bank(code: $0.code, name: $0.name, logoURL: logoURL)
+        }
     }
 
     func logoURL(for bankCode: String) -> URL? {
@@ -86,28 +91,28 @@ private extension BankAssetRepository {
     var bankAssetsURL: URL {
         get throws {
             try fileManager.assetStorageURL
-                .appendingPathComponent("bank_assets")
+                .appending(component: "bank_assets")
         }
     }
     
     var manifestURL: URL {
         get throws {
             try bankAssetsURL
-                .appendingPathComponent("manifest.json")
+                .appending(component: "manifest.json")
         }
     }
 
     var tempURL: URL {
         get throws {
             try fileManager.assetStorageURL
-                .appendingPathComponent("temp")
+                .appending(component: "temp")
         }
     }
     
     var bankListURL: URL {
         get throws {
             try bankAssetsURL
-                .appendingPathComponent("bank_list.json")
+                .appending(component: "bank_list.json")
         }
     }
 }
