@@ -62,7 +62,7 @@ struct Provider: IntentTimelineProvider {
                 identifier: accountObject.uuid?.uuidString,
                 display: accountObject.name ?? "",
                 subtitle: accountObject.number,
-                image: INImage(named: accountObject.bank?.code ?? "placeholder")
+                image: nil
             )
             intentAccount.bankCode = accountObject.bank?.code
             return intentAccount
@@ -120,12 +120,5 @@ struct AccountBookWidget: Widget {
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         .configurationDisplayName("계좌번호 복사")
         .description("자주 쓰는 계좌를 등록하여\n더 빠르게 계좌번호를 복사해 보세요.")
-    }
-}
-
-struct AccountBookWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountBookWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: SelectAccountIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

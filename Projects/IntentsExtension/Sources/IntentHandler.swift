@@ -19,7 +19,7 @@ class IntentHandler: INExtension, SelectAccountIntentHandling {
                 identifier: accountObject.uuid?.uuidString,
                 display: accountObject.name ?? "",
                 subtitle: accountObject.number,
-                image: INImage(named: accountObject.bank?.code ?? "placeholder")
+                image: nil
             )
             intentAccount.bankCode = accountObject.bank?.code
             return intentAccount

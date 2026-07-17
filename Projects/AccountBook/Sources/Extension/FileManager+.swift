@@ -20,8 +20,9 @@ extension FileManager {
 }
 
 extension FileManager {
-    func logoURL(_ code: String) -> URL? {
-        try? assetStorageURL
+    func logoURL(_ code: String?) -> URL? {
+        guard let code else { return nil }
+        return try? assetStorageURL
             .appending(component: "bank_assets")
             .appending(component: "logos")
             .appending(component: "\(code).png")
