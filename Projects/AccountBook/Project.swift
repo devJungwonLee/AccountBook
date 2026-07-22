@@ -101,15 +101,7 @@ let project = Project(
                     "SUPPORTS_MACCATALYST": "NO",
                     "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                     "TARGETED_DEVICE_FAMILY": "1",
-                ]),
-                configurations: [
-                    .debug(name: "Debug", settings: [
-                        "INFOPLIST_FILE": "Support/Info-Debug.plist",
-                    ]),
-                    .release(name: "Release", settings: [
-                        "INFOPLIST_FILE": "Support/Info.plist",
-                    ]),
-                ]
+                ])
             ),
             coreDataModels: [
                 .coreDataModel("Model.xcdatamodeld"),
